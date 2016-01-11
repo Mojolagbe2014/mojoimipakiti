@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 session_start(); 
 define("CONST_FILE_PATH", "../includes/constants.php");
 include ('../classes/WebPage.php'); //Set up page as a web page
@@ -8,7 +8,7 @@ $dbObj = new Database();//Instantiate database
 $adminObj = new Admin($dbObj); // Create an object of Admin class
 $errorArr = array(); //Array of errors
 ?>
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />

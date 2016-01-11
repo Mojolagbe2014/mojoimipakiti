@@ -7,8 +7,8 @@ $thisPage = new WebPage(); //Create new instance of webPage class
 $dbObj = new Database();//Instantiate database
 $adminObj = new Admin($dbObj); // Create an object of Admin class
 $errorArr = array(); //Array of errors
-?>
-﻿<!DOCTYPE html>
+?>﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -20,6 +20,7 @@ $errorArr = array(); //Array of errors
     <link href="images/icons/css/font-awesome.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="assets/js/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <div id="wrapper">
@@ -41,11 +42,14 @@ $errorArr = array(); //Array of errors
                                     <table id="coursecategorylist" class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
+                                                <th><input type="checkbox" class="select-checkbox" id="multi-action-box" /></th>
                                                 <th>ID</th>
                                                 <th>Category Name</th>
                                                 <th>Brief Description</th>
                                                 <th>Category Image</th>
-                                                <th>Actions</th>
+                                                <th>Actions &nbsp; 
+                                                    <button class="btn btn-danger btn-sm multi-delete-admin multi-select" title="Delete Selected"><i class="btn-icon-only icon-trash"> </i></button>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -105,6 +109,8 @@ $errorArr = array(); //Array of errors
     <script src="assets/js/common-handler.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js" type="text/javascript"></script>
+    <script src="assets/js/gritter/js/jquery.gritter.min.js" type="text/javascript"></script>
     <script src="assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
     <script src="assets/js/manage-categories.js"></script>

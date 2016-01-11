@@ -71,7 +71,7 @@ else{
     
     if(filter_input(INPUT_POST, "fetchCategories") != NULL){
         $requestData= $_REQUEST;
-        $columns = array( 0 =>'id', 1 => 'name', 2 => 'description', 3 => 'image');
+        $columns = array( 0 =>'id', 1 =>'id', 2 => 'name', 3 => 'description', 4 => 'image');
 
         // getting total number records without any search
         $query = $dbObj->query("SELECT * FROM course_category ");

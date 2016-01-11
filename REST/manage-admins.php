@@ -15,7 +15,7 @@ if(!isset($_SESSION['TSILoggedInAdmin']) || !isset($_SESSION["TSIadminEmail"])){
 }
 else{
     $requestData= $_REQUEST;
-    $columns = array( 0 =>'id', 1 => 'name', 2=> 'email', 3 => 'username', 4 => 'role', 5 => 'date_registered');
+    $columns = array( 0 =>'id', 1 =>'id', 2 => 'name', 3=> 'email', 4=> 'username', 5 => 'role', 6 => 'date_registered');
 
     // getting total number records without any search
     $query = $dbObj->query("SELECT * FROM admin ");

@@ -1,7 +1,18 @@
+var dataTable;
 $(document).ready(function(){
     loadAllRegisteredAdmins();
     function loadAllRegisteredAdmins(){
-        var dataTable = $('#adminlist').DataTable( {
+        dataTable = $('#adminlist').DataTable( {
+            columnDefs: [ {
+                orderable: false,
+                className: 'select-checkbox',
+                targets:   [0, 7]
+            } ],
+            select: {
+                style:    'os',
+                selector: 'td:first-child'
+            },
+            order: [[ 1, 'asc' ]],
             "processing": true,
             "serverSide": true,
             "scrollX": true,
@@ -17,8 +28,49 @@ $(document).ready(function(){
             }
         } );
     }
+    //Select Multiple Values
+    $("#multi-action-box").click(function () {
+        var checkAll = $("#multi-action-box").prop('checked');
+        if (checkAll) {
+            $(".multi-action-box").prop("checked", true);
+        } else {
+            $(".multi-action-box").prop("checked", false);
+        }
+    });
+    //Handler for multiple selection
+    $('.multi-upgrade-admin').click(function(){
+        if(confirm("Are you sure you want to change admin type for selected admins?")) {
+            if($('#multi-action-box').prop("checked") || $('#adminlist :checkbox:checked').length > 0) {
+                var atLeastOneIsChecked = $('#adminlist :checkbox:checked').length > 0;
+                if (atLeastOneIsChecked !== false) {
+                    $('#adminlist :checkbox:checked').each(function(){
+                        changeAdminStatus($(this).attr('data-id'), $(this).attr('data-role'));
+                    });
+                }
+                else alert("No row selected. You must select atleast a row.");
+            }
+            else alert("No row selected. You must select atleast a row.");
+        }
+    });
+    $('.multi-delete-admin').click(function(){
+        if(confirm("Are you sure you want to delete selected admins?")) {
+            if($('#multi-action-box').prop("checked") || $('#adminlist :checkbox:checked').length > 0) {
+                var atLeastOneIsChecked = $('#adminlist :checkbox:checked').length > 0;
+                if (atLeastOneIsChecked !== false) {
+                    $('#adminlist :checkbox:checked').each(function(){
+                        deleteAdmin($(this).attr('data-id'));
+                    });
+                }
+                else alert("No row selected. You must select atleast a row.");
+            }
+            else alert("No row selected. You must select atleast a row.");
+        }
+    });
+    
+    var currentStatus;
     $(document).on('click', '.upgrade-admin', function() {
-        if(confirm("Are you sure you want to upgrade this admin? Admin Name: '"+$(this).attr('data-name')+"'")) changeAdminStatus($(this).attr('data-id'),$(this).attr('data-role'));
+        if($(this).attr('data-role')=="Admin"){ currentStatus = "degrade"; }else currentStatus = "upgrade";
+        if(confirm("Are you sure you want to "+currentStatus+" this admin? Admin Name: '"+$(this).attr('data-name')+"'")) changeAdminStatus($(this).attr('data-id'),$(this).attr('data-role'));
     });
     $(document).on('click', '.delete-admin', function() {
         if(confirm("Are you sure you want to delete this admin? Admin Name: '"+$(this).attr('data-name')+"'")) deleteAdmin($(this).attr('data-id'),$(this).attr('data-role'));
@@ -34,12 +86,31 @@ $(document).ready(function(){
             cache: false,
             success : function(data, status) {
                 if(data.status === 1){
-                    $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+' <img src="images/cycling.GIF" width="30" height="30" alt="Ajax Loading"> Re-loading...</div>');
-                    setInterval(function(){ window.location = "";}, 2000);
+                    $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+'</div>');
+                    dataTable.ajax.reload();
                 }
                 else {
                     $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+'</div>');
                 }
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: data.msg ? data.msg : data
+                });
+            },
+            error : function(xhr, status) {
+                erroMsg = '';
+                if(xhr.status===0){ erroMsg = 'There is a problem connecting to internet. Please review your internet connection.'; }
+                else if(xhr.status===404){ erroMsg = 'Requested page not found.'; }
+                else if(xhr.status===500){ erroMsg = 'Internal Server Error.';}
+                else if(status==='parsererror'){ erroMsg = 'Error. Parsing JSON Request failed.'; }
+                else if(status==='timeout'){  erroMsg = 'Request Time out.';}
+                else { erroMsg = 'Unknow Error.\n'+xhr.responseText;}          
+                $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Admin details update failed. '+erroMsg+'</div>');
+
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: erroMsg
+                });
             }
         });
     }
@@ -51,22 +122,43 @@ $(document).ready(function(){
             cache: false,
             success : function(data, status) {
                 if(data.status === 1){
-                    $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+' <img src="images/cycling.GIF" width="30" height="30" alt="Ajax Loading"> Reloading ...</div>');
-                    setInterval(function(){ window.location = "";}, 2000);
+                    $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+'</div>');
+                    dataTable.ajax.reload();
                 }
                 else {
                     $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+'</div>');
                 }
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: data.msg ? data.msg : data
+                });
+            },
+            error : function(xhr, status) {
+                erroMsg = '';
+                if(xhr.status===0){ erroMsg = 'There is a problem connecting to internet. Please review your internet connection.'; }
+                else if(xhr.status===404){ erroMsg = 'Requested page not found.'; }
+                else if(xhr.status===500){ erroMsg = 'Internal Server Error.';}
+                else if(status==='parsererror'){ erroMsg = 'Error. Parsing JSON Request failed.'; }
+                else if(status==='timeout'){  erroMsg = 'Request Time out.';}
+                else { erroMsg = 'Unknow Error.\n'+xhr.responseText;}          
+                $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Admin details update failed. '+erroMsg+'</div>');
+
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: erroMsg
+                });
             }
         });
     }
     function editAdminDetails(id, name, email, userName, role){//,
         var formVar = {id:id, name:name, email:email, userName:userName, role:role};
         $('#hiddenUpdateForm').removeClass('hidden');
+        $(document).scrollTo('div#hiddenUpdateForm');
         $.each(formVar, function(key, value) { $('form #'+key).val(value); });
         $("form#CreateAdmin").submit(function(e){ 
             e.stopPropagation(); 
             e.preventDefault();
+            $(document).scrollTo('div.panel h3');
             var formDatas = $(this).serialize();
             //formDatas.append('updateThisAdmin', 'true');
             var alertType = ["danger", "success", "danger", "error"];
@@ -77,9 +169,13 @@ $(document).ready(function(){
                 cache: false,
                 success : function(data, status) {
                     $('#hiddenUpdateForm').addClass('hidden');
-                    if(data.status !== null)  $("#messageBox, .messageBox").html('<div class="alert alert-'+alertType[data.status]+'"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+' <img src="images/cycling.GIF" width="30" height="30" alt="Ajax Loading"> Reloading ... </div>'); 
-                    else $("#messageBox, .messageBox").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button> '+data+' <img src="images/cycling.GIF" width="30" height="30" alt="Ajax Loading"> Reloading ... </div>');
-                    setInterval(function(){ window.location = "";}, 2000);
+                    if(data.status !== null)  $("#messageBox, .messageBox").html('<div class="alert alert-'+alertType[data.status]+'"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+'</div>'); 
+                    else $("#messageBox, .messageBox").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button> '+data+'</div>');
+                    dataTable.ajax.reload();
+                    $.gritter.add({
+                        title: 'Notification!',
+                        text: data.msg ? data.msg : data
+                    });
                 },
                 error : function(xhr, status) {
                     erroMsg = '';
@@ -90,6 +186,11 @@ $(document).ready(function(){
                     else if(status==='timeout'){  erroMsg = 'Request Time out.';}
                     else { erroMsg = 'Unknow Error.\n'+xhr.responseText;}          
                     $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Admin details update failed. '+erroMsg+'</div>');
+                    
+                    $.gritter.add({
+                        title: 'Notification!',
+                        text: erroMsg
+                    });
                 }
             });
             return false;

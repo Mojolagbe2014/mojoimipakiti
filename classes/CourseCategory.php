@@ -79,7 +79,8 @@ class CourseCategory implements ContentManipulator{
         $result =array(); 
         if(count($data)>0){
             foreach($data as $r){ 
-                $result[] = array($r['id'], utf8_encode($r['name']), utf8_encode($r['description']), utf8_encode('<img src="../media/category/'.utf8_encode($r['image']).'" width="60" height="50" alt="Pix">'), utf8_encode(' <button data-name="'.$r['name'].'" data-id="'.$r['id'].'"  data-description="'.$r['description'].'"  data-image="'.$r['image'].'" class="btn btn-info btn-small edit-category"  title="Edit"><i class="btn-icon-only icon-pencil"> </i></button> <button data-name="'.$r['name'].'"   data-image="'.$r['image'].'" data-id="'.$r['id'].'" class="btn btn-danger btn-small delete-category" title="Delete"><i class="btn-icon-only icon-trash"> </i></button>'));
+                $multiActionBox = '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'" data-name="'.$r['name'].'" data-image="'.$r['image'].'" />';
+                $result[] = array(utf8_encode($multiActionBox), $r['id'], utf8_encode($r['name']), utf8_encode($r['description']), utf8_encode('<img src="../media/category/'.utf8_encode($r['image']).'" width="60" height="50" alt="Pix">'), utf8_encode(' <button data-name="'.$r['name'].'" data-id="'.$r['id'].'"  data-description="'.$r['description'].'"  data-image="'.$r['image'].'" class="btn btn-info btn-small edit-category"  title="Edit"><i class="btn-icon-only icon-pencil"> </i></button> <button data-name="'.$r['name'].'"   data-image="'.$r['image'].'" data-id="'.$r['id'].'" class="btn btn-danger btn-small delete-category" title="Delete"><i class="btn-icon-only icon-trash"> </i></button>'));
             }
             $json = array("status" => 1,"draw" => intval($draw), "recordsTotal"    => intval($totalData), "recordsFiltered" => intval($totalFiltered), "data" => $result);
         } 
