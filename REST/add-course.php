@@ -14,7 +14,7 @@ if(!isset($_SESSION['TSILoggedInAdmin']) || !isset($_SESSION["TSIadminEmail"])){
 }
 else{
     if(filter_input(INPUT_POST, "addNewCourse") != NULL){
-        $postVars = array('name','image','shortName','category','startDate','code','description','media','amount', 'endDate'); // Form fields names
+        $postVars = array('name','image','shortName','category','startDate','code','description','media','amount', 'endDate', 'featured'); // Form fields names
         //Validate the POST variables and add up to error message if empty
         foreach ($postVars as $postVar){
             switch($postVar){
@@ -26,6 +26,8 @@ else{
                                 $courseMedFil = $courseObj->$postVar;
                                 break;
                 case 'code':    $courseObj->$postVar = filter_input(INPUT_POST, $postVar) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, $postVar)) :  ''; 
+                                break;
+                case 'featured':    $courseObj->$postVar = filter_input(INPUT_POST, $postVar, FILTER_VALIDATE_INT) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, $postVar, FILTER_VALIDATE_INT)) :  0; 
                                 break;
                 default     :   $courseObj->$postVar = filter_input(INPUT_POST, $postVar) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, $postVar)) :  ''; 
                                 if($courseObj->$postVar == "") {array_push ($errorArr, "Please enter $postVar ");}

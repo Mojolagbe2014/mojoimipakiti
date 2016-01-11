@@ -96,6 +96,16 @@ $errorArr = array(); //Array of errors
                                             </select>
                                         </div>
                                     </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label" for="featured">Course Class:</label>
+                                        <div class="controls">
+                                            <select name="featured" id="featured" data-placeholder="Select a class.." class="form-control">
+                                                <option value="1">Private Sector</option>
+                                                <option value="0">Public Sector</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group">
                                         <label class="control-label" for="startDate">Start Date:</label>

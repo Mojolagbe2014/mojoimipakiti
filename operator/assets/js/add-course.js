@@ -5,6 +5,7 @@ $(document).ready(function(){
     });
     $( "#endDate" ).datepicker({ dateFormat: "yy-mm-dd",appendText: "(yyyy-mm-dd)", changeMonth: true, changeYear: true });
    
+    //Fetch all the categories
     $.ajax({
         url: "../REST/fetch-categories.php",
         type: 'POST',
@@ -25,6 +26,18 @@ $(document).ready(function(){
                 });
             } 
 
+        }
+    });
+    
+    //Fetch all currencies
+    $.ajax({
+        url: "common-currencies.json",
+        type: 'POST',
+        cache: false,
+        success : function(data, status) {
+            $.each(data, function(i, item) {
+                $('#currency').append('<option value="'+item.code+'" title="'+item.name+'">'+item.code+' ('+item.symbol+')</option>');
+            });
         }
     });
     

@@ -62,6 +62,17 @@ $errorArr = array(); //Array of errors
                                     </div>
 
                                     <div class="form-group">
+                                        <label class="control-label" for="featured">Course Class:</label>
+                                        <div class="controls">
+                                            <select name="featured" id="featured" data-placeholder="Select a class.." class="form-control" required="required">
+                                                <option value=""> -- Select course class -- </option>
+                                                <option value="1">Private Sector</option>
+                                                <option value="0">Public Sector</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
                                         <label class="control-label" for="startDate">Start Date:</label>
                                         <div class="controls">
                                             <input data-title="start date" type="text" placeholder="YYYY/MM/DD" id="startDate" name="startDate" data-original-title="Start DAte" class="form-control" required="required">
@@ -108,8 +119,15 @@ $errorArr = array(); //Array of errors
                                     
                                     <div class="form-group">
                                         <label class="control-label" for="amount">Price (<span class="naira">N</span>):</label>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon">
+                                                <select name="currency" id="currency" required="required">
+                                                    <option value=""> --- </option>
+                                                </select>
+                                            </span>
                                         <div class="controls">
                                             <input data-title="course amount" type="number" placeholder="course amount" id="amount" name="amount" data-original-title="Course amount" class="form-control" required="required">
+                                        </div>
                                         </div>
                                     </div>
                                     
