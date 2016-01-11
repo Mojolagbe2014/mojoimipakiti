@@ -13,13 +13,14 @@ $errorArr = array(); //Array of errors
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add New Course  - TSI Group Limited</title>
+    <title>Add New Course  - Impact Training &amp; Management Consulting</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/custom.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <script src="../ckeditor/ckeditor.js" type="text/javascript"></script>
     <link href="../css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/js/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <div id="wrapper">
@@ -118,7 +119,7 @@ $errorArr = array(); //Array of errors
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label class="control-label" for="amount">Price (<span class="naira">N</span>):</label>
+                                        <label class="control-label" for="amount">Price:</label>
                                         <div class="form-group input-group">
                                             <span class="input-group-addon">
                                                 <select name="currency" id="currency" required="required">
@@ -154,6 +155,8 @@ $errorArr = array(); //Array of errors
     <script src="assets/js/jquery-1.10.2.js"></script>
     <script src="../js/jquery-ui.1.11.4.js" type="text/javascript"></script>
     <script src="assets/js/common-handler.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js" type="text/javascript"></script>
+    <script src="assets/js/gritter/js/jquery.gritter.min.js" type="text/javascript"></script>
     <script src="assets/js/add-course.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.metisMenu.js"></script>

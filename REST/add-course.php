@@ -14,7 +14,7 @@ if(!isset($_SESSION['TSILoggedInAdmin']) || !isset($_SESSION["TSIadminEmail"])){
 }
 else{
     if(filter_input(INPUT_POST, "addNewCourse") != NULL){
-        $postVars = array('name','image','shortName','category','startDate','code','description','media','amount', 'endDate', 'featured'); // Form fields names
+        $postVars = array('name','image','shortName','category','startDate','code','description','media','amount', 'endDate', 'featured', 'currency'); // Form fields names
         //Validate the POST variables and add up to error message if empty
         foreach ($postVars as $postVar){
             switch($postVar){

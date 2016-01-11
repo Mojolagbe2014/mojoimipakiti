@@ -1,3 +1,4 @@
+var dataTable;var currentStatus, featuredStatus;
 $(document).ready(function(){
     $( "#startDate" ).datepicker({ 
         dateFormat: "yy-mm-dd",appendText: "(yyyy-mm-dd)", changeMonth: true, changeYear: true,
@@ -29,9 +30,31 @@ $(document).ready(function(){
 
         }
     });
+    //Fetch all currencies
+    $.ajax({
+        url: "common-currencies.json",
+        type: 'POST',
+        cache: false,
+        success : function(data, status) {
+            $.each(data, function(i, item) {
+                $('#currency').append('<option value="'+item.code+'" title="'+item.name+'">'+item.code+' ('+item.symbol+')</option>');
+            });
+        }
+    });
+    
     loadAllRegisteredCourses();
     function loadAllRegisteredCourses(){
-        var dataTable = $('#courseslist').DataTable( {
+        dataTable = $('#courseslist').DataTable( {
+            columnDefs: [ {
+                orderable: false,
+                className: 'select-checkbox',
+                targets:   [0, 1]
+            } ],
+            select: {
+                style:    'os',
+                selector: 'td:first-child'
+            },
+            order: [[ 2, 'asc' ]],
             "processing": true,
             "serverSide": true,
             "scrollX": true,
@@ -49,7 +72,60 @@ $(document).ready(function(){
         } );
         
     }
-    var currentStatus, featuredStatus;
+    
+    //Select Multiple Values
+    $("#multi-action-box").click(function () {
+        var checkAll = $("#multi-action-box").prop('checked');
+        if (checkAll) {
+            $(".multi-action-box").prop("checked", true);
+        } else {
+            $(".multi-action-box").prop("checked", false);
+        }
+    });
+    //Handler for multiple selection
+    $('.multi-activate-course').click(function(){
+        if(confirm("Are you sure you want to change course status for selected courses?")) {
+            if($('#multi-action-box').prop("checked") || $('#courseslist :checkbox:checked').length > 0) {
+                var atLeastOneIsChecked = $('#courseslist :checkbox:checked').length > 0;
+                if (atLeastOneIsChecked !== false) {
+                    $('#courseslist :checkbox:checked').each(function(){
+                        currentStatus = 'Activate'; if(parseInt($(this).attr('data-status')) == 1) currentStatus = "De-activate";
+                        activeCourse($(this).attr('data-id'), $(this).attr('data-status'));
+                    });
+                }
+                else alert("No row selected. You must select atleast a row.");
+            }
+            else alert("No row selected. You must select atleast a row.");
+        }
+    });
+    $('.multi-delete-course').click(function(){
+        if(confirm("Are you sure you want to delete selected courses?")) {
+            if($('#multi-action-box').prop("checked") || $('#courseslist :checkbox:checked').length > 0) {
+                var atLeastOneIsChecked = $('#courseslist :checkbox:checked').length > 0;
+                if (atLeastOneIsChecked !== false) {
+                    $('#courseslist :checkbox:checked').each(function(){
+                        deleteCourse($(this).attr('data-id'),$(this).attr('data-media'),$(this).attr('data-image'));
+                    });
+                }
+                else alert("No row selected. You must select atleast a row.");
+            }
+            else alert("No row selected. You must select atleast a row.");
+        }
+    });
+    $('.multi-featured-course').click(function(){
+        if(confirm("Are you sure you want to change course classes of selected courses?")) {
+            if($('#multi-action-box').prop("checked") || $('#courseslist :checkbox:checked').length > 0) {
+                var atLeastOneIsChecked = $('#courseslist :checkbox:checked').length > 0;
+                if (atLeastOneIsChecked !== false) {
+                    $('#courseslist :checkbox:checked').each(function(){
+                        makeFeaturedCourse($(this).attr('data-id'), $(this).attr('data-featured'));
+                    });
+                }
+                else alert("No row selected. You must select atleast a row.");
+            }
+            else alert("No row selected. You must select atleast a row.");
+        }
+    });    
     
     $(document).on('click', '.activate-course', function() {
         currentStatus = 'Activate'; if(parseInt($(this).attr('data-status')) == 1) currentStatus = "De-activate";
@@ -59,11 +135,11 @@ $(document).ready(function(){
         if(confirm("Are you sure you want to delete this course ["+$(this).attr('data-name')+"]? Course media ['"+$(this).attr('data-media')+"'] will be deleted too.")) deleteCourse($(this).attr('data-id'),$(this).attr('data-media'),$(this).attr('data-image'));
     });
     $(document).on('click', '.edit-course', function() {
-        if(confirm("Are you sure you want to edit this course ["+$(this).attr('data-name')+"] details?")) editCourse($(this).attr('data-id'), $(this).attr('data-name'), $(this).attr('data-short-name'), $(this).attr('data-category'), $(this).attr('data-start-date'), $(this).attr('data-end-date'), $(this).attr('data-code'), $(this).find('span#JQDTdescriptionholder').html(), $(this).attr('data-media'), $(this).attr('data-amount'), $(this).attr('data-image'));
+        if(confirm("Are you sure you want to edit this course ["+$(this).attr('data-name')+"] details?")) editCourse($(this).attr('data-id'), $(this).attr('data-name'), $(this).attr('data-short-name'), $(this).attr('data-category'), $(this).attr('data-start-date'), $(this).attr('data-end-date'), $(this).attr('data-code'), $(this).find('span#JQDTdescriptionholder').html(), $(this).attr('data-media'), $(this).attr('data-amount'), $(this).attr('data-image'), $(this).attr('data-currency'));
     });
     $(document).on('click', '.make-featured-course', function() {
-        featuredStatus = 'Made Featured'; if(parseInt($(this).attr('data-featured')) == 1) featuredStatus = "Removed as featured";
-        if(confirm("Are you sure you want to make this course ["+$(this).attr('data-name')+"] featured course on home page?")) makeFeaturedCourse($(this).attr('data-id'), $(this).attr('data-featured'));
+        featuredStatus = 'Made Private Sector Course'; if(parseInt($(this).attr('data-featured')) == 1) featuredStatus = "Made Public Sector Course";
+        if(confirm("Are you sure you want to make this course ["+$(this).attr('data-name')+"] "+featuredStatus.replace('Made', '')+"?")) makeFeaturedCourse($(this).attr('data-id'), $(this).attr('data-featured'));
     });
     
     function deleteCourse(id, media, image){
@@ -74,12 +150,31 @@ $(document).ready(function(){
             cache: false,
             success : function(data, status) {
                 if(data.status === 1){
-                    $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+' <img src="images/cycling.GIF" width="30" height="30" alt="Ajax Loading"> Re-loading...</div>');
-                    setInterval(function(){ window.location = "";}, 2000);
+                    $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+' </div>');
                 }
                 else {
                     $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+'</div>');
                 }
+                dataTable.ajax.reload();
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: data.msg ? data.msg : data
+                });
+            },
+            error : function(xhr, status) {
+                erroMsg = '';
+                if(xhr.status===0){ erroMsg = 'There is a problem connecting to internet. Please review your internet connection.'; }
+                else if(xhr.status===404){ erroMsg = 'Requested page not found.'; }
+                else if(xhr.status===500){ erroMsg = 'Internal Server Error.';}
+                else if(status==='parsererror'){ erroMsg = 'Error. Parsing JSON Request failed.'; }
+                else if(status==='timeout'){  erroMsg = 'Request Time out.';}
+                else { erroMsg = 'Unknow Error.\n'+xhr.responseText;}          
+                $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Admin details update failed. '+erroMsg+'</div>');
+
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: erroMsg
+                });
             }
         });
     }
@@ -92,12 +187,31 @@ $(document).ready(function(){
             cache: false,
             success : function(data, status) {
                 if(data.status === 1){
-                    $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>Course Successfully '+currentStatus+'d! <img src="images/cycling.GIF" width="30" height="30" alt="Ajax Loading"> Reloading ...</div>');
-                    setInterval(function(){ window.location = "";}, 2000);
+                    $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>Course Successfully '+currentStatus+'d! </div>');
                 }
                 else {
                     $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Course Activation Failed. '+data.msg+'</div>');
                 }
+                dataTable.ajax.reload();
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: data.msg ? data.msg : data
+                });
+            },
+            error : function(xhr, status) {
+                erroMsg = '';
+                if(xhr.status===0){ erroMsg = 'There is a problem connecting to internet. Please review your internet connection.'; }
+                else if(xhr.status===404){ erroMsg = 'Requested page not found.'; }
+                else if(xhr.status===500){ erroMsg = 'Internal Server Error.';}
+                else if(status==='parsererror'){ erroMsg = 'Error. Parsing JSON Request failed.'; }
+                else if(status==='timeout'){  erroMsg = 'Request Time out.';}
+                else { erroMsg = 'Unknow Error.\n'+xhr.responseText;}          
+                $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Admin details update failed. '+erroMsg+'</div>');
+
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: erroMsg
+                });
             }
         });
     }
@@ -110,28 +224,49 @@ $(document).ready(function(){
             cache: false,
             success : function(data, status) {
                 if(data.status === 1){
-                    $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>Course Successfully '+featuredStatus+' Course! <img src="images/cycling.GIF" width="30" height="30" alt="Ajax Loading"> Reloading ...</div>');
-                    setInterval(function(){ window.location = "";}, 2000);
+                    $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>Course Successfully '+featuredStatus+'! </div>');
                 }
                 else {
                     $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Course Featuring Failed. '+data.msg+'</div>');
                 }
+                dataTable.ajax.reload();
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: data.msg ? data.msg : data
+                });
+            },
+            error : function(xhr, status) {
+                erroMsg = '';
+                if(xhr.status===0){ erroMsg = 'There is a problem connecting to internet. Please review your internet connection.'; }
+                else if(xhr.status===404){ erroMsg = 'Requested page not found.'; }
+                else if(xhr.status===500){ erroMsg = 'Internal Server Error.';}
+                else if(status==='parsererror'){ erroMsg = 'Error. Parsing JSON Request failed.'; }
+                else if(status==='timeout'){  erroMsg = 'Request Time out.';}
+                else { erroMsg = 'Unknow Error.\n'+xhr.responseText;}          
+                $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Admin details update failed. '+erroMsg+'</div>');
+
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: erroMsg
+                });
             }
         });
     }
     
-    function editCourse(id, name, shortName, category, startDate, endDate, code, description, media, amount, image){//,
-        var formVar = {id:id, name:name, shortName:shortName, category:category, startDate:startDate, endDate:endDate, code:code, description:description, media:media, amount:amount, image:image };
+    function editCourse(id, name, shortName, category, startDate, endDate, code, description, media, amount, image, currency){//,
+        var formVar = {id:id, name:name, shortName:shortName, category:category, startDate:startDate, endDate:endDate, code:code, description:description, media:media, amount:amount, image:image, currency:currency };
         $.each(formVar, function(key, value) { 
             if(key == 'media') { $('form #oldFile').val(value); $('form #oldFileComment').text(value).css('color','red');} 
             else if(key == 'image') { $('form #oldImage').val(value); $('form #oldImageComment').html('<img src="../media/course-image/'+value+'" style="width:50px;height:50px; margin:5px">');}
             else $('form #'+key).val(value);  
         });
         $('#hiddenUpdateForm').removeClass('hidden');
+        $(document).scrollTo('div#hiddenUpdateForm');
         CKEDITOR.instances['description'].setData(description);
         $("form#UpdateCourse").submit(function(e){ 
             e.stopPropagation(); 
             e.preventDefault();
+            $(document).scrollTo('div.panel h3');
             var formData = new FormData($(this)[0]);
             var alertType = ["danger", "success", "danger", "error"];
             $.ajax({
@@ -144,11 +279,15 @@ $(document).ready(function(){
             success : function(data, status) {
                 $("#hiddenUpdateForm").addClass('hidden');
                 if(data.status === 1) {
-                    $("#messageBox, .messageBox").html('<div class="alert alert-'+alertType[data.status]+'"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+' <img src="images/cycling.GIF" width="30" height="30" alt="Ajax Loading"> Reloading ...</div>');
-                    setInterval(function(){ window.location = "";}, 2000);
+                    $("#messageBox, .messageBox").html('<div class="alert alert-'+alertType[data.status]+'"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+' </div>');
                 }
                 else if(data.status === 2 || data.status === 3 || data.status ===0 ) $("#messageBox").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+'</div>');
                 else $("#messageBox, .messageBox").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+'</div>');
+                dataTable.ajax.reload();
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: data.msg ? data.msg : data
+                });
             },
             error : function(xhr, status) {
                 erroMsg = '';
@@ -158,7 +297,12 @@ $(document).ready(function(){
                 else if(status==='parsererror'){ erroMsg = 'Error. Parsing JSON Request failed.'; }
                 else if(status==='timeout'){  erroMsg = 'Request Time out.';}
                 else { erroMsg = 'Unknow Error.\n'+xhr.responseText;}          
-                $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Failed. '+erroMsg+'</div>');
+                $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Admin details update failed. '+erroMsg+'</div>');
+
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: erroMsg
+                });
             },
             processData: false
         });

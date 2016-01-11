@@ -19,6 +19,7 @@ class Course implements ContentManipulator{
     private $amount = 0;
     private $image;
     private $featured = 1;
+    private $currency;
     private $dbObj;
     private $tableName;
     
@@ -45,8 +46,8 @@ class Course implements ContentManipulator{
      * @return JSON JSON encoded string/result
      */
     function add(){
-        $sql = "INSERT INTO course (name, short_name, category, start_date, end_date, code, description, media, amount, status, date_registered, image, featured) "
-                ."VALUES ('{$this->name}','{$this->shortName}','{$this->category}','{$this->startDate}','{$this->endDate}','{$this->code}','{$this->description}','{$this->media}','{$this->amount}','{$this->status}',$this->dateRegistered,'{$this->image}','{$this->featured}')";
+        $sql = "INSERT INTO course (name, short_name, category, start_date, end_date, code, description, media, amount, status, date_registered, image, featured, currency) "
+                ."VALUES ('{$this->name}','{$this->shortName}','{$this->category}','{$this->startDate}','{$this->endDate}','{$this->code}','{$this->description}','{$this->media}','{$this->amount}','{$this->status}',$this->dateRegistered,'{$this->image}','{$this->featured}','{$this->currency}')";
         if($this->notEmpty($this->name,$this->startDate,$this->description,$this->image)){
             $result = $this->dbObj->query($sql);
             if($result !== false){ $json = array("status" => 1, "msg" => "Done, course successfully added!"); }
@@ -92,11 +93,13 @@ class Course implements ContentManipulator{
             foreach($data as $r){ 
                 $courseMediaLink = '';
                 $fetCourseStat = 'icon-check-empty'; $fetCourseRolCol = 'btn-warning'; $fetCourseRolTit = "Activate Course";
-                $fetCourseFeat = 'icon-eye-close'; $fetCourseFeatCol = 'btn-warning'; $fetCourseFeatTit = "Make Featured Course";
+                $fetCourseFeat = 'icon-eye-close'; $fetCourseFeatCol = 'btn-warning'; $fetCourseFeatTit = "Make Private Sector Course";
                 if($r['status'] == 1){  $fetCourseStat = 'icon-check'; $fetCourseRolCol = 'btn-success'; $fetCourseRolTit = "De-activate Course";}
-                if($r['featured'] == 1){  $fetCourseFeat = 'icon-eye-open'; $fetCourseFeatCol = 'btn-success'; $fetCourseFeatTit = "Remove Course as Featured";}
+                if($r['featured'] == 1){  $fetCourseFeat = 'icon-eye-open'; $fetCourseFeatCol = 'btn-success'; $fetCourseFeatTit = "Make Public Sector Course";}
                 if($r['media'] !=''){ $courseMediaLink = '<a href="'.SITE_URL.'media/course/'.$r['media'].'">View Media</a>'; }
-                $result[] = array($r['id'], utf8_encode($r['name']), utf8_encode($r['short_name']), CourseCategory::getName($this->dbObj, $r['category']), utf8_encode($r['start_date']), utf8_encode($r['end_date']), utf8_encode($r['code']), StringManipulator::trimStringToFullWord(60, utf8_encode(stripcslashes(strip_tags($r['description'])))), utf8_encode($courseMediaLink), utf8_encode(number_format($r['amount'])), utf8_encode('<img src="../media/course-image/'.utf8_encode($r['image']).'" width="60" height="50" style="width:60px; height:50px;" alt="Pix">'), utf8_encode($r['date_registered']), utf8_encode(' <button data-id="'.$r['id'].'" data-name="'.$r['name'].'" data-short-name="'.$r['short_name'].'" data-category="'.$r['category'].'" data-start-date="'.$r['start_date'].'" data-end-date="'.$r['end_date'].'" data-code="'.$r['code'].'" data-description ="" data-media="'.$r['media'].'"  data-image="'.$r['image'].'" data-amount="'.$r['amount'].'" data-date-registered="'.$r['date_registered'].'" class="btn btn-info btn-sm edit-course"  title="Edit"><i class="btn-icon-only icon-pencil"> </i> <span class="hidden" id="JQDTdescriptionholder">'.$r['description'].'</span> </button> <button data-id="'.$r['id'].'" data-name="'.$r['name'].'" data-status="'.$r['status'].'"  class="btn '.$fetCourseRolCol.' btn-sm activate-course"  title="'.$fetCourseRolTit.'"><i class="btn-icon-only '.$fetCourseStat.'"> </i></button> <button data-id="'.$r['id'].'" data-media="'.$r['media'].'"  data-image="'.$r['image'].'" data-name="'.$r['name'].'" class="btn btn-danger btn-sm delete-course" title="Delete"><i class="btn-icon-only icon-trash"> </i></button> <button data-id="'.$r['id'].'" data-name="'.$r['name'].'" data-featured="'.$r['featured'].'"  class="btn '.$fetCourseFeatCol.' btn-sm make-featured-course"  title="'.$fetCourseFeatTit.'"><i class="btn-icon-only '.$fetCourseFeat.'"> </i></button>'));//
+                $multiActionBox = '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'" data-name="'.$r['name'].'" data-status="'.$r['status'].'" data-image="'.$r['image'].'" data-media="'.$r['media'].'" data-featured="'.$r['featured'].'" />';
+                $actionLink = ' <button data-id="'.$r['id'].'" data-name="'.$r['name'].'" data-short-name="'.$r['short_name'].'" data-category="'.$r['category'].'" data-currency="'.$r['currency'].'" data-start-date="'.$r['start_date'].'" data-end-date="'.$r['end_date'].'" data-code="'.$r['code'].'" data-description ="" data-media="'.$r['media'].'"  data-image="'.$r['image'].'" data-amount="'.$r['amount'].'" data-date-registered="'.$r['date_registered'].'" class="btn btn-info btn-sm edit-course"  title="Edit"><i class="btn-icon-only icon-pencil"> </i> <span class="hidden" id="JQDTdescriptionholder">'.$r['description'].'</span> </button> <button data-id="'.$r['id'].'" data-name="'.$r['name'].'" data-status="'.$r['status'].'"  class="btn '.$fetCourseRolCol.' btn-sm activate-course"  title="'.$fetCourseRolTit.'"><i class="btn-icon-only '.$fetCourseStat.'"> </i></button> <button data-id="'.$r['id'].'" data-media="'.$r['media'].'"  data-image="'.$r['image'].'" data-name="'.$r['name'].'" class="btn btn-danger btn-sm delete-course" title="Delete"><i class="btn-icon-only icon-trash"> </i></button> <button data-id="'.$r['id'].'" data-name="'.$r['name'].'" data-featured="'.$r['featured'].'"  class="btn '.$fetCourseFeatCol.' btn-sm make-featured-course"  title="'.$fetCourseFeatTit.'"><i class="btn-icon-only '.$fetCourseFeat.'"> </i></button>';
+                $result[] = array(utf8_encode($multiActionBox), utf8_encode($actionLink), $r['id'], utf8_encode($r['name']), utf8_encode($r['short_name']), CourseCategory::getName($this->dbObj, $r['category']), utf8_encode($r['start_date']), utf8_encode($r['end_date']), utf8_encode($r['code']), StringManipulator::trimStringToFullWord(60, utf8_encode(stripcslashes(strip_tags($r['description'])))), utf8_encode($courseMediaLink), utf8_encode($r['currency'].' '.number_format($r['amount'])), utf8_encode('<img src="../media/course-image/'.utf8_encode($r['image']).'" width="60" height="50" style="width:60px; height:50px;" alt="Pix">'), utf8_encode($r['date_registered']));//
             }
             $json = array("status" => 1,"draw" => intval($draw), "recordsTotal"    => intval($totalData), "recordsFiltered" => intval($totalFiltered), "data" => $result);
         } 
@@ -119,7 +122,7 @@ class Course implements ContentManipulator{
         $result =array(); 
         if(count($data)>0){
             foreach($data as $r){
-                $result[] = array("id" => $r['id'], "name" =>  utf8_encode($r['name']), "image" =>  utf8_encode($r['image']), 'shortName' =>  utf8_encode($r['short_name']), 'category' => utf8_encode($r['category']), 'startDate' =>  utf8_encode($r['start_date']), 'endDate' =>  utf8_encode($r['end_date']), 'code' =>  utf8_encode($r['code']), 'description' =>  utf8_encode($r['description']), 'media' =>  utf8_encode($r['media']), 'amount' =>  utf8_encode($r['amount']), 'status' =>  utf8_encode($r['status']), 'dateRegistered' => utf8_encode($r['date_registered']));
+                $result[] = array("id" => $r['id'], "name" =>  utf8_encode($r['name']), "image" =>  utf8_encode($r['image']), 'shortName' =>  utf8_encode($r['short_name']), 'category' => utf8_encode($r['category']), 'startDate' =>  utf8_encode($r['start_date']), 'endDate' =>  utf8_encode($r['end_date']), 'code' =>  utf8_encode($r['code']), 'description' =>  utf8_encode($r['description']), 'media' =>  utf8_encode($r['media']), 'currency' =>  utf8_encode($r['currency']), 'amount' =>  utf8_encode($r['amount']), 'status' =>  utf8_encode($r['status']), 'dateRegistered' => utf8_encode($r['date_registered']));
             }
             $json = array("status" => 1, "info" => $result);
         } 
@@ -163,7 +166,7 @@ class Course implements ContentManipulator{
         $sql = "UPDATE course SET $field = '{$value}' WHERE id = $id ";
         if(!empty($id)){
             $result = $dbObj->query($sql);
-            if($result !== false){ $json = array("status" => 1, "msg" => "Done, course successfully update!"); }
+            if($result !== false){ $json = array("status" => 1, "msg" => "Done, course successfully updated!"); }
             else{ $json = array("status" => 2, "msg" => "Error updating course! ".  mysqli_error($dbObj->connection));   }
         }
         else{ $json = array("status" => 3, "msg" => "Request method not accepted."); }
@@ -176,7 +179,7 @@ class Course implements ContentManipulator{
      * @return JSON JSON encoded success or failure message
      */
     public function update() {
-        $sql = "UPDATE course SET name = '{$this->name}', image = '{$this->image}', short_name = '{$this->shortName}', category = '{$this->category}', start_date = '{$this->startDate}', end_date = '{$this->endDate}', code = '{$this->code}', description = '{$this->description}', media = '{$this->media}', amount = '{$this->amount}' WHERE id = $this->id ";
+        $sql = "UPDATE course SET name = '{$this->name}', image = '{$this->image}', short_name = '{$this->shortName}', category = '{$this->category}', start_date = '{$this->startDate}', end_date = '{$this->endDate}', code = '{$this->code}', description = '{$this->description}', media = '{$this->media}', amount = '{$this->amount}', currency = '{$this->currency}' WHERE id = $this->id ";
         if(!empty($this->id)){
             $result = $this->dbObj->query($sql);
             if($result !== false){ $json = array("status" => 1, "msg" => "Done, course successfully updated!"); }

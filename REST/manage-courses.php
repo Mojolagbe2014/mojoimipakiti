@@ -16,7 +16,7 @@ if(!isset($_SESSION['TSILoggedInAdmin']) || !isset($_SESSION["TSIadminEmail"])){
 else{
     if(filter_input(INPUT_POST, "fetchCourses") != NULL){
         $requestData= $_REQUEST;
-        $columns = array( 0 =>'id', 1 => 'name', 2 => 'short_name', 3 => 'category', 4 => 'start_date', 5 => 'code', 6 => 'description', 7 => 'media', 8 => 'amount', 9 => 'status', 10 => 'date_registered');
+        $columns = array( 0 =>'id', 1 =>'id', 2 =>'id', 3 => 'name', 4 => 'short_name', 5 => 'category', 6 => 'start_date', 7 => 'end_date', 8 => 'code', 9 => 'description', 10 => 'media', 11 => 'amount', 12 => 'status', 13 => 'date_registered');
 
         // getting total number records without any search
         $query = $dbObj->query("SELECT * FROM course ");
@@ -119,7 +119,7 @@ else{
     }
     
     if(filter_input(INPUT_POST, "updateThisCourse") != NULL){
-        $postVars = array('id','name','shortName','category','startDate','endDate','code','description','media','amount','image'); // Form fields names
+        $postVars = array('id','name','shortName','category','startDate','endDate','code','description','media','amount','image', 'currency'); // Form fields names
         $oldMedia = $_REQUEST['oldFile']; $oldImage = $_REQUEST['oldImage'];
         //Validate the POST variables and add up to error message if empty
         foreach ($postVars as $postVar){

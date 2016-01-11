@@ -13,7 +13,7 @@ $errorArr = array(); //Array of errors
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manage Courses  - TSI Group Limited</title>
+    <title>Manage Courses  - Impact Training &amp; Management Consulting</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/custom.css" rel="stylesheet" />
@@ -22,6 +22,7 @@ $errorArr = array(); //Array of errors
     <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
     <script src="../ckeditor/ckeditor.js" type="text/javascript"></script>
     <link href="../css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/js/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
     <style>
         th, td { white-space: nowrap; }
     </style>
@@ -46,6 +47,12 @@ $errorArr = array(); //Array of errors
                                     <table id="courseslist" class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
+                                                <th><input type="checkbox" class="select-checkbox" id="multi-action-box" /></th>
+                                                <th>Actions &nbsp; 
+                                                    <button  class="btn btn-success btn-sm multi-activate-course multi-select" title="Change selected admin status"><i class="btn-icon-only icon-check"> </i></button> 
+                                                    <button class="btn btn-danger btn-sm multi-delete-course multi-select" title="Delete Selected"><i class="btn-icon-only icon-trash"> </i></button>
+                                                    <button class="btn btn-primary btn-sm multi-featured-course multi-select" title="Change Course Classes"><i class="btn-icon-only icon-eye-open"> </i></button>
+                                                </th>
                                                 <th>ID</th>
                                                 <th>Course Name</th>
                                                 <th>Short Name</th>
@@ -55,10 +62,9 @@ $errorArr = array(); //Array of errors
                                                 <th>Course Code</th>
                                                 <th>Description</th>
                                                 <th>Media</th>
-                                                <th>Amount (<span class="naira">N</span>)</th>
+                                                <th>Amount</th>
                                                 <th>Course Image</th>
                                                 <th>Date Registered</th>
-                                                <th>Operations</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -155,9 +161,16 @@ $errorArr = array(); //Array of errors
                                     </div>
                                         
                                     <div class="form-group">
-                                        <label class="control-label" for="amount">Price (<span class="naira">N</span>):</label>
+                                        <label class="control-label" for="amount">Price:</label>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon">
+                                                <select name="currency" id="currency" required="required">
+                                                    <option value=""> --- </option>
+                                                </select>
+                                            </span>
                                         <div class="controls">
-                                            <input data-title="course amount" type="number" placeholder="course amount" id="amount" name="amount" data-original-title="Course amount" class="form-control">
+                                            <input data-title="course amount" type="number" placeholder="course amount" id="amount" name="amount" data-original-title="Course amount" class="form-control" required="required">
+                                        </div>
                                         </div>
                                     </div>
                                     
@@ -186,6 +199,8 @@ $errorArr = array(); //Array of errors
     <script src="assets/js/common-handler.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js" type="text/javascript"></script>
+    <script src="assets/js/gritter/js/jquery.gritter.min.js" type="text/javascript"></script>
     <script src="assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
     <script src="assets/js/manage-courses.js"></script>
