@@ -79,7 +79,9 @@ class CourseBrochure implements ContentManipulator{
         $result =array(); 
         if(count($data)>0){
             foreach($data as $r){ 
-                $result[] = array($r['id'], utf8_encode($r['name']), utf8_encode('<a href="../media/brochure/'.utf8_encode($r['document']).'">View/Download</a>'), utf8_encode(' <button data-name="'.$r['name'].'" data-id="'.$r['id'].'"  data-document="'.$r['document'].'" class="btn btn-info btn-small edit-brochure"  title="Edit"><i class="btn-icon-only icon-pencil"> </i></button> <button data-name="'.$r['name'].'" data-document="'.$r['document'].'" data-id="'.$r['id'].'" class="btn btn-danger btn-small delete-brochure" title="Delete"><i class="btn-icon-only icon-trash"> </i></button>'));
+                $multiActionBox = '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'" data-name="'.$r['name'].'" data-document="'.$r['document'].'" />';
+                $actionLink = ' <button data-name="'.$r['name'].'" data-id="'.$r['id'].'"  data-document="'.$r['document'].'" class="btn btn-info btn-small edit-brochure"  title="Edit"><i class="btn-icon-only icon-pencil"> </i></button> <button data-name="'.$r['name'].'" data-document="'.$r['document'].'" data-id="'.$r['id'].'" class="btn btn-danger btn-small delete-brochure" title="Delete"><i class="btn-icon-only icon-trash"> </i></button>';
+                $result[] = array(utf8_encode($multiActionBox), $r['id'], utf8_encode($r['name']), utf8_encode('<a href="../media/brochure/'.utf8_encode($r['document']).'">View/Download</a>'), utf8_encode($actionLink));
             }
             $json = array("status" => 1,"draw" => intval($draw), "recordsTotal"    => intval($totalData), "recordsFiltered" => intval($totalFiltered), "data" => $result);
         } 

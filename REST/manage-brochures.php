@@ -68,7 +68,7 @@ else{
     
     if(filter_input(INPUT_POST, "fetchBrochures") != NULL){
         $requestData= $_REQUEST;
-        $columns = array( 0 =>'id', 1 => 'name', 2 => 'document');
+        $columns = array( 0 =>'id', 1 =>'id', 2 => 'name', 3 => 'document');
 
         // getting total number records without any search
         $query = $dbObj->query("SELECT * FROM course_brochure ");
