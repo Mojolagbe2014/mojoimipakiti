@@ -79,7 +79,8 @@ class Faq implements ContentManipulator{
         $result =array(); 
         if(count($data)>0){
             foreach($data as $r){ 
-                $result[] = array($r['id'], utf8_encode($r['question']), utf8_encode($r['answer']), utf8_encode($r['date_added']), utf8_encode(' <button data-date-added="'.$r['date_added'].'" data-id="'.$r['id'].'" class="btn btn-info btn-sm edit-faq"  title="Edit"><i class="btn-icon-only icon-pencil"> </i> <span id="JQDTquestionholder" class="hidden">'.$r['question'].'</span> <span id="JQDTanswerholder" class="hidden">'.$r['answer'].'</span> </button> <button data-id="'.$r['id'].'" class="btn btn-danger btn-sm delete-faq" title="Delete"><i class="btn-icon-only icon-trash"> </i> <span id="JQDTquestionholder2" class="hidden">'.$r['question'].'</span></button>'));
+                $multiActionBox = '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'" data-question="'.$r['question'].'" />';
+                $result[] = array(utf8_encode($multiActionBox), $r['id'], utf8_encode($r['question']), utf8_encode($r['answer']), utf8_encode($r['date_added']), utf8_encode(' <button data-date-added="'.$r['date_added'].'" data-id="'.$r['id'].'" class="btn btn-info btn-sm edit-faq"  title="Edit"><i class="btn-icon-only icon-pencil"> </i> <span id="JQDTquestionholder" class="hidden">'.$r['question'].'</span> <span id="JQDTanswerholder" class="hidden">'.$r['answer'].'</span> </button> <button data-id="'.$r['id'].'" class="btn btn-danger btn-sm delete-faq" title="Delete"><i class="btn-icon-only icon-trash"> </i> <span id="JQDTquestionholder2" class="hidden">'.$r['question'].'</span></button>'));
             }
             $json = array("status" => 1,"draw" => intval($draw), "recordsTotal"    => intval($totalData), "recordsFiltered" => intval($totalFiltered), "data" => $result);
         } 
@@ -146,7 +147,7 @@ class Faq implements ContentManipulator{
         $sql = "UPDATE faq SET $field = '{$value}' WHERE id = $id ";
         if(!empty($id)){
             $result = $dbObj->query($sql);
-            if($result !== false){ $json = array("status" => 1, "msg" => "Done,  faq successfully update!"); }
+            if($result !== false){ $json = array("status" => 1, "msg" => "Done,  faq successfully updated!"); }
             else{ $json = array("status" => 2, "msg" => "Error updating  faq! ".  mysqli_error($dbObj->connection));   }
         }
         else{ $json = array("status" => 3, "msg" => "Request method not accepted."); }
@@ -162,7 +163,7 @@ class Faq implements ContentManipulator{
         $sql = "UPDATE faq SET question = '{$this->question}', answer = '{$this->answer}' WHERE id = $this->id ";
         if(!empty($this->id)){
             $result = $this->dbObj->query($sql);
-            if($result !== false){ $json = array("status" => 1, "msg" => "Done,  faq successfully update!"); }
+            if($result !== false){ $json = array("status" => 1, "msg" => "Done,  faq successfully updated!"); }
             else{ $json = array("status" => 2, "msg" => "Error updating  faq! ".  mysqli_error($this->dbObj->connection));   }
         }
         else{ $json = array("status" => 3, "msg" => "Request method not accepted."); }

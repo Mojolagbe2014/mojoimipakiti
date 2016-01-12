@@ -38,7 +38,7 @@ else{
     
     if(filter_input(INPUT_POST, "fetchFaqs") != NULL){
         $requestData= $_REQUEST;
-        $columns = array( 0 =>'id', 1 => 'question', 2 => 'answer', 3 => 'date_added');
+        $columns = array( 0 =>'id', 1 =>'id', 2 => 'question', 3 => 'answer', 4 => 'date_added');
 
         // getting total number records without any search
         $query = $dbObj->query("SELECT * FROM faq ");
