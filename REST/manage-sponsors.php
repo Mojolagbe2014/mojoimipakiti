@@ -71,7 +71,7 @@ else{
     
     if(filter_input(INPUT_POST, "fetchSponsors") != NULL){
         $requestData= $_REQUEST;
-        $columns = array( 0 =>'id', 1 => 'status', 2 => 'name', 3 => 'logo', 4 => 'website', 5 => 'date_added', 6 => 'product', 7=>'description', 8=>'image');
+        $columns = array( 0 =>'id', 1 =>'id', 2 => 'status', 3 => 'name', 4 => 'logo', 5 => 'website', 6 => 'date_added', 7 => 'product', 8 =>'description', 9 =>'image');
 
         // getting total number records without any search
         $query = $dbObj->query("SELECT * FROM sponsor ");
@@ -117,11 +117,11 @@ else{
         //If validated and not empty submit it to database
         if(count($errorArr) < 1)   {
             $logoDelParam = true;
-            if(file_exists(MEDIA_FILES_PATH."sponsor/".$sponsorLogo) && !empty($sponsorLogo)){
+            if(file_exists(MEDIA_FILES_PATH."sponsor/".$sponsorLogo) && $sponsorLogo!=''){
                 if(unlink(MEDIA_FILES_PATH."sponsor/".$sponsorLogo)){ $logoDelParam = true;}
                 else { $logoDelParam = false; }
             }
-            if(file_exists(MEDIA_FILES_PATH."sponsor-image/".$sponsorImage) && !empty($sponsorImage)){
+            if(file_exists(MEDIA_FILES_PATH."sponsor-image/".$sponsorImage) && $sponsorImage!=''){
                 if(unlink(MEDIA_FILES_PATH."sponsor-image/".$sponsorImage)){ $logoDelParam = true;}
                 else { $logoDelParam = false; }
             }
