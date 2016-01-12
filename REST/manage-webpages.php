@@ -33,7 +33,7 @@ else{
     
     if(filter_input(INPUT_POST, "fetchWebpages") != NULL){
         $requestData= $_REQUEST;
-        $columns = array( 0 =>'id', 1 => 'name', 2 => 'title', 3 => 'description', 4 => 'keywords');
+        $columns = array( 0 =>'id', 1 =>'id', 2 => 'name', 3 => 'title', 4 => 'description', 5 => 'keywords');
 
         // getting total number records without any search
         $query = $dbObj->query("SELECT * FROM webpage ");

@@ -143,7 +143,8 @@ class WebPage {
         $result =array(); 
         if(count($data)>0){
             foreach($data as $r){ 
-                $result[] = array($r['id'], utf8_encode($r['name']), utf8_encode($r['title']), utf8_encode($r['description']), utf8_encode($r['keywords']), utf8_encode(' <button data-name="'.$r['name'].'" data-id="'.$r['id'].'"  data-description="'.$r['description'].'"  data-title="'.$r['title'].'"  data-keywords="'.$r['keywords'].'" class="btn btn-info btn-sm edit-webpage"  title="Edit"><i class="btn-icon-only icon-pencil"> </i></button> <button data-name="'.$r['name'].'" data-id="'.$r['id'].'" class="btn btn-danger btn-sm delete-webpage" title="Delete"><i class="btn-icon-only icon-trash"> </i></button>'));
+                $multiActionBox = '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'" data-name="'.$r['name'].'" />';
+                $result[] = array(utf8_encode($multiActionBox), $r['id'], utf8_encode($r['name']), utf8_encode($r['title']), utf8_encode($r['description']), utf8_encode($r['keywords']), utf8_encode(' <button data-name="'.$r['name'].'" data-id="'.$r['id'].'"  data-description="'.$r['description'].'"  data-title="'.$r['title'].'"  data-keywords="'.$r['keywords'].'" class="btn btn-info btn-sm edit-webpage"  title="Edit"><i class="btn-icon-only icon-pencil"> </i></button> <button data-name="'.$r['name'].'" data-id="'.$r['id'].'" class="btn btn-danger btn-sm delete-webpage" title="Delete"><i class="btn-icon-only icon-trash"> </i></button>'));
             }
             $json = array("status" => 1,"draw" => intval($draw), "recordsTotal"    => intval($totalData), "recordsFiltered" => intval($totalFiltered), "data" => $result);
         } 
