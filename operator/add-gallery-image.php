@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 session_start(); 
 define("CONST_FILE_PATH", "../includes/constants.php");
 include ('../classes/WebPage.php'); //Set up page as a web page
@@ -8,12 +8,12 @@ $dbObj = new Database();//Instantiate database
 $adminObj = new Admin($dbObj); // Create an object of Admin class
 $errorArr = array(); //Array of errors
 ?>
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Gallery Image  - TSI Group Limited</title>
+    <title>Add Gallery Image  - Impact Training &amp; Management Consulting</title>
     <link href="media-uploader/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="media-uploader/css/uploader.css" rel="stylesheet" type="text/css"/>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />

@@ -12,7 +12,7 @@ else{
     $handle = opendir(dirname(dirname(__FILE__)).'/media/gallery/');
     while($file = readdir($handle)){
         if($file !== '.' && $file !== '..'){
-            $filenameArray[] =  array(utf8_encode('<img style="width:40%; height:20%;" src="../media/gallery/'.$file.'">'), utf8_encode(strtoupper($file)), utf8_encode('<button data-image="'.$file.'" class="btn btn-danger btn-small delete-image" title="Delete"> <i class="btn-icon-only icon-trash"></i> </button>'));
+            $filenameArray[] =  array(utf8_encode('<input type="checkbox" class="multi-action-box" data-image="'.$file.'" />'), utf8_encode('<img style="width:30%; height:20%;" src="../media/gallery/'.$file.'">'), utf8_encode(strtoupper($file)), utf8_encode('<button data-image="'.$file.'" class="btn btn-danger btn-small delete-image" title="Delete"> <i class="btn-icon-only icon-trash"></i> </button>'));
         }
     }
 
