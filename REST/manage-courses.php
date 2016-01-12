@@ -9,7 +9,7 @@ $courseObj = new Course($dbObj); // Create an object of CourseCategory class
 $errorArr = array(); //Array of errors
 $oldMedia = ""; $newMedia =""; $oldImage=""; $newImage =""; $courseImageFil="";
 
-if(!isset($_SESSION['TSILoggedInAdmin']) || !isset($_SESSION["TSIadminEmail"])){ 
+if(!isset($_SESSION['ITCLoggedInAdmin']) || !isset($_SESSION["ITCadminEmail"])){ 
     $json = array("status" => 0, "msg" => "You are not logged in."); 
     echo json_encode($json);
 }

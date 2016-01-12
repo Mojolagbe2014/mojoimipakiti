@@ -8,7 +8,7 @@ $dbObj = new Database();//Instantiate database
 $adminObj = new Admin($dbObj); // Create an object of Admin class
 $errorArr = array(); //Array of errors
 $newPassword ="";
-if(!isset($_SESSION['TSILoggedInAdmin']) || !isset($_SESSION["TSIadminEmail"])){ 
+if(!isset($_SESSION['ITCLoggedInAdmin']) || !isset($_SESSION["ITCadminEmail"])){ 
     $json = array("status" => 0, "msg" => "You are not logged in."); 
     header('Content-type: application/json');
     echo json_encode($json);
@@ -33,7 +33,7 @@ else{
         //If validated and not empty submit it to database
         if(count($errorArr) < 1)   {
             //$adminObj->passWord = 'testing';//mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'oldPassword'));
-            $adminObj->id = $_SESSION['TSIadminId'];
+            $adminObj->id = $_SESSION['ITCadminId'];
             $newPassword =  mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'newPassword'));
             echo  $adminObj->changePassword($newPassword);
         }

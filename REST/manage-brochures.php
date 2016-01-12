@@ -9,7 +9,7 @@ $coursBrochObj = new CourseBrochure($dbObj); // Create an object of CourseBrochu
 $errorArr = array(); //Array of errors
 $oldDocument = ""; $newDocument =""; $coursBrochDoc ="";
 
-if(!isset($_SESSION['TSILoggedInAdmin']) || !isset($_SESSION["TSIadminEmail"])){ 
+if(!isset($_SESSION['ITCLoggedInAdmin']) || !isset($_SESSION["ITCadminEmail"])){ 
     $json = array("status" => 0, "msg" => "You are not logged in."); 
     echo json_encode($json);
 }

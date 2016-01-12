@@ -9,7 +9,7 @@ $sponsorObj = new Sponsor($dbObj); // Create an object of Sponsor class
 $errorArr = array(); //Array of errors
 $sponsorLogo =""; $sponsorImage ="";  
 
-if(!isset($_SESSION['TSILoggedInAdmin']) || !isset($_SESSION["TSIadminEmail"])){ 
+if(!isset($_SESSION['ITCLoggedInAdmin']) || !isset($_SESSION["ITCadminEmail"])){ 
     $json = array("status" => 0, "msg" => "You are not logged in."); 
     header('Content-type: application/json');
     echo json_encode($json);

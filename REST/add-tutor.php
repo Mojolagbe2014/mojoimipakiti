@@ -8,7 +8,7 @@ $dbObj = new Database();//Instantiate database
 $tutorObj = new Tutor($dbObj); // Create an object of Tutor class
 $errorArr = array(); //Array of errors
 $tutorImgFil ="";
-if(!isset($_SESSION['TSILoggedInAdmin']) || !isset($_SESSION["TSIadminEmail"])){ 
+if(!isset($_SESSION['ITCLoggedInAdmin']) || !isset($_SESSION["ITCadminEmail"])){ 
     $json = array("status" => 0, "msg" => "You are not logged in."); 
     header('Content-type: application/json');
     echo json_encode($json);

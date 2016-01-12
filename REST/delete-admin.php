@@ -8,7 +8,7 @@ $dbObj = new Database();//Instantiate database
 $adminObj = new Admin($dbObj); // Create an object of Admin class
 $errorArr = array(); //Array of errors
 
-if(!isset($_SESSION['TSILoggedInAdmin']) || !isset($_SESSION["TSIadminEmail"])){ 
+if(!isset($_SESSION['ITCLoggedInAdmin']) || !isset($_SESSION["ITCadminEmail"])){ 
     $json = array("status" => 0, "msg" => "You are not logged in."); 
     header('Content-type: application/json');
     echo json_encode($json);
