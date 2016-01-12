@@ -17,7 +17,7 @@ if(!isset($_SESSION['TSILoggedInAdmin']) || !isset($_SESSION["TSIadminEmail"])){
 else{
     if(filter_input(INPUT_POST, "fetchTutors") != NULL){
         $requestData= $_REQUEST;
-        $columns = array( 0 =>'id', 1 => 'name', 2 => 'qualification', 3 => 'field', 4 => 'bio', 5 => 'email', 6 => 'website',  7 => 'picture', 8 => 'visible');
+        $columns = array( 0 =>'id', 1 =>'id', 2 => 'visible',  3 => 'picture', 4 => 'name', 5 => 'qualification', 6 => 'field', 7 => 'bio', 8 => 'email', 9 => 'website');
 
         // getting total number records without any search
         $query = $dbObj->query("SELECT * FROM tutor ");

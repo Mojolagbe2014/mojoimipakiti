@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 session_start(); 
 define("CONST_FILE_PATH", "../includes/constants.php");
 include ('../classes/WebPage.php'); //Set up page as a web page
@@ -8,18 +8,19 @@ $dbObj = new Database();//Instantiate database
 $adminObj = new Admin($dbObj); // Create an object of Admin class
 $errorArr = array(); //Array of errors
 ?>
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Team Member  - TSI Group Limited</title>
+    <title>Add Team Member  - Impact Training &amp; Management Consulting</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/custom.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <script src="../ckeditor/ckeditor.js" type="text/javascript"></script>
     <link href="../css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/js/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <div id="wrapper">
@@ -113,6 +114,8 @@ $errorArr = array(); //Array of errors
     <script src="assets/js/jquery-1.10.2.js"></script>
     <script src="../js/jquery-ui.1.11.4.js" type="text/javascript"></script>
     <script src="assets/js/common-handler.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js" type="text/javascript"></script>
+    <script src="assets/js/gritter/js/jquery.gritter.min.js" type="text/javascript"></script>
     <script src="assets/js/add-tutor.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.metisMenu.js"></script>

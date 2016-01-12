@@ -13,7 +13,8 @@ $errorArr = array(); //Array of errors
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manage Team Memebers  - TSI Group Limited</title>
+    <title>Manage Team Members  - Impact Training &amp; Management Consulting</title>
+    <link href="assets/js/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/custom.css" rel="stylesheet" />
@@ -22,9 +23,7 @@ $errorArr = array(); //Array of errors
     <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
     <script src="../ckeditor/ckeditor.js" type="text/javascript"></script>
     <link href="../css/jquery-ui.css" rel="stylesheet" type="text/css"/>
-    <style>
-        th, td { white-space: nowrap; }
-    </style>
+    <style> th, td { white-space: nowrap; } </style>
 </head>
 <body>
     <div id="wrapper">
@@ -46,8 +45,12 @@ $errorArr = array(); //Array of errors
                                     <table id="tutorslist" class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
+                                                <th><input type="checkbox" class="select-checkbox" id="multi-action-box" /></th>
                                                 <th>ID</th>
-                                                <th>Actions</th>
+                                                <th>Actions &nbsp; 
+                                                    <button  class="btn btn-success btn-sm multi-activate-tutor multi-select" title="Change selected tutor status"><i class="btn-icon-only icon-check"> </i></button> 
+                                                    <button class="btn btn-danger btn-sm multi-delete-tutor multi-select" title="Delete Selected"><i class="btn-icon-only icon-trash"> </i></button>
+                                                </th>
                                                 <th>Picture</th>
                                                 <th>Member Name</th>
                                                 <th>Qualification</th>
@@ -67,7 +70,7 @@ $errorArr = array(); //Array of errors
                                 <h3><i class="fa fa-user"></i> Edit Member Details</h3>
                             </div>
                             <div class="panel-body">
-                                <form role="form" id="UpdateTutor" name="UpdateTutor" action="../REST/manage-tutors.php" enctype="multipart/form-data">
+                                <form role="form" id="UpdateTutor" name="UpdateTutor" action="../REST/manage-tutors.php" method="POST" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label class="control-label" for="name">Full Name:</label>
                                         <div class="controls">
@@ -147,6 +150,8 @@ $errorArr = array(); //Array of errors
     <script src="assets/js/common-handler.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js" type="text/javascript"></script>
+    <script src="assets/js/gritter/js/jquery.gritter.min.js" type="text/javascript"></script>
     <script src="assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
     <script src="assets/js/manage-tutors.js"></script>

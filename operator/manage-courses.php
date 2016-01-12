@@ -49,7 +49,7 @@ $errorArr = array(); //Array of errors
                                             <tr>
                                                 <th><input type="checkbox" class="select-checkbox" id="multi-action-box" /></th>
                                                 <th>Actions &nbsp; 
-                                                    <button  class="btn btn-success btn-sm multi-activate-course multi-select" title="Change selected admin status"><i class="btn-icon-only icon-check"> </i></button> 
+                                                    <button  class="btn btn-success btn-sm multi-activate-course multi-select" title="Change selected course status"><i class="btn-icon-only icon-check"> </i></button> 
                                                     <button class="btn btn-danger btn-sm multi-delete-course multi-select" title="Delete Selected"><i class="btn-icon-only icon-trash"> </i></button>
                                                     <button class="btn btn-primary btn-sm multi-featured-course multi-select" title="Change Course Classes"><i class="btn-icon-only icon-eye-open"> </i></button>
                                                 </th>
