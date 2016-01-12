@@ -13,15 +13,15 @@ $(document).ready(function(){
                 if(data.status == "1"){
                     $.each(data.info, function(i, item) {
                         if (typeof localStorage !== "undefined") {
-                            sessionStorage.TSILoggedInAdmin = true;
-                            sessionStorage.TSIAdminName = item.userName;
-                            sessionStorage.TSIAdminFullName = item.name;
-                            sessionStorage.TSIAdminRole = item.role;
-                            sessionStorage.TSIadminId = item.id;
-                            sessionStorage.TSIadminEmail = item.email;
+                            sessionStorage.ITCLoggedInAdmin = true;
+                            sessionStorage.ITCAdminName = item.userName;
+                            sessionStorage.ITCAdminFullName = item.name;
+                            sessionStorage.ITCAdminRole = item.role;
+                            sessionStorage.ITCadminId = item.id;
+                            sessionStorage.ITCadminEmail = item.email;
                         }
                     });
-                    $("#messageBox, messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><img src="images/cycling.GIF" width="30" height="30" alt="Ajax Loading"> Login Successful! Welcome '+sessionStorage.TSIAdminName+', redirecting... please wait ...</div>');
+                    $("#messageBox, messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><img src="images/cycling.GIF" width="30" height="30" alt="Ajax Loading"> Login Successful! Welcome '+sessionStorage.ITCAdminName+', redirecting... please wait ...</div>');
                     setInterval(function(){ window.location = 'index'; }, 2000);
                 }
                 else {

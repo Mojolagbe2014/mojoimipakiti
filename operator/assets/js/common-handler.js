@@ -22,7 +22,7 @@ function logout(){
 $(document).ready(function(){
     //Login Verification
     if (typeof localStorage !== "undefined") {
-        if(sessionStorage.TSIadminId == "" || sessionStorage.TSIadminId == null || sessionStorage.TSIadminEmail == "" || sessionStorage.TSIadminEmail == null)
+        if(sessionStorage.ITCadminId == "" || sessionStorage.ITCadminId == null || sessionStorage.ITCadminEmail == "" || sessionStorage.ITCadminEmail == null)
         window.location = "login";
     }
     //Logout Handler
@@ -46,7 +46,7 @@ $(document).ready(function(){
         }
     });
     
-    $('.adminName').text(sessionStorage.TSIAdminName);
+    $('.adminName').text(sessionStorage.ITCAdminName);
     $('.logout').click(function(){ logout(); });
     
 });
