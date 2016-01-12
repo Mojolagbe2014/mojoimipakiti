@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 session_start(); 
 define("CONST_FILE_PATH", "../includes/constants.php");
 include ('../classes/WebPage.php'); //Set up page as a web page
@@ -8,18 +8,19 @@ $dbObj = new Database();//Instantiate database
 $adminObj = new Admin($dbObj); // Create an object of Admin class
 $errorArr = array(); //Array of errors
 ?>
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manage Quotes  - TSI Group Limited</title>
+    <title>Manage Quotes  - Impact Training &amp; Management Consulting</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/custom.css" rel="stylesheet" />
     <link href="images/icons/css/font-awesome.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="assets/js/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <div id="wrapper">
@@ -41,11 +42,16 @@ $errorArr = array(); //Array of errors
                                     <table id="quotelist" class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
+                                                <th><input type="checkbox" class="select-checkbox" id="multi-action-box" /></th>
                                                 <th>ID</th>
                                                 <th>Content</th>
                                                 <th>Author</th>
                                                 <th>Image</th>
-                                                <th>Actions</th>
+                                                <th>Actions &nbsp; 
+                                                    <div style="white-space:nowrap">
+                                                    <button class="btn btn-danger btn-sm multi-delete-quote multi-select" title="Delete Selected"><i class="btn-icon-only icon-trash"> </i></button>
+                                                    </div>
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -105,6 +111,8 @@ $errorArr = array(); //Array of errors
     <script src="assets/js/common-handler.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js" type="text/javascript"></script>
+    <script src="assets/js/gritter/js/jquery.gritter.min.js" type="text/javascript"></script>
     <script src="assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
     <script src="assets/js/manage-quotes.js"></script>

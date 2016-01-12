@@ -80,7 +80,8 @@ class Quote implements ContentManipulator{
         $result =array(); 
         if(count($data)>0){
             foreach($data as $r){ 
-                $result[] = array($r['id'], utf8_encode($r['content']), utf8_encode($r['author']), utf8_encode('<img src="../media/quote/'.utf8_encode($r['image']).'" width="60" height="50" alt="Pix">'), utf8_encode(' <div style="white-space:nowrap"><button data-id="'.$r['id'].'"  data-author="'.$r['author'].'"  data-image="'.$r['image'].'" class="btn btn-info btn-sm edit-quote"  title="Edit"><i class="btn-icon-only icon-pencil"> </i> <span class="hidden">'.$r['content'].'</span> </button> <button data-image="'.$r['image'].'" data-id="'.$r['id'].'" class="btn btn-danger btn-sm delete-quote" title="Delete"><i class="btn-icon-only icon-trash"> </i><span class="hidden">'.$r['content'].'</span></button></div>'));
+                $multiActionBox = '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'" data-image="'.$r['image'].'" />';
+                $result[] = array(utf8_encode($multiActionBox), $r['id'], utf8_encode($r['content']), utf8_encode($r['author']), utf8_encode('<img src="../media/quote/'.utf8_encode($r['image']).'" width="60" height="50" alt="Pix">'), utf8_encode(' <div style="white-space:nowrap"><button data-id="'.$r['id'].'"  data-author="'.$r['author'].'"  data-image="'.$r['image'].'" class="btn btn-info btn-sm edit-quote"  title="Edit"><i class="btn-icon-only icon-pencil"> </i> <span class="hidden">'.$r['content'].'</span> </button> <button data-image="'.$r['image'].'" data-id="'.$r['id'].'" class="btn btn-danger btn-sm delete-quote" title="Delete"><i class="btn-icon-only icon-trash"> </i><span class="hidden">'.$r['content'].'</span></button></div>'));
             }
             $json = array("status" => 1,"draw" => intval($draw), "recordsTotal"    => intval($totalData), "recordsFiltered" => intval($totalFiltered), "data" => $result);
         } 

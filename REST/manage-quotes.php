@@ -68,7 +68,7 @@ else{
     
     if(filter_input(INPUT_POST, "fetchQuotes") != NULL){
         $requestData= $_REQUEST;
-        $columns = array( 0 =>'id', 1 => 'content', 2 => 'author', 3 => 'image');
+        $columns = array( 0 =>'id', 1 =>'id', 2 => 'content', 3 => 'author', 4 => 'image');
 
         // getting total number records without any search
         $query = $dbObj->query("SELECT * FROM quote ");
