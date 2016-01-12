@@ -1,143 +1,304 @@
- <div id="slider" class="header-bg-rev header-content-scroller">
-                    <div class="cactus-rev-slider-default">
-                    <div id="rev_slider_2_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" style="margin:0px auto;background-color:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
-                    <!-- START REVOLUTION SLIDER 5.0.4.1 auto mode -->
-                    <div id="rev_slider_2_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.0.4.1">
-                    <ul>	<!-- SLIDE  -->
-                    <li data-index="rs-6" data-transition="fade" data-slotamount="7"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="<?php echo SITE_URL; ?>uploads/2015/10/Video_Conference_Room_West_of_Council_Chambers-100x50.jpg"  data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Slide" data-description="">
-                    <!-- MAIN IMAGE -->
-                    <img src="plugins/revslider/admin/assets/images/dummy.png"  alt=""  width="1728" height="1152" data-lazyload="<?php echo SITE_URL; ?>uploads/2015/10/Video_Conference_Room_West_of_Council_Chambers.jpg" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" data-no-retina>
-                    <!-- LAYERS -->
-                    <!-- LAYER NR. 1 -->
-                    <div class="tp-caption big_black_222   tp-resizeme rs-parallaxlevel-0" id="slide-6-layer-1" data-x="['left','left','left','left']" data-hoffset="['-341','-341','-341','-341']" data-y="['top','top','top','top']" data-voffset="['207','207','207','207']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:-50px;opacity:0;s:300;e:Power3.easeInOut;" data-transform_out="auto:auto;s:300;" data-start="500" data-splitin="none" data-splitout="none" data-responsive_offset="on"  style="z-index: 5; min-width: auto; min-height: auto; white-space: nowrap; max-width: auto; max-height: auto; font-size: 64px; line-height: 75px; font-weight: 700; color: rgba(255, 255, 255, 1.00);font-family:Roboto;padding:0 0 0 0;border-color:rgba(0, 0, 0, 1.00);border-radius:0 0 0 0;"> </div>
-                    <!-- LAYER NR. 2 -->
-                    <div class="tp-caption Fashion-BigDisplay   tp-resizeme rs-parallaxlevel-0" id="slide-6-layer-2" data-x="['left','left','left','left']" data-hoffset="['534','534','534','534']" data-y="['top','top','top','top']" data-voffset="['426','426','426','426']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="opacity:0;s:300;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-start="500" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 6; min-width: auto; min-height: auto; white-space: nowrap; max-width: auto; max-height: auto; font-size: 60px; line-height: 60px; font-weight: 900; color: rgba(255, 255, 255, 1.00);font-family:Raleway;padding:0 0 0 0;border-radius:0 0 0 0;">
-                    <div class="text-r-silder"> <div class="r-title main-color-1 font-2">One Stop High Quality</div> <div class="r-content">Management Training Firm</div> </div> 
-                    </div>
-                    </li>
-                    <!-- SLIDE  -->
-                    <li data-index="rs-7" data-transition="fade" data-slotamount="7"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="<?php echo SITE_URL; ?>uploads/2015/10/Jude-at-ICT-Training-100x50.png"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-description="">
-                    <!-- MAIN IMAGE -->
-                    <img src="plugins/revslider/admin/assets/images/dummy.png"  alt=""  width="1024" height="678" data-lazyload="<?php echo SITE_URL; ?>uploads/2015/10/Jude-at-ICT-Training.png" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" data-no-retina>
-                    <!-- LAYERS -->
+<section class="slider_wrap slider_fullwide slider_engine_revo slider_alias_education_home_slider_3">
 
-                    <!-- LAYER NR. 1 -->
-                    <div class="tp-caption big_black_222   tp-resizeme rs-parallaxlevel-0" id="slide-7-layer-1" data-x="['left','left','left','left']" data-hoffset="['-892','-892','-892','-892']" data-y="['top','top','top','top']" data-voffset="['184','184','184','184']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="y:-50px;opacity:0;s:300;e:Power3.easeInOut;" data-transform_out="auto:auto;s:300;" data-start="500" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 5; min-width: auto; min-height: auto; white-space: nowrap; max-width: auto; max-height: auto; font-size: 64px; line-height: 75px; font-weight: 700; color: rgba(255, 255, 255, 1.00);font-family:Roboto;padding:0 0 0 0;border-color:rgba(0, 0, 0, 1.00);border-radius:0 0 0 0;"> </div>
-                    <!-- LAYER NR. 2 -->
-                    <div class="tp-caption Fashion-BigDisplay   tp-resizeme rs-parallaxlevel-0" id="slide-7-layer-2" data-x="['center','center','center','center']" data-hoffset="['-228','-228','-228','-228']" data-y="['top','top','top','top']" data-voffset="['50','50','50','50']" data-width="746" data-height="54" data-whitespace="normal" data-transform_idle="o:1;" data-transform_in="opacity:0;s:300;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-start="500" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 6; min-width: 746px; min-height: 54px; white-space: normal; max-width: 746px; max-height: 54px; font-size: 35px; line-height: 32px; font-weight: 700; color: rgba(5, 5, 5, 1.00);font-family:Raleway;padding:0 0 0 0;border-radius:0 0 0 0;"><div class="text-r-silder"><div class="r-title main-color-1 font-2">Professional and</div><div class="r-content">Industry Based Certifications.</div></div> </div>
-                    </li>
-                    <!-- SLIDE  -->
-                    <li data-index="rs-9" data-transition="fade" data-slotamount="7"  data-easein="default" data-easeout="default" data-masterspeed="300"  data-thumb="<?php echo SITE_URL; ?>uploads/2015/10/DSC02524-100x50.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-description="">
-                    <!-- MAIN IMAGE -->
-                    <img src="plugins/revslider/admin/assets/images/dummy.png"  alt=""  width="1200" height="800" data-lazyload="<?php echo SITE_URL; ?>uploads/2015/10/DSC02524.jpg" data-bgposition="center top" data-kenburns="on" data-duration="9000" data-ease="Power4.easeIn" data-scalestart="100" data-scaleend="100" data-rotatestart="0" data-rotateend="0" data-offsetstart="10 20" data-offsetend="20 30" data-bgparallax="off" class="rev-slidebg" data-no-retina>
-                    <!-- LAYERS -->
+    <div id="rev_slider_3_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" style="margin:0px auto;background-color:#1eaace;padding:0px;margin-top:0px;margin-bottom:0px;max-height:630px;">
+    <!-- START REVOLUTION SLIDER 4.6.5 fullwidth mode -->
+    <div id="rev_slider_3_1" class="rev_slider fullwidthabanner" style="display:none;max-height:630px;height:630px;">
+    <ul>	<!-- SLIDE  -->
+    <li data-transition="random" data-slotamount="7" data-masterspeed="500"  data-saveperformance="off"  class="texture_bg_slider_full">
+    <!-- MAIN IMAGE -->
+    <img src="uploads/2015/03/slider-3-slide-1.jpg"  alt="slider-3-slide-1"  data-bgposition="center top" data-bgfit="normal" data-bgrepeat="repeat">
+    <!-- LAYERS -->
 
-                    <!-- LAYER NR. 1 -->
-                    <div class="tp-caption big_black_222   tp-resizeme rs-parallaxlevel-0" 
-                    id="slide-9-layer-1" 
-                    data-x="['left','left','left','left']" data-hoffset="['-892','-892','-892','-892']" 
-                    data-y="['top','top','top','top']" data-voffset="['184','184','184','184']" 
-                    data-width="none"
-                    data-height="none"
-                    data-whitespace="nowrap"
-                    data-transform_idle="o:1;"
+    <!-- LAYER NR. 1 -->
+    <div class="tp-caption titlecentered lfr stb tp-resizeme" 
+    data-x="center" data-hoffset="0" 
+    data-y="center" data-voffset="-40" 
+    data-speed="500" 
+    data-start="650" 
+    data-easing="Power3.easeInOut" 
+    data-splitin="lines" 
+    data-splitout="none" 
+    data-elementdelay="0.1" 
+    data-endelementdelay="0.1" 
+    data-end="8150" 
+    data-endspeed="300" 
 
-                    data-transform_in="y:-50px;opacity:0;s:300;e:Power3.easeInOut;" 
-                    data-transform_out="auto:auto;s:300;" 
-                    data-start="500" 
-                    data-splitin="none" 
-                    data-splitout="none" 
-                    data-responsive_offset="on" 
+    style="z-index: 5; max-width: 820px; max-height: 116px; white-space: normal;">Take great courses <br>from the world's best universities 
+    </div>
+
+    <!-- LAYER NR. 2 -->
+    <div class="tp-caption slidetextcentered lfl stb tp-resizeme" 
+    data-x="center" data-hoffset="0" 
+    data-y="center" data-voffset="85" 
+    data-speed="500" 
+    data-start="1000" 
+    data-easing="Power3.easeInOut" 
+    data-splitin="lines" 
+    data-splitout="none" 
+    data-elementdelay="0.1" 
+    data-endelementdelay="0.1" 
+    data-end="8300" 
+    data-endspeed="300" 
+
+    style="z-index: 6; max-width: 559px; max-height: 49px; white-space: normal;"><span style="font-weight:400;">Our courses are built in partnership with technology leaders and are relevant to industry needs.</span> 
+    </div>
+
+    <!-- LAYER NR. 3 -->
+    <div class="tp-caption slide_button customin stb tp-resizeme" 
+    data-x="center" data-hoffset="0" 
+    data-y="center" data-voffset="200" 
+    data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:20;transformOrigin:50% 100%;" 
+    data-speed="500" 
+    data-start="1350" 
+    data-easing="Power3.easeInOut" 
+    data-splitin="none" 
+    data-splitout="none" 
+    data-elementdelay="0.1" 
+    data-endelementdelay="0.1" 
+    data-end="8450" 
+    data-endspeed="300" 
+
+    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="#" class="slide_button_white">Start Learning Now</a> 
+    </div>
+    </li>
+    <!-- SLIDE  -->
+    <li data-transition="random" data-slotamount="7" data-masterspeed="500"  data-saveperformance="off"  class="texture_bg_slider">
+    <!-- MAIN IMAGE -->
+    <img src="uploads/2015/03/slider-3-slide-2.jpg"  alt="slider-3-slide-2"  data-bgposition="center top" data-bgfit="normal" data-bgrepeat="repeat">
+    <!-- LAYERS -->
+
+    <!-- LAYER NR. 1 -->
+    <div class="tp-caption title sfr stl tp-resizeme" 
+    data-x="0" 
+    data-y="200"  
+    data-speed="500" 
+    data-start="600" 
+    data-easing="Power3.easeInOut" 
+    data-splitin="lines" 
+    data-splitout="none" 
+    data-elementdelay="0.1" 
+    data-endelementdelay="0.1" 
+    data-end="8050" 
+    data-endspeed="300" 
+
+    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;">Education Center<br> 
+    and distance education 
+    </div>
+
+    <!-- LAYER NR. 2 -->
+    <div class="tp-caption slide_text sfr stl tp-resizeme" 
+    data-x="0" 
+    data-y="355"  
+    data-speed="500" 
+    data-start="1000" 
+    data-easing="Power3.easeInOut" 
+    data-splitin="lines" 
+    data-splitout="none" 
+    data-elementdelay="0.1" 
+    data-endelementdelay="0.1" 
+    data-end="8300" 
+    data-endspeed="300" 
+
+    style="z-index: 6; max-width: 559px; max-height: 49px; white-space: normal;"><span style="font-weight:400;">Online Education leads the world in distance education with high quality online degrees and online courses.</span> 
+    </div>
+
+    <!-- LAYER NR. 3 -->
+    <div class="tp-caption slide_button customin stl tp-resizeme" 
+    data-x="0" 
+    data-y="460"  
+    data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:20;transformOrigin:50% 100%;" 
+    data-speed="500" 
+    data-start="1450" 
+    data-easing="Power3.easeInOut" 
+    data-splitin="none" 
+    data-splitout="none" 
+    data-elementdelay="0.1" 
+    data-endelementdelay="0.1" 
+    data-end="8600" 
+    data-endspeed="300" 
+
+    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="#" class="slide_button_white">Start Learning Now</a> 
+    </div>
+    </li>
+    <!-- SLIDE  -->
+    <li data-transition="random" data-slotamount="7" data-masterspeed="500"  data-saveperformance="off"  class="texture_bg_slider">
+    <!-- MAIN IMAGE -->
+    <img src="uploads/2015/03/slider-3-slide-3.jpg"  alt="slider-3-slide-3"  data-bgposition="center top" data-bgfit="normal" data-bgrepeat="repeat">
+    <!-- LAYERS -->
+
+    <!-- LAYER NR. 1 -->
+    <div class="tp-caption title customin stb tp-resizeme" 
+    data-x="520" 
+    data-y="200"  
+    data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:20;transformOrigin:50% 100%;" 
+    data-speed="500" 
+    data-start="650" 
+    data-easing="Power3.easeInOut" 
+    data-splitin="none" 
+    data-splitout="none" 
+    data-elementdelay="0.1" 
+    data-endelementdelay="0.1" 
+    data-end="8200" 
+    data-endspeed="300" 
+
+    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;">Receive personalized<br>
+    coaching 
+    </div>
+
+    <!-- LAYER NR. 2 -->
+    <div class="tp-caption slide_text customin stb tp-resizeme" 
+    data-x="530" 
+    data-y="355"  
+    data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:20;transformOrigin:50% 100%;" 
+    data-speed="500" 
+    data-start="1050" 
+    data-easing="Power3.easeInOut" 
+    data-splitin="none" 
+    data-splitout="none" 
+    data-elementdelay="0.1" 
+    data-endelementdelay="0.1" 
+    data-end="8400" 
+    data-endspeed="300" 
+
+    style="z-index: 6; max-width: 559px; max-height: 49px; white-space: normal;"><span style="font-weight:400;">Learning is a collaborative process, and we're here to provide you with guidance every step of the way.</span> 
+    </div>
+
+    <!-- LAYER NR. 3 -->
+    <div class="tp-caption slide_button customin stb tp-resizeme" 
+    data-x="530" 
+    data-y="460"  
+    data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:20;transformOrigin:50% 100%;" 
+    data-speed="500" 
+    data-start="1450" 
+    data-easing="Power3.easeInOut" 
+    data-splitin="none" 
+    data-splitout="none" 
+    data-elementdelay="0.1" 
+    data-endelementdelay="0.1" 
+    data-end="8600" 
+    data-endspeed="300" 
+
+    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="#" class="slide_button_white">Start Learning Now</a> 
+    </div>
+    </li>
+    </ul>
+    <div class="tp-bannertimer"></div>	</div>
 
 
-                    style="z-index: 5; min-width: auto; min-height: auto; white-space: nowrap; max-width: auto; max-height: auto; font-size: 64px; line-height: 75px; font-weight: 700; color: rgba(255, 255, 255, 1.00);font-family:Roboto;padding:0 0 0 0;border-color:rgba(0, 0, 0, 1.00);border-radius:0 0 0 0;"> 
-                    </div>
+    <style scoped>.tp-caption.title,.title{font-size:50px;line-height:58px;font-family:"Love Ya Like A Sister",cursive;color:#ffffff;text-decoration:none;background-color:transparent;border-width:0px;border-color:rgb(34,34,34);border-style:none}.tp-caption.slide_text,.slide_text{font-size:18px;line-height:27px;color:rgb(255,255,255);text-decoration:none;background-color:transparent;border-width:0px;border-color:rgb(255,255,255);border-style:none}.tp-caption.slide_button,.slide_button{display:block;font-size:18px;line-height:18px;font-weight:700;color:#e05100;text-decoration:none;background-color:rgba(255,255,255,1);padding:20px 20px 20px 20px;-webkit-box-shadow:-4px 3px 0px 0px rgba(0,0,0,0.2);-moz-box-shadow:-4px 3px 0px 0px rgba(0,0,0,0.2);box-shadow:-4px 3px 0px 0px rgba(0,0,0,0.2);border-radius:4px 4px 4px 4px;border-width:0px;border-color:rgb(34,34,34);border-style:none}.tp-caption.slidetextcentered,.slidetextcentered{font-size:18px;line-height:27px;color:#ffffff;text-decoration:none;background-color:transparent;text-align:center;border-width:0px;border-color:rgb(255,255,255);border-style:none}.tp-caption.titlecentered,.titlecentered{font-size:50px;line-height:58px;font-family:"Love Ya Like A Sister",cursive;color:#ffffff;text-decoration:none;background-color:transparent;text-align:center;border-width:0px;border-color:rgb(34,34,34);border-style:none}</style>
 
-                    <!-- LAYER NR. 2 -->
-                    <div class="tp-caption Fashion-BigDisplay   tp-resizeme rs-parallaxlevel-0" 
-                    id="slide-9-layer-2" 
-                    data-x="['center','center','center','center']" data-hoffset="['-143','-143','-143','-143']" 
-                    data-y="['top','top','top','top']" data-voffset="['519','519','519','519']" 
-                    data-width="746"
-                    data-height="54"
-                    data-whitespace="normal"
-                    data-transform_idle="o:1;"
+    <script type="text/javascript">
 
-                    data-transform_in="opacity:0;s:300;e:Power2.easeInOut;" 
-                    data-transform_out="opacity:0;s:300;s:300;" 
-                    data-start="500" 
-                    data-splitin="none" 
-                    data-splitout="none" 
-                    data-responsive_offset="on" 
+    /******************************************
+    -	PREPARE PLACEHOLDER FOR SLIDER	-
+    ******************************************/
 
 
-                    style="z-index: 6; min-width: 746px; min-height: 54px; white-space: normal; max-width: 746px; max-height: 54px; font-size: 35px; line-height: 32px; font-weight: 700; color: rgba(5, 5, 5, 1.00);font-family:Raleway;padding:0 0 0 0;border-radius:0 0 0 0;"><div class="text-r-silder">
-                    <div class="r-title main-color-1 font-2">Professional and</div>
-                    <div class="r-content">Industry Based Certifications.</div>
-                    </div> 
-                    </div>
-                    </li>
-                    <!-- SLIDE  -->
-                    <li data-index="rs-10" data-transition="fade" data-slotamount="default"  data-easein="default" data-easeout="default" data-masterspeed="default"  data-thumb="<?php echo SITE_URL; ?>uploads/2015/10/slide04-100x50.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Slide" data-description="">
-                    <!-- MAIN IMAGE -->
-                    <img src="plugins/revslider/admin/assets/images/dummy.png"  alt=""  width="980" height="474" data-lazyload="<?php echo SITE_URL; ?>uploads/2015/10/slide04.jpg" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" data-no-retina>
-                    <!-- LAYERS -->
+    var setREVStartSize = function() {
+    var	tpopt = new Object();
+    tpopt.startwidth = 1150;
+    tpopt.startheight = 630;
+    tpopt.container = jQuery('#rev_slider_3_1');
+    tpopt.fullScreen = "off";
+    tpopt.forceFullWidth="off";
 
-                    <!-- LAYER NR. 1 -->
-                    <div class="tp-caption Fashion-BigDisplay   tp-resizeme rs-parallaxlevel-0" id="slide-10-layer-1" data-x="['left','left','left','left']" data-hoffset="['100','100','100','100']" data-y="['top','top','top','top']" data-voffset="['100','100','100','100']" data-width="none" data-height="none" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="opacity:0;s:300;e:Power2.easeInOut;" data-transform_out="opacity:0;s:300;s:300;" data-start="500" data-splitin="none" data-splitout="none" data-responsive_offset="on" style="z-index: 5; min-width: auto; min-height: auto; white-space: nowrap; max-width: auto; max-height: auto; font-size: 20px; line-height: 22px; font-weight: 400; color: rgba(255, 255, 255, 1.00);font-family:Raleway;padding:0 0 0 0;border-radius:0 0 0 0;">Customer satisfaction is our greatest priority. </div>
-                    </li>
-                    </ul>
-                    <div class="tp-static-layers">
-                    </div>
-                    <div class="tp-bannertimer" style="height: 5px; background-color: rgba(0, 0, 0, 0.15);"></div>	</div>
-                    <script>document.write("<style type=\"text/css\">.tp-caption.Fashion-BigDisplay,.Fashion-BigDisplay{color:rgba(0,0,0,1.00);font-size:60px;line-height:60px;font-weight:900;font-style:normal;font-family:Raleway;padding:0 0 0 0;text-decoration:none;background-color:transparent;border-color:transparent;border-style:none;border-width:0;border-radius:0 0 0 0;letter-spacing:2px}.tp-caption.big_black_222,.big_black_222{font-size:64px;line-height:75px;font-weight:700;font-family:Roboto;color:#ffffff;text-decoration:none;background-color:transparent;border-width:0px;border-color:rgb(0,0,0);border-style:none;text-shadow:none}</style>");</script>
-                    <script src="js/revslider-custom.js" type="text/javascript"></script>
-                    <script>document.write("<style type=\"text/css\">.zeus.tparrows{cursor:pointer; min-width:70px; min-height:70px; position:absolute; display:block; z-index:100; border-radius:35px;   overflow:hidden; background:rgba(0,0,0,0.10)}.zeus.tparrows:before{font-family:\"revicons\"; font-size:20px; color:#fff; display:block; line-height:70px; text-align:center;   z-index:2; position:relative}.zeus.tparrows.tp-leftarrow:before{content:\"\\e824\"}.zeus.tparrows.tp-rightarrow:before{content:\"\\e825\"}.zeus .tp-title-wrap{background:#000; background:rgba(0,0,0,0.5); width:100%; height:100%; top:0px; left:0px; position:absolute; opacity:0; transform:scale(0); -webkit-transform:scale(0);  transition:all 0.3s; -webkit-transition:all 0.3s; -moz-transition:all 0.3s;  border-radius:50%}.zeus .tp-arr-imgholder{width:100%; height:100%; position:absolute; top:0px; left:0px; background-position:center center; background-size:cover; border-radius:50%; transform:translateX(-100%); -webkit-transform:translateX(-100%);  transition:all 0.3s; -webkit-transition:all 0.3s; -moz-transition:all 0.3s}.zeus.tp-rightarrow .tp-arr-imgholder{transform:translateX(100%); -webkit-transform:translateX(100%)}.zeus.tparrows:hover .tp-arr-imgholder{transform:translateX(0); -webkit-transform:translateX(0); opacity:1}.zeus.tparrows:hover .tp-title-wrap{transform:scale(1); -webkit-transform:scale(1); opacity:1}.hephaistos.tp-bullets{}.hephaistos.tp-bullets:before{content:\" \";position:absolute;width:100%;height:100%;background:transparent;padding:10px;margin-left:-10px;margin-top:-10px;box-sizing:content-box}.hephaistos .tp-bullet{width:12px;height:12px;position:absolute;background:#999;border:3px solid #f5f5f5;border-radius:50%;cursor:pointer;box-sizing:content-box; box-shadow:0px 0px 2px 1px rgba(130,130,130,0.3)}.hephaistos .tp-bullet:hover,.hephaistos .tp-bullet.selected{background:#fff;  border-color:#000}.hephaistos .tp-bullet-image{}.hephaistos .tp-bullet-title{}</style>");</script>
-                    </div><!-- END REVOLUTION SLIDER --></div>        
-                    <div class="header-overlay-content header-overlay-scroller">
-                        <div class="container">
-                        <div class="row">
-                        <div class="col-md-5">
-                        <section class="un-post-scroller un-post-scroller-3198 " data-delay=0>
-                        <div class="section-inner-no-padding">
-                        <div class="post-scroller-wrap">
-                        <div class="post-scroller-carousel" data-next='.post-scroller-down' data-prev='.post-scroller-up'>
-                        <div class="post-scroller-carousel-inner">
-                        <div class="post-scroller-item">
-                        <div class="scroller-item-inner">
-                        <div class="scroller-item-content post-item-mini">
-                        <div class="row">
-                        <div class="col-md-4 col-sm-4 col-xs-4 post-thumbnail-mini">
-                        <div class="item-thumbnail">
-                        <a href="index" title="Welcome to <?php echo WEBSITE_AUTHOR; ?>">
-                        <img src="images/media/default.png" width="48" height="64" title="Welcome to <?php echo WEBSITE_AUTHOR; ?>" alt="Welcome to <?php echo WEBSITE_AUTHOR; ?>">
-                        <div class="thumbnail-hoverlay main-color-1-bg"></div>
-                        <div class="thumbnail-hoverlay-cross"></div>
-                        </a>
-                        </div>
-                        </div>
-                        <div class="col-md-8 col-sm-8 col-xs-8 post-content-mini">
-                        <h4><a class="post-title-mini main-color-1-hover" href="index" title="Welcome to <?php echo WEBSITE_AUTHOR; ?>">Welcome to <?php echo WEBSITE_AUTHOR; ?></a></h4>
-                        <div class="post-excerpt-mini"><?php echo WELCOME_MESSAGE; ?></div>
-                        </div>
-                        </div>
-                        </div><!--/post-item-mini-->
-                        </div>
-                        </div><!--/post-scroller-item-->
-                        </div>
-                        </div>
-                        <div class="post-scroller-control">
-                        <span class="post-scroller-button-wrap">
-                        <a class="btn btn-primary post-scroller-button post-scroller-down" href="#"><i class="fa fa-angle-down"></i></a>
-                        <a class="btn btn-primary post-scroller-button post-scroller-up" href="#"> <i class="fa fa-angle-up"></i></a>
-                        </span>
-                        <a class="post-scroller-more" href="about-us/">Read More &nbsp;<i class="fa fa-angle-right"></i></a>
-                        </div>
-                        </div>
-                        </div><!--/section-inner-->
-                        </section><!--/u-post-carousel-->
-                        </div>
-                        </div>
-                        </div>
-                    </div>
-                </div><!--/slider-->
+    tpopt.container.closest(".rev_slider_wrapper").css({height:tpopt.container.height()});tpopt.width=parseInt(tpopt.container.width(),0);tpopt.height=parseInt(tpopt.container.height(),0);tpopt.bw=tpopt.width/tpopt.startwidth;tpopt.bh=tpopt.height/tpopt.startheight;if(tpopt.bh>tpopt.bw)tpopt.bh=tpopt.bw;if(tpopt.bh<tpopt.bw)tpopt.bw=tpopt.bh;if(tpopt.bw<tpopt.bh)tpopt.bh=tpopt.bw;if(tpopt.bh>1){tpopt.bw=1;tpopt.bh=1}if(tpopt.bw>1){tpopt.bw=1;tpopt.bh=1}tpopt.height=Math.round(tpopt.startheight*(tpopt.width/tpopt.startwidth));if(tpopt.height>tpopt.startheight&&tpopt.autoHeight!="on")tpopt.height=tpopt.startheight;if(tpopt.fullScreen=="on"){tpopt.height=tpopt.bw*tpopt.startheight;var cow=tpopt.container.parent().width();var coh=jQuery(window).height();if(tpopt.fullScreenOffsetContainer!=undefined){try{var offcontainers=tpopt.fullScreenOffsetContainer.split(",");jQuery.each(offcontainers,function(e,t){coh=coh-jQuery(t).outerHeight(true);if(coh<tpopt.minFullScreenHeight)coh=tpopt.minFullScreenHeight})}catch(e){}}tpopt.container.parent().height(coh);tpopt.container.height(coh);tpopt.container.closest(".rev_slider_wrapper").height(coh);tpopt.container.closest(".forcefullwidth_wrapper_tp_banner").find(".tp-fullwidth-forcer").height(coh);tpopt.container.css({height:"100%"});tpopt.height=coh;}else{tpopt.container.height(tpopt.height);tpopt.container.closest(".rev_slider_wrapper").height(tpopt.height);tpopt.container.closest(".forcefullwidth_wrapper_tp_banner").find(".tp-fullwidth-forcer").height(tpopt.height);}
+    };
+
+    /* CALL PLACEHOLDER */
+    setREVStartSize();
+
+
+    var tpj=jQuery;
+    tpj.noConflict();
+    var revapi3;
+
+    tpj(document).ready(function() {
+
+    if(tpj('#rev_slider_3_1').revolution == undefined){
+    revslider_showDoubleJqueryError('#rev_slider_3_1');
+    }else{
+    revapi3 = tpj('#rev_slider_3_1').show().revolution(
+    {	
+    dottedOverlay:"none",
+    delay:9000,
+    startwidth:1150,
+    startheight:630,
+    hideThumbs:200,
+
+    thumbWidth:100,
+    thumbHeight:50,
+    thumbAmount:3,
+
+    minHeight:320,
+
+    simplifyAll:"off",
+
+    navigationType:"bullet",
+    navigationArrows:"solo",
+    navigationStyle:"round",
+
+    touchenabled:"on",
+    onHoverStop:"off",
+    nextSlideOnWindowFocus:"off",
+
+    swipe_threshold: 75,
+    swipe_min_touches: 1,
+    drag_block_vertical: false,
+
+
+
+    keyboardNavigation:"off",
+
+    navigationHAlign:"center",
+    navigationVAlign:"bottom",
+    navigationHOffset:0,
+    navigationVOffset:20,
+
+    soloArrowLeftHalign:"left",
+    soloArrowLeftValign:"center",
+    soloArrowLeftHOffset:20,
+    soloArrowLeftVOffset:0,
+
+    soloArrowRightHalign:"right",
+    soloArrowRightValign:"center",
+    soloArrowRightHOffset:20,
+    soloArrowRightVOffset:0,
+
+    shadow:0,
+    fullWidth:"on",
+    fullScreen:"off",
+
+    spinner:"spinner0",
+
+    stopLoop:"off",
+    stopAfterLoops:-1,
+    stopAtSlide:-1,
+
+    shuffle:"off",
+
+    autoHeight:"off",
+    forceFullWidth:"off",
+
+
+
+    hideThumbsOnMobile:"off",
+    hideNavDelayOnMobile:1500,
+    hideBulletsOnMobile:"off",
+    hideArrowsOnMobile:"off",
+    hideThumbsUnderResolution:0,
+
+    hideSliderAtLimit:0,
+    hideCaptionAtLimit:0,
+    hideAllCaptionAtLilmit:0,
+    startWithSlide:0					});
+
+
+
+    }
+    });	/*ready*/
+
+    </script>
+
+
+    </div><!-- END REVOLUTION SLIDER -->		</section>

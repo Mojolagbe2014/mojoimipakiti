@@ -3,7 +3,7 @@
                 <ul class="nav" id="main-menu">
                     <li class="text-center"> <a href="profile" title="My Profile"><img src="assets/img/find_user.png" class="user-image img-responsive"/></a> </li>
                     <li> <a href="index"><i class="fa fa-dashboard fa-2x"></i> Dashboard</a> </li>
-                    <?php if(isset($_SESSION['TSIadminRole']) && $_SESSION['TSIadminRole'] =='Admin' ) { ?>
+                    <?php if(isset($_SESSION['ITCadminRole']) && $_SESSION['ITCadminRole'] =='Admin' ) { ?>
                     <li> <a href="#"><i class="fa fa-user fa-2x"></i>Admin Manager<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li> <a href="add-admin">Add Site Admin</a> </li>
@@ -64,7 +64,7 @@
                             <li> <a href="manage-gallery">Manage Gallery</a> </li>
                         </ul>
                     </li>
-                    <?php if(isset($_SESSION['TSIadminEmail']) && $_SESSION['TSIadminEmail'] == trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'COMPANY_EMAIL'))))) { ?>
+                    <?php if(isset($_SESSION['ITCadminEmail']) && $_SESSION['ITCadminEmail'] == trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'COMPANY_EMAIL'))))) { ?>
                     <li> <a href="#"><i class="fa fa-cog fa-2x"></i>Settings Manager<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li> <a href="manage-settings"><i class="fa fa-cogs fa-1x"></i> General Settings</a> </li>
