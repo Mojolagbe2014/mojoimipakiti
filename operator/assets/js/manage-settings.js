@@ -1,8 +1,9 @@
+var dataTable;
 $(document).ready(function(){
     $("form#CreateSetting").submit(function(e){ 
         e.stopPropagation();
         e.preventDefault();
-        //var formDatas = $(this).serialize();
+        $(document).scrollTo('div.panel h3');
         var formDatas = new FormData($(this)[0]);
         formDatas.append('value', CKEDITOR.instances['value'].getData());
         var alertType = ["danger", "success", "danger", "error"];
@@ -18,10 +19,33 @@ $(document).ready(function(){
                     $("#messageBox, .messageBox").html('<div class="alert alert-'+alertType[data.status]+'"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+' </div>');
                 }
                 else if(data.status != null && data.status == 1) { 
-                    $("#messageBox, .messageBox").html('<div class="alert alert-'+alertType[data.status]+'"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+'  <img src="images/cycling.GIF" width="30" height="30" alt="Ajax Loading"> Re-loading...</div>'); setInterval(function(){ window.location = "";}, 2000);
+                    $("#messageBox, .messageBox").html('<div class="alert alert-'+alertType[data.status]+'"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+'  </div>'); 
+                    $("form#CreateSetting")[0].reset();
+                    $('form#CreateSetting #addNewSetting').val('addNewSetting');
+                    $('form#CreateSetting #multi-action-catAddEdit').text('Add Setting');
+                    CKEDITOR.instances['value'].setData('');
                 }
                 else $("#messageBox, .messageBox").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data+'</div>');
-                 
+                dataTable.ajax.reload();
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: data.msg ? data.msg : data
+                });
+            },
+            error : function(xhr, status) {
+                erroMsg = '';
+                if(xhr.status===0){ erroMsg = 'There is a problem connecting to internet. Please review your internet connection.'; }
+                else if(xhr.status===404){ erroMsg = 'Requested page not found.'; }
+                else if(xhr.status===500){ erroMsg = 'Internal Server Error.';}
+                else if(status==='parsererror'){ erroMsg = 'Error. Parsing JSON Request failed.'; }
+                else if(status==='timeout'){  erroMsg = 'Request Time out.';}
+                else { erroMsg = 'Unknow Error.\n'+xhr.responseText;}          
+                $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Admin details update failed. '+erroMsg+'</div>');
+
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: erroMsg
+                });
             },
             processData: false
         });
@@ -30,7 +54,17 @@ $(document).ready(function(){
     
     loadAllsSettings();
     function loadAllsSettings(){
-        var dataTable = $('#settinglist').DataTable( {
+        dataTable = $('#settinglist').DataTable( {
+            columnDefs: [ {
+                orderable: false,
+                className: 'select-checkbox',
+                targets:   [0,3]
+            } ],
+            select: {
+                style:    'os',
+                selector: 'td:first-child'
+            },
+            order: [[ 1, 'asc' ]],
             "processing": true,
             "serverSide": true,
             "scrollX": true,
@@ -48,6 +82,31 @@ $(document).ready(function(){
         } );
     }
     
+    //Select Multiple Values
+    $("#multi-action-box").click(function () {
+        var checkAll = $("#multi-action-box").prop('checked');
+        if (checkAll) {
+            $(".multi-action-box").prop("checked", true);
+        } else {
+            $(".multi-action-box").prop("checked", false);
+        }
+    });
+    //Handler for multiple selection
+    $('.multi-delete-setting').click(function(){
+        if(confirm("Are you sure you want to delete selected setting(s)?")) {
+            if($('#multi-action-box').prop("checked") || $('#settinglist :checkbox:checked').length > 0) {
+                var atLeastOneIsChecked = $('#settinglist :checkbox:checked').length > 0;
+                if (atLeastOneIsChecked !== false) {
+                    $('#settinglist :checkbox:checked').each(function(){
+                        deleteSetting($(this).attr('data-name'));
+                    });
+                }
+                else alert("No row selected. You must select atleast a row.");
+            }
+            else alert("No row selected. You must select atleast a row.");
+        }
+    });
+    
     $(document).on('click', '.delete-setting', function() {
         if(confirm("Are you sure you want to delete this setting? Setting Name: '"+$(this).attr('data-name')+"'")) deleteSetting($(this).attr('data-name'));
     });
@@ -63,12 +122,31 @@ $(document).ready(function(){
             cache: false,
             success : function(data, status) {
                 if(data.status === 1){
-                    $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+' <img src="images/cycling.GIF" width="30" height="30" alt="Ajax Loading"> Re-loading...</div>');
-                    setInterval(function(){ window.location = "";}, 2000);
+                    $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+' </div>');
                 }
                 else {
                     $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+'</div>');
                 }
+                dataTable.ajax.reload();
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: data.msg ? data.msg : data
+                });
+            },
+            error : function(xhr, status) {
+                erroMsg = '';
+                if(xhr.status===0){ erroMsg = 'There is a problem connecting to internet. Please review your internet connection.'; }
+                else if(xhr.status===404){ erroMsg = 'Requested page not found.'; }
+                else if(xhr.status===500){ erroMsg = 'Internal Server Error.';}
+                else if(status==='parsererror'){ erroMsg = 'Error. Parsing JSON Request failed.'; }
+                else if(status==='timeout'){  erroMsg = 'Request Time out.';}
+                else { erroMsg = 'Unknow Error.\n'+xhr.responseText;}          
+                $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Admin details update failed. '+erroMsg+'</div>');
+
+                $.gritter.add({
+                    title: 'Notification!',
+                    text: erroMsg
+                });
             }
         });
     }
@@ -79,5 +157,6 @@ $(document).ready(function(){
         var formVar = {name:name, value:value, name2:name};
         $.each(formVar, function(key, value) {  $('form #'+key).val(value);  });
         CKEDITOR.instances['value'].setData(value);
+        $(document).scrollTo('div#hiddenUpdateForm');
     }
 });

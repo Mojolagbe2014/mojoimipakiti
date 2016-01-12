@@ -37,7 +37,7 @@ else{
     
     if(filter_input(INPUT_POST, "fetchSettings") != NULL){
         $requestData= $_REQUEST;
-        $columns = array( 0 =>'name', 1 => 'value');
+        $columns = array( 0 =>'name', 1 =>'name', 2 => 'value');
 
         // getting total number records without any search
         $query = $dbObj->query("SELECT * FROM setting ");

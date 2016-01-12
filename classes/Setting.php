@@ -78,7 +78,8 @@ class Setting implements ContentManipulator{
         $result =array(); 
         if(count($data)>0){
             foreach($data as $r){ 
-                $result[] = array($r['name'], utf8_encode(StringManipulator::trimStringToFullWord(90, stripcslashes(strip_tags($r['value'])))), utf8_encode(' <button data-name="'.$r['name'].'" class="btn btn-info btn-sm edit-setting"  title="Edit"><i class="btn-icon-only icon-pencil"> </i> <span id="JQDTvalueholder" class="hidden">'.$r['value'].'</span> </button> <button data-name="'.$r['name'].'" class="btn btn-danger btn-sm delete-setting" title="Delete"><i class="btn-icon-only icon-trash"> </i> <span name="JQDTvalueholder" class="hidden">'.$r['value'].'</span></button>'));
+                $multiActionBox = '<input type="checkbox" class="multi-action-box" data-name="'.$r['name'].'" />';
+                $result[] = array(utf8_encode($multiActionBox), $r['name'], utf8_encode(StringManipulator::trimStringToFullWord(90, stripcslashes(strip_tags($r['value'])))), utf8_encode(' <button data-name="'.$r['name'].'" class="btn btn-info btn-sm edit-setting"  title="Edit"><i class="btn-icon-only icon-pencil"> </i> <span id="JQDTvalueholder" class="hidden">'.$r['value'].'</span> </button> <button data-name="'.$r['name'].'" class="btn btn-danger btn-sm delete-setting" title="Delete"><i class="btn-icon-only icon-trash"> </i> <span name="JQDTvalueholder" class="hidden">'.$r['value'].'</span></button>'));
             }
             $json = array("status" => 1,"draw" => intval($draw), "recordsTotal"    => intval($totalData), "recordsFiltered" => intval($totalFiltered), "data" => $result);
         } 
