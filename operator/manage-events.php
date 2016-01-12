@@ -13,7 +13,7 @@ $errorArr = array(); //Array of errors
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manage Upcoming Events  - TSI Group Limited</title>
+    <title>Manage Upcoming Events  - Impact Training &amp; Management Consulting</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/custom.css" rel="stylesheet" />
@@ -23,6 +23,7 @@ $errorArr = array(); //Array of errors
     <script src="../ckeditor/ckeditor.js" type="text/javascript"></script>
     <link href="../css/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <link href="../css/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/js/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <div id="wrapper">
@@ -44,8 +45,14 @@ $errorArr = array(); //Array of errors
                                     <table id="eventlist" class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
+                                                <th><input type="checkbox" class="select-checkbox" id="multi-action-box" /></th>
                                                 <th>ID</th>
-                                                <th>Actions</th>
+                                                <th>Actions &nbsp; 
+                                                    <div style="white-space:nowrap">
+                                                    <button  class="btn btn-success btn-sm multi-activate-event multi-select" title="Change selected event status"><i class="btn-icon-only icon-check"> </i></button> 
+                                                    <button class="btn btn-danger btn-sm multi-delete-event multi-select" title="Delete Selected"><i class="btn-icon-only icon-trash"> </i></button>
+                                                    </div>
+                                                </th>
                                                 <th>Event</th>
                                                 <th>Image</th>
                                                 <th>Description</th>
@@ -131,6 +138,8 @@ $errorArr = array(); //Array of errors
     <script src="assets/js/common-handler.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js" type="text/javascript"></script>
+    <script src="assets/js/gritter/js/jquery.gritter.min.js" type="text/javascript"></script>
     <script src="assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
     <script src="assets/js/manage-events.js"></script>

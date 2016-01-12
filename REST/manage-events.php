@@ -66,7 +66,7 @@ else{
     
     if(filter_input(INPUT_POST, "fetchEvents") != NULL){
         $requestData= $_REQUEST;
-        $columns = array( 0 =>'id', 1 => 'status', 2 => 'name', 3 => 'image', 4 => 'description', 5 => 'date_time', 6 => 'location', 7=>'date_added');
+        $columns = array( 0 =>'id', 1 =>'id', 2 => 'status', 3 => 'name', 4 => 'image', 5 => 'description', 6 => 'date_time', 7 => 'location', 8 =>'date_added');
 
         // getting total number records without any search
         $query = $dbObj->query("SELECT * FROM event ");
