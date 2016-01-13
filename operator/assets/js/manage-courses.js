@@ -263,7 +263,10 @@ $(document).ready(function(){
         $('#hiddenUpdateForm').removeClass('hidden');
         $(document).scrollTo('div#hiddenUpdateForm');
         CKEDITOR.instances['description'].setData(description);
-        $("form#UpdateCourse").submit(function(e){ 
+        
+        $('#cancelEdit').click(function(){ $("#hiddenUpdateForm").addClass('hidden'); });
+    }
+    $("form#UpdateCourse").submit(function(e){ 
             e.stopPropagation(); 
             e.preventDefault();
             $(document).scrollTo('div.panel h3');
@@ -280,6 +283,7 @@ $(document).ready(function(){
                 $("#hiddenUpdateForm").addClass('hidden');
                 if(data.status === 1) {
                     $("#messageBox, .messageBox").html('<div class="alert alert-'+alertType[data.status]+'"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+' </div>');
+                    $("form#UpdateCourse")[0].reset();
                 }
                 else if(data.status === 2 || data.status === 3 || data.status ===0 ) $("#messageBox").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+'</div>');
                 else $("#messageBox, .messageBox").html('<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+'</div>');
@@ -308,6 +312,4 @@ $(document).ready(function(){
         });
             return false;
         });
-        $('#cancelEdit').click(function(){ $("#hiddenUpdateForm").addClass('hidden'); });
-    }
 });

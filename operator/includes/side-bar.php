@@ -46,7 +46,7 @@
                             <li> <a href="manage-events">Manage Events</a> </li>
                         </ul>
                     </li>
-                    <li> <a href="#"><i class="fa fa-apple fa-2x"></i> Sponsors/Patners<span class="fa arrow"></span></a>
+                    <li> <a href="#"><i class="fa fa-apple fa-2x"></i> Sponsors/Partners/Clients<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li> <a href="manage-sponsors">Add Partners/Sponsors</a> </li>
                             <li> <a href="manage-sponsors">Manage Partners/Sponsors</a> </li>

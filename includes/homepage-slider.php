@@ -23,7 +23,7 @@
     data-end="8150" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 820px; max-height: 116px; white-space: normal;">Take great courses <br>from the world's best universities 
+    style="z-index: 5; max-width: 820px; max-height: 116px; white-space: normal;">Take great courses <br>from the Nigeria's best trainers 
     </div>
 
     <!-- LAYER NR. 2 -->
@@ -58,7 +58,7 @@
     data-end="8450" 
     data-endspeed="300" 
 
-    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="#" class="slide_button_white">Start Learning Now</a> 
+    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'courses/'; ?>" class="slide_button_white">Start Learning Now</a> 
     </div>
     </li>
     <!-- SLIDE  -->
@@ -117,7 +117,7 @@
     data-end="8600" 
     data-endspeed="300" 
 
-    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="#" class="slide_button_white">Start Learning Now</a> 
+    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'courses/'; ?>" class="slide_button_white">Start Learning Now</a> 
     </div>
     </li>
     <!-- SLIDE  -->
@@ -178,7 +178,7 @@
     data-end="8600" 
     data-endspeed="300" 
 
-    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="#" class="slide_button_white">Start Learning Now</a> 
+    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'courses/'; ?>" class="slide_button_white">Start Learning Now</a> 
     </div>
     </li>
     </ul>

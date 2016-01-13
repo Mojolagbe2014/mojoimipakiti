@@ -110,190 +110,231 @@ require('includes/page-properties.php');
             <?php include('includes/homepage-slider.php'); ?>
 
             <div class="page_content_wrap" >
+                <div class="content">
+                    <article class="itemscope post_item post_item_single post_featured_default post_format_standard post-1109 page type-page status-publish hentry" itemscope itemtype="http://schema.org/Article">
+                    <section class="post_content" itemprop="articleBody">
+                        <div class="sc_reviews alignright"><!-- #TRX_REVIEWS_PLACEHOLDER# --></div>
+                        <div class="vc_row wpb_row vc_row-fluid">
+                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                                <div class="wpb_wrapper">
+                                    <div class="sc_section" data-animation="animated zoomInUp normal">
+                                        <div class="sc_content content_wrap" style="margin-top:3em !important;margin-bottom:3em !important;">
+                                            <div class="columns_wrap sc_columns columns_fluid sc_columns_count_3">
+                                                <div class="column-1_3 sc_column_item sc_column_item_1 odd first" style="text-align:center;">
+                                                    <a href="#" class="sc_icon icon-graduation sc_icon_shape_round sc_icon_bg_menu menu_dark_color" style="font-size:5em; line-height: 1.2em;"></a>
+                                                    <div class="sc_section" style="margin-top:1em !important;font-weight:400;">
+                                                    <div class="wpb_text_column wpb_content_element ">
+                                                        <div class="wpb_wrapper">
+                                                        <p><a class="menu_color" href="<?php echo SITE_URL.'clients/'; ?>">Our Clients</a><br /> We have trained individually and collectively employees of over 300 diverse businesses, spanning all sectors of the Nigerian economy since 2003</p> </div>
+                                                    </div>
+                                                    </div>
+                                                </div><div class="column-1_3 sc_column_item sc_column_item_2 even" style="text-align:center;"><a href="#" class="sc_icon icon-attach-1 sc_icon_shape_round sc_icon_bg_menu menu_dark_color" style="font-size:5em; line-height: 1.2em;"></a>
+                                                    <div class="sc_section" style="margin-top:1em !important;font-weight:400;">
+                                                        <div class="wpb_text_column wpb_content_element ">
+                                                            <div class="wpb_wrapper">
+                                                            <p><a class="menu_color" href="<?php echo MEDIA_FILES_PATH1.'brochure/'.CourseBrochure::getCurrent($dbObj); ?>">Download Brochure</a><br /> Download our comprehensive brochure to view all our courses we offer at your convenience round the year and its free.</p>
 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><div class="column-1_3 sc_column_item sc_column_item_3 odd" style="text-align:center;">
+                                                    <a href="#" class="sc_icon icon-world-2 sc_icon_shape_round sc_icon_bg_menu menu_dark_color" style="font-size:5em; line-height: 1.2em;"></a>
+                                                    <div class="sc_section" style="margin-top:1em !important;font-weight:400;">
+                                                        <div class="wpb_text_column wpb_content_element ">
+                                                        <div class="wpb_wrapper">
+                                                            <p><a class="menu_color" href="<?php echo SITE_URL.'about/'; ?>">Our Experience</a><br />Over the decade, we have worked individually and collectively with over three hundred diverse business, spanning all sectors of the Nigerian economy. </p> </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vc_row wpb_row vc_row-fluid">
+                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                                <div class="wpb_wrapper">
+                                    <div class="sc_section accent_top rounded_large bg_tint_light" data-animation="animated zoomIn normal" style="background-color:#f4f7f9;">
+                                        <div class="sc_section_overlay" style="">
+                                            <div class="sc_section_content">
+                                                <div class="sc_content content_wrap" style="margin-top:2.5em !important;margin-bottom:2.5em !important;">
+                                                    <h2 class="sc_title sc_title_regular sc_align_center" style="margin-top:0px;margin-bottom:0.85em;text-align:center;">Courses Starting Soon</h2>
+                                                    <div id="sc_blogger_1219813813" class="sc_blogger layout_courses_3 template_portfolio  sc_blogger_horizontal no_description">
+                                                        <div class="isotope_wrap" data-columns="3">	
+                                                            <?php 
+                                                            foreach ($courseObj->fetchRaw("*", " status = 1 ", " RAND() LIMIT 6") as $course) {
+                                                                $courseData = array('id' => 'id', 'name' => 'name', 'code' => 'code', 'image' => 'image', 'media' => 'media', 'amount' => 'amount', 'shortName' => 'short_name', 'category' => 'category', 'startDate' => 'start_date', 'endDate' => 'end_date', 'description' => 'description', 'status' => 'status', 'currency' => 'currency');
+                                                                foreach ($courseData as $key => $value){
+                                                                    switch ($key) { 
+                                                                        case 'image': $courseObj->$key = MEDIA_FILES_PATH1.'course-image/'.$course[$value];break;
+                                                                        case 'media': $courseObj->$key = MEDIA_FILES_PATH1.'course/'.$course[$value];break;
+                                                                        case 'startDate': $dateParam = explode('-', $course[$value]);
+                                                                                          $dateObj   = DateTime::createFromFormat('!m', $dateParam[1]);
+                                                                                          $courseObj->$key = $dateParam[2].' '.$dateObj->format('F').', '.$dateParam[0].'.';;
+                                                                                          break;
+                                                                        case 'endDate': $dateParam = explode('-', $course[$value]);
+                                                                                          $dateObj   = DateTime::createFromFormat('!m', $dateParam[1]);
+                                                                                          $courseObj->$key = $dateParam[2].' '.$dateObj->format('F').', '.$dateParam[0].'.';;
+                                                                                          break;
+                                                                        default     :   $courseObj->$key = $course[$value]; break; 
+                                                                    }
+                                                                }
+                                                            ?>
+                                                            <div class="isotope_item isotope_item_courses isotope_item_courses_3 isotope_column_3						">
+                                                                <div class="post_item post_item_courses post_item_courses_3 post_format_standard odd">
+                                                                    <div class="post_content isotope_item_content ih-item colored square effect_dir left_to_right">
+                                                                        <div class="post_featured img">
+                                                                        <a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>"><img class="wp-post-image" width="400" height="400" alt="<?php echo $courseObj->name; ?>" src="<?php echo $courseObj->image; ?>"></a>								
+                                                                        <h4 class="post_title"><a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>"><?php echo $courseObj->name; ?></a></h4>
+                                                                        <div class="post_descr">
+                                                                            <div class="post_price"><span class="post_price_value" style="font-size:14px;font-weight: bold"><?php echo $courseObj->currency.''. number_format($courseObj->amount, 2); ?></span></div>
+                                                                        <div class="post_category"><a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>"><?php echo CourseCategory::getName($dbObj, $courseObj->category); ?></a></div>
+                                                                        </div>
+                                                                        </div>
 
-            <div class="content">
-            <article class="itemscope post_item post_item_single post_featured_default post_format_standard post-1109 page type-page status-publish hentry" itemscope itemtype="http://schema.org/Article">
-            <section class="post_content" itemprop="articleBody"><div class="sc_reviews alignright"><!-- #TRX_REVIEWS_PLACEHOLDER# --></div><div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="wpb_wrapper"><div class="sc_section" data-animation="animated zoomInUp normal"><div class="sc_content content_wrap" style="margin-top:3em !important;margin-bottom:3em !important;"><div class="columns_wrap sc_columns columns_fluid sc_columns_count_3"><div class="column-1_3 sc_column_item sc_column_item_1 odd first" style="text-align:center;"><a href="#" class="sc_icon icon-woman-2 sc_icon_shape_round sc_icon_bg_menu menu_dark_color" style="font-size:5em; line-height: 1.2em;"></a><div class="sc_section" style="margin-top:1em !important;font-weight:400;">
-            <div class="wpb_text_column wpb_content_element ">
-            <div class="wpb_wrapper">
-            <p><a class="menu_color" href="#">Take computer science courses<br />
-            with personalized support</a></p>
+                                                                        <div class="post_info_wrap info"><div class="info-back">
 
-            </div>
-            </div>
-            </div></div><div class="column-1_3 sc_column_item sc_column_item_2 even" style="text-align:center;"><a href="#" class="sc_icon icon-rocket-2 sc_icon_shape_round sc_icon_bg_menu menu_dark_color" style="font-size:5em; line-height: 1.2em;"></a><div class="sc_section" style="margin-top:1em !important;font-weight:400;">
-            <div class="wpb_text_column wpb_content_element ">
-            <div class="wpb_wrapper">
-            <p><a class="menu_color" href="#">Build cool projects<br />
-            to showcase your skills</a></p>
+                                                                        <h4 class="post_title"><a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>"><?php echo $courseObj->name; ?></a></h4>	
+                                                                        <div class="post_descr">
+                                                                            <p><a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>"><?php echo StringManipulator::trimStringToFullWord(160, strip_tags($courseObj->description)); ?>..</a></p><div class="post_buttons">											<div class="post_button"><a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">LEARN MORE</a></div>
+                                                                        <div class="post_button"><a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">BUY NOW</a></div>
+                                                                        </div>							</div>
+                                                                        </div></div>	<!-- /.info-back /.info -->
+                                                                    </div>				<!-- /.post_content -->
+                                                                </div>	<!-- /.post_item -->
+                                                            </div>						<!-- /.isotope_item -->
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                    <a href="<?php echo SITE_URL.'courses/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_menu sc_button_size_small aligncenter  sc_button_iconed icon-graduation" style="margin-top:1em;margin-bottom:4px;width:12em;">VIEW ALL COURSES</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vc_row wpb_row vc_row-fluid">
+                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                                <div class="wpb_wrapper">
+                                    <div class="sc_section" data-animation="animated bounceInUp normal">
+                                        <div class="sc_content content_wrap" style="margin-top:2.5em !important;margin-bottom:2.5em !important;">
+                                            <div class="sc_section aligncenter" style="width:70%;">
+                                                <h2 class="sc_title sc_title_regular" style="margin-top:0px;">Learn From the Best</h2>
+                                                <div class="wpb_text_column wpb_content_element ">
+                                                <div class="wpb_wrapper">
+                                                <p>Our online courses are built in partnership with technology leaders and are relevant to industry needs. Upon completing a Online course, you&#8217;ll receive a verified completion certificate recognized by industry leaders.</p>
 
-            </div>
-            </div>
-            </div></div><div class="column-1_3 sc_column_item sc_column_item_3 odd" style="text-align:center;"><a href="#" class="sc_icon icon-world-2 sc_icon_shape_round sc_icon_bg_menu menu_dark_color" style="font-size:5em; line-height: 1.2em;"></a><div class="sc_section" style="margin-top:1em !important;font-weight:400;">
-            <div class="wpb_text_column wpb_content_element ">
-            <div class="wpb_wrapper">
-            <p><a class="menu_color" href="#">Earn certificates<br />
-            recognized by Industry</a></p>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <div id="sc_section_748132790" class="sc_section" style="margin-top:1.5em !important;margin-bottom:0px !important;height:75px;">
+                                                <div id="sc_section_748132790_scroll" class="sc_scroll sc_scroll_horizontal swiper-slider-container scroll-container" style="height:75px;">
+                                                    <div class="sc_scroll_wrapper swiper-wrapper">
+                                                        <div class="sc_scroll_slide swiper-slide">
+                                                            <figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;">
+                                                                <img src="uploads/2014/10/partners_01_bw.jpg" alt="" />
+                                                            </figure>
+                                                            <figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;">
+                                                                <img src="uploads/2014/10/partners_02_bw.jpg" alt="" />
+                                                            </figure>
+                                                            <figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;">
+                                                                <img src="uploads/2014/10/partners_03_bw.jpg" alt="" />
+                                                            </figure>
+                                                            <figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;">
+                                                                <img src="uploads/2014/10/partners_04_bw.jpg" alt="" />
+                                                            </figure>
+                                                            <figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;">
+                                                                <img src="uploads/2014/10/partners_05_bw.jpg" alt="" />
+                                                            </figure>
+                                                            <figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;">
+                                                                <img src="uploads/2014/10/partners_06_bw.jpg" alt="" />
+                                                            </figure>
+                                                        </div>
+                                                    </div>
+                                                    <div id="sc_section_748132790_scroll_bar" class="sc_scroll_bar sc_scroll_bar_horizontal sc_section_748132790_scroll_bar"></div>
+                                                        
+                                                </div>
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vc_row wpb_row vc_row-fluid">
+                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                                <div class="wpb_wrapper">
+                                    <div class="sc_line sc_line_style_solid" style="margin-top:0px;margin-bottom:0px;border-top-style:solid;"></div>
+                                    <div class="sc_section" data-animation="animated flipInY normal">
+                                        <div class="sc_content content_wrap" style="margin-top:2.5em !important;margin-bottom:2.5em !important;">
+                                            <div class="columns_wrap sc_columns columns_nofluid sc_columns_count_2">
+                                                <div class="column-1_2 sc_column_item sc_column_item_1 odd first">
+                                                    <h3 class="sc_title sc_title_iconed sc_align_left" style="text-align:left;">
+                                                        <span class="sc_title_icon sc_title_icon_top  sc_title_icon_medium icon-video-2"></span>Our Video Training for Microsoft products and technologies
+                                                    </h3>
+                                                    <div class="wpb_text_column wpb_content_element ">
+                                                        <div class="wpb_wrapper">
+                                                        <p>Mauris vitae quam ligula. In tincidunt sapien sed nibh scelerisque congue. Maecenas ut libero eu metus tincidunt lobortis. Duis accumsan at mauris vel lacinia.</p>
 
-            </div>
-            </div>
-            </div></div></div></div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="wpb_wrapper"><div class="sc_section accent_top rounded_large bg_tint_light" data-animation="animated zoomIn normal" style="background-color:#f4f7f9;"><div class="sc_section_overlay" style=""><div class="sc_section_content"><div class="sc_content content_wrap" style="margin-top:2.5em !important;margin-bottom:2.5em !important;"><h2 class="sc_title sc_title_regular sc_align_center" style="margin-top:0px;margin-bottom:0.85em;text-align:center;">Courses Starting Soon</h2><div id="sc_blogger_1219813813" class="sc_blogger layout_courses_3 template_portfolio  sc_blogger_horizontal no_description"><div class="isotope_wrap" data-columns="3">			<div class="isotope_item isotope_item_courses isotope_item_courses_3 isotope_column_3						">
-            <div class="post_item post_item_courses post_item_courses_3					post_format_standard odd">
-
-            <div class="post_content isotope_item_content ih-item colored square effect_dir left_to_right">
-            <div class="post_featured img">
-            <a href="../courses/principles-of-written-english-part-2/index.html"><img class="wp-post-image" width="400" height="400" alt="Principles of Written English, Part 2" src="uploads/2014/10/masonry_15-400x400.jpg"></a>								<h4 class="post_title"><a href="../courses/principles-of-written-english-part-2/index.html">Principles of Written English, Part 2</a></h4>
-            <div class="post_descr">
-            <div class="post_price"><span class="post_price_value">$85</span><span class="post_price_period">monthly</span></div>
-            <div class="post_category"><a href="../courses_group/language/index.html">Language</a></div>
-            </div>
-            </div>
-
-            <div class="post_info_wrap info"><div class="info-back">
-
-            <h4 class="post_title"><a href="../courses/principles-of-written-english-part-2/index.html">Principles of Written English, Part 2</a></h4>	
-            <div class="post_descr">
-            <p><a href="../courses/principles-of-written-english-part-2/index.html">Nam id leo massa. Cras at condimentum nisi, vulputate ultrices turpis.</a></p><div class="post_buttons">											<div class="post_button"><a href="../courses/principles-of-written-english-part-2/index.html" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">LEARN MORE</a></div>
-            <div class="post_button"><a href="../product/principles-of-written-english-part-2/index.html" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">BUY NOW</a></div>
-            </div>							</div>
-            </div></div>	<!-- /.info-back /.info -->
-            </div>				<!-- /.post_content -->
-            </div>	<!-- /.post_item -->
-            </div>						<!-- /.isotope_item -->
-            <div class="isotope_item isotope_item_courses isotope_item_courses_3 isotope_column_3						">
-            <div class="post_item post_item_courses post_item_courses_3					post_format_standard even">
-
-            <div class="post_content isotope_item_content ih-item colored square effect_dir left_to_right">
-            <div class="post_featured img">
-            <a href="../courses/entrepreneurship-101-who-is-your-customer/index.html"><img class="wp-post-image" width="400" height="400" alt="Entrepreneurship 101:  Who is your customer?" src="uploads/2014/10/masonry_06-400x400.jpg"></a>								<h4 class="post_title"><a href="../courses/entrepreneurship-101-who-is-your-customer/index.html">Entrepreneurship 101:  Who is your customer?</a></h4>
-            <div class="post_descr">
-            <div class="post_price"><span class="post_price_value">$195</span><span class="post_price_period">monthly</span></div>
-            <div class="post_category"><a href="../courses_group/marketing-and-seo/index.html">Marketing and SEO</a></div>
-            </div>
-            </div>
-
-            <div class="post_info_wrap info"><div class="info-back">
-
-            <h4 class="post_title"><a href="../courses/entrepreneurship-101-who-is-your-customer/index.html">Entrepreneurship 101:  Who is your customer?</a></h4>	
-            <div class="post_descr">
-            <p><a href="../courses/entrepreneurship-101-who-is-your-customer/index.html">Quisque a nulla eget ante vestibulum lacinia eu quis massa.</a></p><div class="post_buttons">											<div class="post_button"><a href="../courses/entrepreneurship-101-who-is-your-customer/index.html" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">LEARN MORE</a></div>
-            <div class="post_button"><a href="../product/entrepreneurship-101-who-is-your-customer/index.html" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">BUY NOW</a></div>
-            </div>							</div>
-            </div></div>	<!-- /.info-back /.info -->
-            </div>				<!-- /.post_content -->
-            </div>	<!-- /.post_item -->
-            </div>						<!-- /.isotope_item -->
-            <div class="isotope_item isotope_item_courses isotope_item_courses_3 isotope_column_3						">
-            <div class="post_item post_item_courses post_item_courses_3					post_format_standard odd">
-
-            <div class="post_content isotope_item_content ih-item colored square effect_dir left_to_right">
-            <div class="post_featured img">
-            <a href="../courses/evaluating-social-programs/index.html"><img class="wp-post-image" width="400" height="400" alt="Evaluating Social  Programs" src="uploads/2014/10/masonry_04-400x400.jpg"></a>								<h4 class="post_title"><a href="../courses/evaluating-social-programs/index.html">Evaluating Social  Programs</a></h4>
-            <div class="post_descr">
-            <div class="post_price"><span class="post_price_value">Free!</span></div>
-            <div class="post_category"><a href="../courses_group/social/index.html">Social</a></div>
-            </div>
-            </div>
-
-            <div class="post_info_wrap info"><div class="info-back">
-
-            <h4 class="post_title"><a href="../courses/evaluating-social-programs/index.html">Evaluating Social  Programs</a></h4>	
-            <div class="post_descr">
-            <p><a href="../courses/evaluating-social-programs/index.html">Nunc finibus vestibulum dui a fringilla. Maecenas maximus in massa sit amet maximus.</a></p><div class="post_buttons">											<div class="post_button"><a href="../courses/evaluating-social-programs/index.html" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">LEARN MORE</a></div>
-            </div>							</div>
-            </div></div>	<!-- /.info-back /.info -->
-            </div>				<!-- /.post_content -->
-            </div>	<!-- /.post_item -->
-            </div>						<!-- /.isotope_item -->
-            <div class="isotope_item isotope_item_courses isotope_item_courses_3 isotope_column_3						">
-            <div class="post_item post_item_courses post_item_courses_3					post_format_standard even">
-
-            <div class="post_content isotope_item_content ih-item colored square effect_dir left_to_right">
-            <div class="post_featured img">
-            <a href="../courses/principles-of-written-english-part-1/index.html"><img class="wp-post-image" width="400" height="400" alt="Principles of Written English, Part 1" src="uploads/2014/10/masonry_05-400x400.jpg"></a>								<h4 class="post_title"><a href="../courses/principles-of-written-english-part-1/index.html">Principles of Written English, Part 1</a></h4>
-            <div class="post_descr">
-            <div class="post_price"><span class="post_price_value">$85</span></div>
-            <div class="post_category"><a href="../courses_group/language/index.html">Language</a></div>
-            </div>
-            </div>
-
-            <div class="post_info_wrap info"><div class="info-back">
-
-            <h4 class="post_title"><a href="../courses/principles-of-written-english-part-1/index.html">Principles of Written English, Part 1</a></h4>	
-            <div class="post_descr">
-            <p><a href="../courses/principles-of-written-english-part-1/index.html">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</a></p><div class="post_buttons">											<div class="post_button"><a href="../courses/principles-of-written-english-part-1/index.html" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">LEARN MORE</a></div>
-            <div class="post_button"><a href="../product/principles-of-written-english-part-1/index.html" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">BUY NOW</a></div>
-            </div>							</div>
-            </div></div>	<!-- /.info-back /.info -->
-            </div>				<!-- /.post_content -->
-            </div>	<!-- /.post_item -->
-            </div>						<!-- /.isotope_item -->
-            <div class="isotope_item isotope_item_courses isotope_item_courses_3 isotope_column_3						">
-            <div class="post_item post_item_courses post_item_courses_3					post_format_standard odd">
-
-            <div class="post_content isotope_item_content ih-item colored square effect_dir left_to_right">
-            <div class="post_featured img">
-            <a href="../courses/introduction-to-biomedical-imaging/index.html"><img class="wp-post-image" width="400" height="400" alt="Introduction to Biomedical Imaging" src="uploads/2014/10/masonry_03-400x400.jpg"></a>								<h4 class="post_title"><a href="../courses/introduction-to-biomedical-imaging/index.html">Introduction to Biomedical Imaging</a></h4>
-            <div class="post_descr">
-            <div class="post_price"><span class="post_price_value">$400</span></div>
-            <div class="post_category"><a href="../courses_group/medicine/index.html">Medicine</a></div>
-            </div>
-            </div>
-
-            <div class="post_info_wrap info"><div class="info-back">
-
-            <h4 class="post_title"><a href="../courses/introduction-to-biomedical-imaging/index.html">Introduction to Biomedical Imaging</a></h4>	
-            <div class="post_descr">
-            <p><a href="../courses/introduction-to-biomedical-imaging/index.html">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></p><div class="post_buttons">											<div class="post_button"><a href="../courses/introduction-to-biomedical-imaging/index.html" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">LEARN MORE</a></div>
-            <div class="post_button"><a href="../product/introduction-to-biomedical-imaging/index.html" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">BUY NOW</a></div>
-            </div>							</div>
-            </div></div>	<!-- /.info-back /.info -->
-            </div>				<!-- /.post_content -->
-            </div>	<!-- /.post_item -->
-            </div>						<!-- /.isotope_item -->
-            <div class="isotope_item isotope_item_courses isotope_item_courses_3 isotope_column_3						">
-            <div class="post_item post_item_courses post_item_courses_3					post_format_standard even last">
-
-            <div class="post_content isotope_item_content ih-item colored square effect_dir left_to_right">
-            <div class="post_featured img">
-            <a href="../courses/662/index.html"><img class="wp-post-image" width="400" height="400" alt="Introduction to Computer  Science" src="uploads/2014/10/masonry_02-400x400.jpg"></a>								<h4 class="post_title"><a href="../courses/662/index.html">Introduction to Computer  Science</a></h4>
-            <div class="post_descr">
-            <div class="post_price"><span class="post_price_value">$120</span><span class="post_price_period">monthly</span></div>
-            <div class="post_category"><a href="../courses_group/computers/index.html">Computers</a></div>
-            </div>
-            </div>
-
-            <div class="post_info_wrap info"><div class="info-back">
-
-            <h4 class="post_title"><a href="../courses/662/index.html">Introduction to Computer  Science</a></h4>	
-            <div class="post_descr">
-            <p><a href="../courses/662/index.html">Sed interdum felis diam, vitae rutrum urna laoreet vehicula.</a></p><div class="post_buttons">											<div class="post_button"><a href="../courses/662/index.html" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">LEARN MORE</a></div>
-            <div class="post_button"><a href="../product/introduction-to-computer-science/index.html" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">BUY NOW</a></div>
-            </div>							</div>
-            </div></div>	<!-- /.info-back /.info -->
-            </div>				<!-- /.post_content -->
-            </div>	<!-- /.post_item -->
-            </div>						<!-- /.isotope_item -->
-            </div></div><a href="../index071d.html?p=639" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_menu sc_button_size_small aligncenter  sc_button_iconed icon-graduation" style="margin-top:1em;margin-bottom:4px;width:12em;">VIEW ALL COURSES</a></div></div></div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="wpb_wrapper"><div class="sc_section" data-animation="animated bounceInUp normal"><div class="sc_content content_wrap" style="margin-top:2.5em !important;margin-bottom:2.5em !important;"><div class="sc_section aligncenter" style="width:70%;"><h2 class="sc_title sc_title_regular" style="margin-top:0px;">Learn From the Best</h2>
-            <div class="wpb_text_column wpb_content_element ">
-            <div class="wpb_wrapper">
-            <p>Our online courses are built in partnership with technology leaders and are relevant to industry needs. Upon completing a Online course, you&#8217;ll receive a verified completion certificate recognized by industry leaders.</p>
-
-            </div>
-            </div>
-            </div><div id="sc_section_748132790" class="sc_section" style="margin-top:1.5em !important;margin-bottom:0px !important;height:75px;"><div id="sc_section_748132790_scroll" class="sc_scroll sc_scroll_horizontal swiper-slider-container scroll-container" style="height:75px;"><div class="sc_scroll_wrapper swiper-wrapper"><div class="sc_scroll_slide swiper-slide"><figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;"><img src="uploads/2014/10/partners_01_bw.jpg" alt="" /></figure><figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;"><img src="uploads/2014/10/partners_02_bw.jpg" alt="" /></figure><figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;"><img src="uploads/2014/10/partners_03_bw.jpg" alt="" /></figure><figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;"><img src="uploads/2014/10/partners_04_bw.jpg" alt="" /></figure><figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;"><img src="uploads/2014/10/partners_05_bw.jpg" alt="" /></figure><figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;"><img src="uploads/2014/10/partners_06_bw.jpg" alt="" /></figure></div></div><div id="sc_section_748132790_scroll_bar" class="sc_scroll_bar sc_scroll_bar_horizontal sc_section_748132790_scroll_bar"></div></div></div></div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="wpb_wrapper"><div class="sc_line sc_line_style_solid" style="margin-top:0px;margin-bottom:0px;border-top-style:solid;"></div><div class="sc_section" data-animation="animated flipInY normal"><div class="sc_content content_wrap" style="margin-top:2.5em !important;margin-bottom:2.5em !important;"><div class="columns_wrap sc_columns columns_nofluid sc_columns_count_2"><div class="column-1_2 sc_column_item sc_column_item_1 odd first"><h3 class="sc_title sc_title_iconed sc_align_left" style="text-align:left;"><span class="sc_title_icon sc_title_icon_top  sc_title_icon_medium icon-video-2"></span>Our Video Training for Microsoft products and technologies</h3>
-            <div class="wpb_text_column wpb_content_element ">
-            <div class="wpb_wrapper">
-            <p>Mauris vitae quam ligula. In tincidunt sapien sed nibh scelerisque congue. Maecenas ut libero eu metus tincidunt lobortis. Duis accumsan at mauris vel lacinia.</p>
-
-            </div>
-            </div>
-            <a href="../index071d.html?p=639" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_mini  sc_button_iconed inherit" style="margin-top:1em;margin-bottom:4px;margin-left:4px;">BROWSE COURSES</a></div><div class="column-1_2 sc_column_item sc_column_item_2 even"><div class="sc_video_player sc_video_bordered" style="padding-top:4%;padding-right:3%;padding-bottom:23%;padding-left:13%;background-image: url(uploads/2015/01/post_video_border.png);"><div class="sc_video_frame sc_video_play_button hover_icon hover_icon_play" data-width="100%" data-height="647" data-video="&lt;iframe class=&quot;video_frame&quot; src=_http_/youtube.com/embed/636Dp8eHWnM5782.html?autoplay=1%22 width=&quot;100%&quot; height=&quot;647&quot; frameborder=&quot;0&quot; webkitAllowFullScreen=&quot;webkitAllowFullScreen&quot; mozallowfullscreen=&quot;mozallowfullscreen&quot; allowFullScreen=&quot;allowFullScreen&quot;&gt;&lt;/iframe&gt;" style="width:100%;"><img alt="" src="uploads/2015/01/douglas_adams_full-400x225.jpg"></div></div></div></div></div></div></div></div></div><div class="vc_row wpb_row vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="wpb_wrapper"><div class="sc_section accent_top rounded_large bg_tint_light" data-animation="animated fadeInUp normal" style="background-color:#f4f7f9;"><div class="sc_section_overlay" style=""><div class="sc_section_content"><div class="sc_content content_wrap" style="margin-top:2.5em !important;margin-bottom:2.5em !important;"><h2 class="sc_title sc_title_regular sc_align_center" style="margin-top:0px;margin-bottom:0.85em;text-align:center;">Plans &amp; Pricing</h2><div class="columns_wrap sc_columns columns_nofluid sc_columns_count_3"><div class="column-1_3 sc_column_item sc_column_item_1 odd first" style="text-align:center;"><div class="sc_price_block sc_price_block_style_1" style="width:100%;"><div class="sc_price_block_title">Trial</div><div class="sc_price_block_money"><div class="sc_price_block_icon icon-clock-2"></div></div><div class="sc_price_block_description"><span class="sc_highlight" style="font-size:2.4em; line-height: 1em;"><b>Free!</b> 30 Days</span></div><div class="sc_price_block_link"><a href="#" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">I WANT THIS PLAN</a></div></div></div><div class="column-1_3 sc_column_item sc_column_item_2 even" style="text-align:center;"><div class="sc_price_block sc_price_block_style_2" style="width:100%;"><div class="sc_price_block_title">Monthly</div><div class="sc_price_block_money"><div class="sc_price"><span class="sc_price_currency">$</span><span class="sc_price_money">89</span></div></div><div class="sc_price_block_description"><b>Save $98</b> every year compared to the monthly plan by paying yearly.</div><div class="sc_price_block_link"><a href="#" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">I WANT THIS PLAN</a></div></div></div><div class="column-1_3 sc_column_item sc_column_item_3 odd" style="text-align:center;"><div class="sc_price_block sc_price_block_style_3" style="width:100%;"><div class="sc_price_block_title">Yearly</div><div class="sc_price_block_money"><div class="sc_price"><span class="sc_price_currency">$</span><span class="sc_price_money">129</span></div></div><div class="sc_price_block_description"><b>Save $120</b> every year compared to the monthly plan by paying biannually.</div><div class="sc_price_block_link"><a href="#" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">I WANT THIS PLAN</a></div></div></div></div></div></div></div></div></div></div></div>
-            </section> <!-- /section class="post_content" itemprop="articleBody" -->
-            </article> <!-- /article class="itemscope post_item post_item_single post_featured_default post_format_standard post-1109 page type-page status-publish hentry" itemscope itemtype="http://schema.org/Article" -->	<section class="related_wrap related_wrap_empty"></section>
-
-            </div> <!-- /div class="content" -->			
+                                                        </div>
+                                                    </div>
+                                                    <a href="../index071d.html?p=639" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_mini  sc_button_iconed inherit" style="margin-top:1em;margin-bottom:4px;margin-left:4px;">BROWSE COURSES</a>
+                                                </div><div class="column-1_2 sc_column_item sc_column_item_2 even"><div class="sc_video_player sc_video_bordered" style="padding-top:4%;padding-right:3%;padding-bottom:23%;padding-left:13%;background-image: url(uploads/2015/01/post_video_border.png);"><div class="sc_video_frame sc_video_play_button hover_icon hover_icon_play" data-width="100%" data-height="647" data-video="&lt;iframe class=&quot;video_frame&quot; src=_http_/youtube.com/embed/636Dp8eHWnM5782.html?autoplay=1%22 width=&quot;100%&quot; height=&quot;647&quot; frameborder=&quot;0&quot; webkitAllowFullScreen=&quot;webkitAllowFullScreen&quot; mozallowfullscreen=&quot;mozallowfullscreen&quot; allowFullScreen=&quot;allowFullScreen&quot;&gt;&lt;/iframe&gt;" style="width:100%;"><img alt="" src="uploads/2015/01/douglas_adams_full-400x225.jpg"></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vc_row wpb_row vc_row-fluid">
+                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                                <div class="wpb_wrapper">
+                                    <div class="sc_section accent_top rounded_large bg_tint_light" data-animation="animated fadeInUp normal" style="background-color:#f4f7f9;">
+                                        <div class="sc_section_overlay" style="">
+                                            <div class="sc_section_content">
+                                                <div class="sc_content content_wrap" style="margin-top:2.5em !important;margin-bottom:2.5em !important;">
+                                                    <h2 class="sc_title sc_title_regular sc_align_center" style="margin-top:0px;margin-bottom:0.85em;text-align:center;">Plans &amp; Pricing</h2><div class="columns_wrap sc_columns columns_nofluid sc_columns_count_3">
+                                                        <div class="column-1_3 sc_column_item sc_column_item_1 odd first" style="text-align:center;">
+                                                            <div class="sc_price_block sc_price_block_style_1" style="width:100%;">
+                                                                <div class="sc_price_block_title">Trial</div>
+                                                                <div class="sc_price_block_money"><div class="sc_price_block_icon icon-clock-2"></div></div>
+                                                                <div class="sc_price_block_description"><span class="sc_highlight" style="font-size:2.4em; line-height: 1em;"><b>Free!</b> 30 Days</span></div><div class="sc_price_block_link"><a href="#" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">I WANT THIS PLAN</a></div>
+                                                            </div>
+                                                        </div><div class="column-1_3 sc_column_item sc_column_item_2 even" style="text-align:center;">
+                                                            <div class="sc_price_block sc_price_block_style_2" style="width:100%;">
+                                                                <div class="sc_price_block_title">Monthly</div>
+                                                                <div class="sc_price_block_money">
+                                                                    <div class="sc_price"><span class="sc_price_currency">$</span><span class="sc_price_money">89</span></div>
+                                                                </div>
+                                                                <div class="sc_price_block_description"><b>Save $98</b> every year compared to the monthly plan by paying yearly.</div>
+                                                                <div class="sc_price_block_link"><a href="#" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">I WANT THIS PLAN</a></div>
+                                                            </div>
+                                                        </div><div class="column-1_3 sc_column_item sc_column_item_3 odd" style="text-align:center;">
+                                                            <div class="sc_price_block sc_price_block_style_3" style="width:100%;">
+                                                                <div class="sc_price_block_title">Yearly</div>
+                                                                <div class="sc_price_block_money">
+                                                                    <div class="sc_price"><span class="sc_price_currency">$</span><span class="sc_price_money">129</span></div>
+                                                                </div>
+                                                                <div class="sc_price_block_description"><b>Save $120</b> every year compared to the monthly plan by paying biannually.</div>
+                                                                <div class="sc_price_block_link"><a href="#" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">I WANT THIS PLAN</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section> <!-- /section class="post_content" itemprop="articleBody" -->
+                    </article> <!-- /article class="itemscope post_item post_item_single post_featured_default post_format_standard post-1109 page type-page status-publish hentry" itemscope itemtype="http://schema.org/Article" -->	
+                    <section class="related_wrap related_wrap_empty"></section>
+                </div> <!-- /div class="content" -->			
             </div>		
             <!-- /.page_content_wrap -->
             <?php include('includes/footer.php'); ?>

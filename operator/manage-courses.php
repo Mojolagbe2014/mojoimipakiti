@@ -77,7 +77,7 @@ $errorArr = array(); //Array of errors
                                 <h3>Edit Course Details</h3>
                             </div>
                             <div class="panel-body">
-                                <form role="form" id="UpdateCourse" name="UpdateCourse" action="../REST/manage-courses.php" enctype="multipart/form-data">
+                                <form role="form" id="UpdateCourse" name="UpdateCourse" action="../REST/manage-courses.php" method="POST" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label class="control-label" for="name">Full Name:</label>
                                         <div class="controls">
@@ -145,7 +145,7 @@ $errorArr = array(); //Array of errors
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label class="control-label" for="image">Course Image:</label> <span><strong id="oldImageComment"></strong></span>
+                                        <label class="control-label" for="image">Course Image <span class="text-danger"><em>(Recommended Size: width=400px, height=400px)</em></span>:</label> <span><strong id="oldImageComment"></strong></span>
                                         <div class="controls">
                                             <input data-title="course image" type="file" placeholder="course image" value="" id="image" name="image" data-original-title="Course image" class="form-control">
                                             <input type="hidden" id="oldImage" name="oldImage" value=""/>
