@@ -311,16 +311,13 @@ require('includes/page-properties.php');
     <link rel='stylesheet' id='themerex-portfolio-style-css'  href='themes/education/fw/css/core.portfolio.min.css' type='text/css' media='all' />
     <link rel='stylesheet' id='themerex-swiperslider-style-css'  href='themes/education/fw/js/swiper/idangerous.swiper.min.css' type='text/css' media='all' />
     <script type='text/javascript' src='plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min44fd.js?ver=2.70'></script>
-    <script type='text/javascript'>/* <![CDATA[ */var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/homepage-3\/?wc-ajax=%%endpoint%%"};/* ]]> */</script>
     <script type='text/javascript' src='plugins/woocommerce/assets/js/frontend/woocommerce.min3575.js?ver=2.4.7'></script>
     <script type='text/javascript' src='plugins/woocommerce/assets/js/jquery-cookie/jquery.cookie.min330a.js?ver=1.4.1'></script>
-    <script type='text/javascript'>/* <![CDATA[ */var wc_cart_fragments_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/homepage-3\/?wc-ajax=%%endpoint%%","fragment_name":"wc_fragments"};/* ]]> */</script>
     <script type='text/javascript' src='plugins/woocommerce/assets/js/frontend/cart-fragments.min3575.js?ver=2.4.7'></script>
     <script type='text/javascript' src='themes/education/fw/js/superfish.min.js'></script>
     <script type='text/javascript' src='themes/education/fw/js/jquery.slidemenu.min.js'></script>
     <script type='text/javascript' src='themes/education/fw/js/core.utils.min.js'></script>
     <script type='text/javascript' src='themes/education/fw/js/core.init.min.js'></script>
-    <script type='text/javascript'>/* <![CDATA[ */ var mejsL10n = {"language":"en-US","strings":{"Close":"Close","Fullscreen":"Fullscreen","Download File":"Download File","Download Video":"Download Video","Play\/Pause":"Play\/Pause","Mute Toggle":"Mute Toggle","None":"None","Turn off Fullscreen":"Turn off Fullscreen","Go Fullscreen":"Go Fullscreen","Unmute":"Unmute","Mute":"Mute","Captions\/Subtitles":"Captions\/Subtitles"}};var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/"};/* ]]> */</script>
     <script type='text/javascript' src='js/mediaelement/mediaelement-and-player.min0392.js?ver=2.17.0'></script>
     <script type='text/javascript' src='js/mediaelement/wp-mediaelement274c.js?ver=4.3.2'></script>
     <script type='text/javascript' src='js/comment-reply.min274c.js?ver=4.3.2'></script>

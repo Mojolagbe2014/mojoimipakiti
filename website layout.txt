@@ -1,0 +1,25 @@
+All Courses => file:///C:/wamp/www/impact/education.themerex.net/courses-streampage/index.html
+
+
+Course Detail => file:///C:/wamp/www/impact/education.themerex.net/product/video-training-for-microsoft-products-and-technologies/index.html
+file:///C:/wamp/www/impact/education.themerex.net/introduction-to-biomedical-imaging/index.html
+
+All-courses Private|Public => file:///C:/wamp/www/impact/education.themerex.net/category/masonry-2-columns/masonry-3-columns/index.html
+
+
+Courses Categories => file:///C:/wamp/www/impact/education.themerex.net/category/portfolio-2-columns/index.html
+
+
+FAQ => file:///C:/wamp/www/impact/education.themerex.net/shortcodes/index.html
+
+
+About Us => file:///C:/wamp/www/impact/education.themerex.net/about-us/index.html
+
+
+Contact Us => file:///C:/wamp/www/impact/education.themerex.net/contact-us/index.html
+
+
+Team Members => file:///C:/wamp/www/impact/education.themerex.net/team-members/index.html
+
+Member Details => file:///C:/wamp/www/impact/education.themerex.net/team/pamela-fryman/index.html
+
