@@ -134,8 +134,12 @@ else{
         if(count($errorArr) < 1)   {
             $target_file = MEDIA_FILES_PATH."quote/". $quoteImg;
             $uploadOk = 1; $msg = '';
-            if($newMedia !=""){ move_uploaded_file($_FILES["image"]["tmp_name"], $target_file); } 
-            if ($oldMedia!='' && file_exists(MEDIA_FILES_PATH."quote/".$oldMedia)) { unlink(MEDIA_FILES_PATH."quote/".$oldMedia); }
+            
+            
+            if($newMedia !=""){ 
+                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file); 
+                if ($oldMedia!='' && file_exists(MEDIA_FILES_PATH."quote/".$oldMedia)) { unlink(MEDIA_FILES_PATH."quote/".$oldMedia); }
+            } 
             echo $quoteObj->update();
         }
         else{ 

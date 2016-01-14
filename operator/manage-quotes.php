@@ -65,7 +65,7 @@ $errorArr = array(); //Array of errors
                                 <h3>Add/Edit Quote</h3>
                             </div>
                             <div class="panel-body">
-                                <form role="form" id="CreateQuote" name="CreateQuote" action="../REST/manage-quotes.php"  enctype="multipart/form-data">
+                                <form role="form" id="CreateQuote" name="CreateQuote" action="../REST/manage-quotes.php" method="POST" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label class="control-label" for="author">Author:</label>
                                         <div class="controls">

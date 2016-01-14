@@ -23,7 +23,6 @@ class Course implements ContentManipulator{
     private $dbObj;
     private $tableName;
     
-    
     //Class constructor
     public function Course($dbObj, $tableName='course') {
         $this->dbObj = $dbObj;        $this->tableName = $tableName;

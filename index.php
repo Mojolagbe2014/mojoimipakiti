@@ -11,6 +11,7 @@ $courseObj = new Course($dbObj);
 $categoryObj = new CourseCategory($dbObj);
 $clientObj = new Sponsor($dbObj);
 $quoteObj = new Quote($dbObj);
+$calendar = new Calendar($dbObj);
 
 include('includes/other-settings.php');
 require('includes/page-properties.php');
@@ -101,6 +102,7 @@ require('includes/page-properties.php');
     </script>
     <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
     <noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
+    <link href="css/php-calendar.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body class="page page-id-1109 page-template-default themerex_body body_style_fullscreen body_filled theme_skin_education article_style_stretch layout_single-standard template_single-standard top_panel_style_dark top_panel_opacity_transparent top_panel_show top_panel_over menu_right user_menu_show sidebar_hide wpb-js-composer js-comp-ver-4.7.2 vc_responsive">
@@ -342,8 +344,8 @@ require('includes/page-properties.php');
                                                             <div class="sc_price_block sc_price_block_style_<?php echo $num; ?>" style="width:100%;">
                                                                 <div class="sc_price_block_title"><?php echo $categoryObj->name; ?></div>
                                                                 <div class="sc_price_block_money">
-                                                                    <div class="sc_price"><span class="sc_price_currency">$</span><span class="sc_price_money">89</span></div>
-                                                                </div><div class="sc_price_block_description"><b>Save $98</b> every year compared to the monthly plan by paying yearly.</div><div class="sc_price_block_link"><a href="#" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">I WANT THIS PLAN</a></div></div></div>
+                                                                    <div class="sc_price"><span class="sc_price_money"><?php echo Course::getSingleCategoryCount($dbObj, $categoryObj->id); ?></span></div> COURSE(S)
+                                                                </div><div class="sc_price_block_description"><?php echo StringManipulator::trimStringToFullWord(160, strip_tags($categoryObj->description)); ?>..</div><div class="sc_price_block_link"><a href="<?php echo SITE_URL.'category/'.$categoryObj->id.'/'.StringManipulator::slugify($categoryObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">VIEW DETAILS</a></div></div></div>
                                                         <?php $num++; } ?>
                                                     </div>
                                                 </div>
