@@ -9,6 +9,7 @@ $dbObj = new Database();//Instantiate database
 $thisPage->dbObj = $dbObj;
 $courseObj = new Course($dbObj);
 $categoryObj = new CourseCategory($dbObj);
+$clientObj = new Sponsor($dbObj);
 $quoteObj = new Quote($dbObj);
 
 include('includes/other-settings.php');
@@ -221,11 +222,10 @@ require('includes/page-properties.php');
                                     <div class="sc_section" data-animation="animated bounceInUp normal">
                                         <div class="sc_content content_wrap" style="margin-top:2.5em !important;margin-bottom:2.5em !important;">
                                             <div class="sc_section aligncenter" style="width:70%;">
-                                                <h2 class="sc_title sc_title_regular" style="margin-top:0px;">Learn From the Best</h2>
+                                                <h2 class="sc_title sc_title_regular" style="margin-top:0px;">Our Clients and Partners</h2>
                                                 <div class="wpb_text_column wpb_content_element ">
                                                 <div class="wpb_wrapper">
-                                                <p>Our online courses are built in partnership with technology leaders and are relevant to industry needs. Upon completing a Online course, you&#8217;ll receive a verified completion certificate recognized by industry leaders.</p>
-
+                                                <p>Our courses are built in partnership with technology leaders and are relevant to industry needs. </p>
                                                 </div>
                                                 </div>
                                             </div>
@@ -233,24 +233,24 @@ require('includes/page-properties.php');
                                                 <div id="sc_section_748132790_scroll" class="sc_scroll sc_scroll_horizontal swiper-slider-container scroll-container" style="height:75px;">
                                                     <div class="sc_scroll_wrapper swiper-wrapper">
                                                         <div class="sc_scroll_slide swiper-slide">
-                                                            <figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;">
-                                                                <img src="uploads/2014/10/partners_01_bw.jpg" alt="" />
+                                                            <?php 
+                                                            $num =1; $addStyle = '';
+                                                            foreach ($clientObj->fetchRaw("*", " status = 1 ", " RAND() ") as $partner) {
+                                                                $partnerData = array('id' => 'id', 'name' => 'name', 'logo' => 'logo', 'product' => 'product', 'website' => 'website', 'image' => 'image', 'dateAdded' => 'date_added', 'description' => 'description');
+                                                                foreach ($partnerData as $key => $value){
+                                                                    switch ($key) { 
+                                                                        case 'logo': $clientObj->$key = 'media/sponsor/'.$partner[$value];break;//
+                                                                        case 'image': $clientObj->$key = MEDIA_FILES_PATH1.'sponsor-image/'.$partner[$value];break;
+                                                                        default     :   $clientObj->$key = $partner[$value]; break; 
+                                                                    }
+                                                                }
+                                                                if($num>1) { $addStyle = 'margin-left:4em !important;'; }
+                                                                @$clientObj->logo = new ThumbNail($clientObj->logo, 80, 80);
+                                                            ?>
+                                                            <figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important; <?php echo $addStyle; ?>" title="<?php echo $clientObj->name; ?>">
+                                                                <a href="<?php echo SITE_URL.'client/'.$clientObj->id.'/'.StringManipulator::slugify($clientObj->name).'/'; ?>"><img src="<?php echo $clientObj->logo; ?>" alt="<?php echo $clientObj->name; ?>" /></a>
                                                             </figure>
-                                                            <figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;">
-                                                                <img src="uploads/2014/10/partners_02_bw.jpg" alt="" />
-                                                            </figure>
-                                                            <figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;">
-                                                                <img src="uploads/2014/10/partners_03_bw.jpg" alt="" />
-                                                            </figure>
-                                                            <figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;">
-                                                                <img src="uploads/2014/10/partners_04_bw.jpg" alt="" />
-                                                            </figure>
-                                                            <figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;">
-                                                                <img src="uploads/2014/10/partners_05_bw.jpg" alt="" />
-                                                            </figure>
-                                                            <figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important;margin-left:4em !important;">
-                                                                <img src="uploads/2014/10/partners_06_bw.jpg" alt="" />
-                                                            </figure>
+                                                            <?php $num++; } ?>
                                                         </div>
                                                     </div>
                                                     <div id="sc_section_748132790_scroll_bar" class="sc_scroll_bar sc_scroll_bar_horizontal sc_section_748132790_scroll_bar"></div>
@@ -269,21 +269,44 @@ require('includes/page-properties.php');
                                     <div class="sc_line sc_line_style_solid" style="margin-top:0px;margin-bottom:0px;border-top-style:solid;"></div>
                                     <div class="sc_section" data-animation="animated flipInY normal">
                                         <div class="sc_content content_wrap" style="margin-top:2.5em !important;margin-bottom:2.5em !important;">
+                                            <?php 
+                                            foreach ($courseObj->fetchRaw("*", " status = 1 ", " RAND() LIMIT 1") as $course) {
+                                                $courseData = array('id' => 'id', 'name' => 'name', 'code' => 'code', 'image' => 'image', 'media' => 'media', 'amount' => 'amount', 'shortName' => 'short_name', 'category' => 'category', 'startDate' => 'start_date', 'endDate' => 'end_date', 'description' => 'description', 'status' => 'status', 'currency' => 'currency');
+                                                foreach ($courseData as $key => $value){
+                                                    switch ($key) { 
+                                                        case 'image': $courseObj->$key = MEDIA_FILES_PATH1.'course-image/'.$course[$value];break;
+                                                        case 'media': $courseObj->$key = MEDIA_FILES_PATH1.'course/'.$course[$value];break;
+                                                        case 'startDate': $dateParam = explode('-', $course[$value]);
+                                                                          $dateObj   = DateTime::createFromFormat('!m', $dateParam[1]);
+                                                                          $courseObj->$key = $dateParam[2].' '.$dateObj->format('F').', '.$dateParam[0].'.';
+                                                                          break;
+                                                        case 'endDate': $dateParam = explode('-', $course[$value]);
+                                                                          $dateObj   = DateTime::createFromFormat('!m', $dateParam[1]);
+                                                                          $courseObj->$key = $dateParam[2].' '.$dateObj->format('F').', '.$dateParam[0].'.';
+                                                                          break;
+                                                        default     :   $courseObj->$key = $course[$value]; break; 
+                                                    }
+                                                }
+                                            ?>
                                             <div class="columns_wrap sc_columns columns_nofluid sc_columns_count_2">
                                                 <div class="column-1_2 sc_column_item sc_column_item_1 odd first">
                                                     <h3 class="sc_title sc_title_iconed sc_align_left" style="text-align:left;">
-                                                        <span class="sc_title_icon sc_title_icon_top  sc_title_icon_medium icon-video-2"></span>Our Video Training for Microsoft products and technologies
+                                                        <span class="sc_title_icon sc_title_icon_top  sc_title_icon_medium icon-doc"></span><?php echo $courseObj->name; ?>
                                                     </h3>
                                                     <div class="wpb_text_column wpb_content_element ">
                                                         <div class="wpb_wrapper">
-                                                        <p>Mauris vitae quam ligula. In tincidunt sapien sed nibh scelerisque congue. Maecenas ut libero eu metus tincidunt lobortis. Duis accumsan at mauris vel lacinia.</p>
+                                                            <p><?php echo StringManipulator::trimStringToFullWord(160, strip_tags($courseObj->description)); ?>..</p>
 
                                                         </div>
                                                     </div>
-                                                    <a href="../index071d.html?p=639" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_mini  sc_button_iconed inherit" style="margin-top:1em;margin-bottom:4px;margin-left:4px;">BROWSE COURSES</a>
-                                                </div><div class="column-1_2 sc_column_item sc_column_item_2 even"><div class="sc_video_player sc_video_bordered" style="padding-top:4%;padding-right:3%;padding-bottom:23%;padding-left:13%;background-image: url(uploads/2015/01/post_video_border.png);"><div class="sc_video_frame sc_video_play_button hover_icon hover_icon_play" data-width="100%" data-height="647" data-video="&lt;iframe class=&quot;video_frame&quot; src=_http_/youtube.com/embed/636Dp8eHWnM5782.html?autoplay=1%22 width=&quot;100%&quot; height=&quot;647&quot; frameborder=&quot;0&quot; webkitAllowFullScreen=&quot;webkitAllowFullScreen&quot; mozallowfullscreen=&quot;mozallowfullscreen&quot; allowFullScreen=&quot;allowFullScreen&quot;&gt;&lt;/iframe&gt;" style="width:100%;"><img alt="" src="uploads/2015/01/douglas_adams_full-400x225.jpg"></div></div>
+                                                    <a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_mini  sc_button_iconed inherit" style="margin-top:1em;margin-bottom:4px;margin-left:4px;">BROWSE COURSE</a>
+                                                </div><div class="column-1_2 sc_column_item sc_column_item_2 even"><div class="sc_video_player sc_video_bordered" style="padding-top:4%;padding-right:3%;padding-bottom:23%;padding-left:13%;background-image: url(<?php echo SITE_URL; ?>uploads/2015/01/post_video_border.png);"><div class="sc_video_frame sc_video_play_button hover_icon hover_icon_play" data-width="100%" data-height="647" data-video="<?php echo $courseObj->media; ?>" style="width:100%;">
+                                                            <img alt="" src="<?php echo $courseObj->image; ?>">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
