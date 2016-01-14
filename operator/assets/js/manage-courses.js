@@ -271,6 +271,7 @@ $(document).ready(function(){
             e.preventDefault();
             $(document).scrollTo('div.panel h3');
             var formData = new FormData($(this)[0]);
+            formData.append('description', CKEDITOR.instances['description'].getData());
             var alertType = ["danger", "success", "danger", "error"];
             $.ajax({
             url: $(this).attr("action"),

@@ -198,7 +198,7 @@ require('includes/page-properties.php');
 
                                                                         <h4 class="post_title"><a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>"><?php echo $courseObj->name; ?></a></h4>	
                                                                         <div class="post_descr">
-                                                                            <p><a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>"><?php echo StringManipulator::trimStringToFullWord(160, strip_tags($courseObj->description)); ?>..</a></p><div class="post_buttons">											<div class="post_button"><a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">LEARN MORE</a></div>
+                                                                            <p style="text-align:justify"><a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>"><?php echo StringManipulator::trimStringToFullWord(160, strip_tags($courseObj->description)); ?>..</a></p><div class="post_buttons">											<div class="post_button"><a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">MORE</a></div>
                                                                         <div class="post_button"><a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">BUY NOW</a></div>
                                                                         </div>							</div>
                                                                         </div></div>	<!-- /.info-back /.info -->
@@ -275,7 +275,7 @@ require('includes/page-properties.php');
                                                 foreach ($courseData as $key => $value){
                                                     switch ($key) { 
                                                         case 'image': $courseObj->$key = MEDIA_FILES_PATH1.'course-image/'.$course[$value];break;
-                                                        case 'media': $courseObj->$key = MEDIA_FILES_PATH1.'course/'.$course[$value];break;
+                                                        case 'media': $courseObj->$key = $course[$value];break;
                                                         case 'startDate': $dateParam = explode('-', $course[$value]);
                                                                           $dateObj   = DateTime::createFromFormat('!m', $dateParam[1]);
                                                                           $courseObj->$key = $dateParam[2].' '.$dateObj->format('F').', '.$dateParam[0].'.';
@@ -300,9 +300,13 @@ require('includes/page-properties.php');
                                                         </div>
                                                     </div>
                                                     <a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_mini  sc_button_iconed inherit" style="margin-top:1em;margin-bottom:4px;margin-left:4px;">BROWSE COURSE</a>
-                                                </div><div class="column-1_2 sc_column_item sc_column_item_2 even"><div class="sc_video_player sc_video_bordered" style="padding-top:4%;padding-right:3%;padding-bottom:23%;padding-left:13%;background-image: url(<?php echo SITE_URL; ?>uploads/2015/01/post_video_border.png);"><div class="sc_video_frame sc_video_play_button hover_icon hover_icon_play" data-width="100%" data-height="647" data-video="<?php echo $courseObj->media; ?>" style="width:100%;">
+                                                </div><div class="column-1_2 sc_column_item sc_column_item_2 even">
+                                                    <div class="sc_video_player sc_video_bordered" style="padding-top:4%;padding-right:3%;padding-bottom:23%;padding-left:13%;background-image: url(<?php echo SITE_URL; ?>uploads/2015/01/post_video_border.png);">
+                                                        <div class="sc_video_frame" data-width="100%" data-height="647" style="width:100%;">
+                                                            <?php if($courseObj->media!=''){ ?> <video width="370" height="270" poster="<?php echo $courseObj->image; ?>" preload="metadata" controls><source src="<?php echo MEDIA_FILES_PATH1.'course/'.$courseObj->media; ?>" type="video/mp4"></video> <?php } ?>
                                                             <img alt="" src="<?php echo $courseObj->image; ?>">
                                                         </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -319,33 +323,28 @@ require('includes/page-properties.php');
                                         <div class="sc_section_overlay" style="">
                                             <div class="sc_section_content">
                                                 <div class="sc_content content_wrap" style="margin-top:2.5em !important;margin-bottom:2.5em !important;">
-                                                    <h2 class="sc_title sc_title_regular sc_align_center" style="margin-top:0px;margin-bottom:0.85em;text-align:center;">Plans &amp; Pricing</h2><div class="columns_wrap sc_columns columns_nofluid sc_columns_count_3">
-                                                        <div class="column-1_3 sc_column_item sc_column_item_1 odd first" style="text-align:center;">
-                                                            <div class="sc_price_block sc_price_block_style_1" style="width:100%;">
-                                                                <div class="sc_price_block_title">Trial</div>
-                                                                <div class="sc_price_block_money"><div class="sc_price_block_icon icon-clock-2"></div></div>
-                                                                <div class="sc_price_block_description"><span class="sc_highlight" style="font-size:2.4em; line-height: 1em;"><b>Free!</b> 30 Days</span></div><div class="sc_price_block_link"><a href="#" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">I WANT THIS PLAN</a></div>
-                                                            </div>
-                                                        </div><div class="column-1_3 sc_column_item sc_column_item_2 even" style="text-align:center;">
-                                                            <div class="sc_price_block sc_price_block_style_2" style="width:100%;">
-                                                                <div class="sc_price_block_title">Monthly</div>
+                                                    <h2 class="sc_title sc_title_regular sc_align_center" style="margin-top:0px;margin-bottom:0.85em;text-align:center;">Course Categories</h2>
+                                                    <div class="columns_wrap sc_columns columns_nofluid sc_columns_count_3">
+                                                        <?php 
+                                                        $num = 1; $numOrd = ''; $numClass = ''; $addStyle = '';
+                                                        foreach ($categoryObj->fetchRaw("*", " 1=1 ", " RAND() LIMIT 3") as $category) {
+                                                        $categoryData = array('id' => 'id', 'name' => 'name', 'image' => 'image', 'description' => 'description');
+                                                        foreach ($categoryData as $key => $value){
+                                                            switch ($key) { 
+                                                                case 'image': $categoryObj->$key = MEDIA_FILES_PATH1.'category/'.$category[$value];break;
+                                                                default     :   $categoryObj->$key = $category[$value]; break; 
+                                                            }
+                                                        }
+                                                        if($num==1){$numOrd = 'first';}else{$numOrd = '';}
+                                                        if($num%2>0){$numClass = 'odd';}else{$numClass = 'even';}
+                                                        if($num==2){ $addStyle = 'text-align:center;';}else{$addStyle = '';}
+                                                        ?><div class="column-1_3 sc_column_item sc_column_item_<?php echo $num.' '.$numClass.' '. $numOrd; ?>" style="width: 32.3333%;<?php echo $addStyle; ?>">
+                                                            <div class="sc_price_block sc_price_block_style_<?php echo $num; ?>" style="width:100%;">
+                                                                <div class="sc_price_block_title"><?php echo $categoryObj->name; ?></div>
                                                                 <div class="sc_price_block_money">
                                                                     <div class="sc_price"><span class="sc_price_currency">$</span><span class="sc_price_money">89</span></div>
-                                                                </div>
-                                                                <div class="sc_price_block_description"><b>Save $98</b> every year compared to the monthly plan by paying yearly.</div>
-                                                                <div class="sc_price_block_link"><a href="#" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">I WANT THIS PLAN</a></div>
-                                                            </div>
-                                                        </div><div class="column-1_3 sc_column_item sc_column_item_3 odd" style="text-align:center;">
-                                                            <div class="sc_price_block sc_price_block_style_3" style="width:100%;">
-                                                                <div class="sc_price_block_title">Yearly</div>
-                                                                <div class="sc_price_block_money">
-                                                                    <div class="sc_price"><span class="sc_price_currency">$</span><span class="sc_price_money">129</span></div>
-                                                                </div>
-                                                                <div class="sc_price_block_description"><b>Save $120</b> every year compared to the monthly plan by paying biannually.</div>
-                                                                <div class="sc_price_block_link"><a href="#" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">I WANT THIS PLAN</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                                </div><div class="sc_price_block_description"><b>Save $98</b> every year compared to the monthly plan by paying yearly.</div><div class="sc_price_block_link"><a href="#" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">I WANT THIS PLAN</a></div></div></div>
+                                                        <?php $num++; } ?>
                                                     </div>
                                                 </div>
                                             </div>
