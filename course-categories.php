@@ -6,3 +6,5 @@
  * and open the template in the editor.
  */
 
+?>
+<a href="http://localhost/impact/courses/">More</a>

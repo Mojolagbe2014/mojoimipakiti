@@ -8,6 +8,8 @@ define("FACEBOOK_LINK", Setting::getValue($dbObj, 'FACEBOOK_LINK') ? trim(stripc
 define("GOOGLEPLUS_LINK", Setting::getValue($dbObj, 'GOOGLEPLUS_LINK') ? trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'GOOGLEPLUS_LINK')))) : '');
 define("LINKEDIN_LINK", Setting::getValue($dbObj, 'LINKEDIN_LINK') ? trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'LINKEDIN_LINK')))) : '');
 define("TWITTER_LINK", Setting::getValue($dbObj, 'TWITTER_LINK') ? trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'TWITTER_LINK')))) : '');
+define("PINTEREST_LINK", Setting::getValue($dbObj, 'PINTEREST_LINK') ? trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'PINTEREST_LINK')))) : '');
+define("DRIBBBLE_LINK", Setting::getValue($dbObj, 'DRIBBLE_LINK') ? trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'DRIBBLE_LINK')))) : '');
 define("YOUTUBE_LINK", Setting::getValue($dbObj, 'YOUTUBE_LINK') ? trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'YOUTUBE_LINK')))) : '');
 define("COMPANY_HOTLINE", Setting::getValue($dbObj, 'COMPANY_HOTLINE') ? trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'COMPANY_HOTLINE')))) : '');
 define("COMPANY_EMAIL", Setting::getValue($dbObj, 'COMPANY_EMAIL') ? trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'COMPANY_EMAIL')))) : '');

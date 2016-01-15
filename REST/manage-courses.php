@@ -126,6 +126,7 @@ else{
             switch($postVar){
                 case 'media':   $newMedia = basename($_FILES["file"]["name"]) ? rand(100000, 1000000)."_".  strtolower(str_replace(" ", "_", filter_input(INPUT_POST, 'code'))).".".pathinfo(basename($_FILES["file"]["name"]),PATHINFO_EXTENSION): ""; 
                                 $courseObj->$postVar = $newMedia;
+                                if($courseObj->$postVar == ''){$courseObj->$postVar = $oldMedia;}
                                 $courseMedFil = $newMedia;
                                 break;
                 case 'image':   $newImage = basename($_FILES["image"]["name"]) ? rand(100000, 1000000)."_".  strtolower(str_replace(" ", "_", filter_input(INPUT_POST, 'code'))).".".pathinfo(basename($_FILES["image"]["name"]),PATHINFO_EXTENSION): ""; 

@@ -192,7 +192,7 @@ require('includes/page-properties.php');
                                                                         <h4 class="post_title"><a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>"><?php echo $courseObj->name; ?></a></h4>
                                                                         <div class="post_descr">
                                                                             <div class="post_price"><span class="post_price_value" style="font-size:14px;font-weight: bold"><?php echo $courseObj->currency.''. number_format($courseObj->amount, 2); ?></span></div>
-                                                                        <div class="post_category"><a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>"><?php echo CourseCategory::getName($dbObj, $courseObj->category); ?></a></div>
+                                                                        <div class="post_category"><a href="<?php echo SITE_URL.'category/'.$courseObj->category.'/'.StringManipulator::slugify(CourseCategory::getName($dbObj, $courseObj->category)).'/'; ?>"><?php echo CourseCategory::getName($dbObj, $courseObj->category); ?></a></div>
                                                                         </div>
                                                                         </div>
 
@@ -305,7 +305,7 @@ require('includes/page-properties.php');
                                                 </div><div class="column-1_2 sc_column_item sc_column_item_2 even">
                                                     <div class="sc_video_player sc_video_bordered" style="padding-top:4%;padding-right:3%;padding-bottom:23%;padding-left:13%;background-image: url(<?php echo SITE_URL; ?>uploads/2015/01/post_video_border.png);">
                                                         <div class="sc_video_frame" data-width="100%" data-height="647" style="width:100%;">
-                                                            <?php if($courseObj->media!=''){ ?> <video width="370" height="270" poster="<?php echo $courseObj->image; ?>" preload="metadata" controls><source src="<?php echo MEDIA_FILES_PATH1.'course/'.$courseObj->media; ?>" type="video/mp4"></video> <?php } ?>
+                                                            <?php if($courseObj->media!='' && pathinfo(basename(MEDIA_FILES_PATH1.'course/'.$courseObj->media),PATHINFO_EXTENSION)=='mp4'){ ?> <video width="370" height="270" poster="<?php echo $courseObj->image; ?>" preload="metadata" controls><source src="<?php echo MEDIA_FILES_PATH1.'course/'.$courseObj->media; ?>" type="video/mp4"></video> <?php } ?>
                                                             <img alt="" src="<?php echo $courseObj->image; ?>">
                                                         </div>
                                                         

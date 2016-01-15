@@ -11,7 +11,7 @@
                                 <?php //include('login-section.php'); ?>
                             </ul>
                         </div>
-                        <div class="menu_user_area menu_user_left menu_user_contact_area">
+                        <div class="menu_user_area menu_user_left menu_user_contact_area" <?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? '' : 'style="color:#000"'; ?>>
                             Contact us on <a href="tel:<?php echo COMPANY_HOTLINE; ?>"><?php echo COMPANY_HOTLINE; ?></a> or 
                             <a href="mailto:<?php echo COMPANY_EMAIL; ?>"><span class="__cf_email__" data-cfemail=""><?php echo COMPANY_EMAIL; ?></span>
                             </a>
@@ -22,7 +22,7 @@
                 <div class="menu_main_wrap logo_left">
                     <div class="content_wrap clearfix">
                         <div class="logo">
-                            <a href="<?php echo SITE_URL; ?>"><img src="<?php echo SITE_URL; ?>images/logo-white.png" class="logo_main" alt=""><img src="<?php echo SITE_URL; ?>images/logo-white.png" class="logo_fixed" alt=""></a>
+                            <a href="<?php echo SITE_URL; ?>"><img src="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? SITE_URL.'images/logo-white.png' : SITE_URL.'images/logo-dark.jpg'; ?>" class="logo_main" alt=""><img src="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? SITE_URL.'images/logo-white.png' : SITE_URL.'images/logo-dark.jpg'; ?>" class="logo_fixed" alt=""></a>
                         </div>
 
                         <div class="search_wrap search_style_regular search_ajax" title="Open/close search form">

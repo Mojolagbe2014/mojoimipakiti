@@ -18,7 +18,7 @@ $(document).ready(function(){
     $('form#UpdateProfile #cancelProfileUpdate').click(function(){disableUpdateForm();});
     
     
-    var formVar = {id:sessionStorage.TSIadminId, name:sessionStorage.TSIAdminFullName, email:sessionStorage.TSIadminEmail, userName:sessionStorage.TSIAdminName, role:sessionStorage.TSIAdminRole};
+    var formVar = {id:sessionStorage.ITCadminId, name:sessionStorage.ITCAdminFullName, email:sessionStorage.ITCadminEmail, userName:sessionStorage.ITCAdminName, role:sessionStorage.ITCAdminRole};
     $.each(formVar, function(key, value) { $('form #'+key).val(value); });
     
     

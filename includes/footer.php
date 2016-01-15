@@ -1,3 +1,4 @@
+<?php if(strpos($_SERVER['SCRIPT_NAME'],'index.php')){ ?>
 <footer class="footer_wrap bg_tint_light footer_style_white widget_area">
                 <div class="content_wrap">
                     <div class="columns_wrap">
@@ -87,6 +88,7 @@
                     </div>
                 </div>
             </footer>
+            <?php } ?>
             <footer class="contacts_wrap bg_tint_dark contacts_style_dark">
                 <div class="content_wrap">
                     <div class="logo">
@@ -94,32 +96,32 @@
                     </div>
                     <div class="contacts_address">
                         <address class="address_right">
-                        Phone: <?php echo COMPANY_NUMBERS; ?>			<br/><br/>
-                        Email:  <a href="mailto:<?php echo COMPANY_EMAIL; ?>"><?php echo COMPANY_EMAIL; ?></a></address>
+                            Phone: <a href="tel:<?php echo COMPANY_HOTLINE; ?>"><?php echo COMPANY_HOTLINE; ?></a>, <?php echo COMPANY_NUMBERS; ?>			<br/><br/>
+                        Email:  <a href="mailto:<?php echo COMPANY_EMAIL; ?>"><?php echo COMPANY_EMAIL; ?></a>, <?php echo COMPANY_OTHER_EMAILS; ?></address>
                         <address class="address_left">
                         <?php echo COMPANY_ADDRESS; ?>							</address>
                     </div>
                     <div class="sc_socials sc_socials_size_big">
                         <div class="sc_socials_item">
-                            <a href="<?php echo @FACEBOOK_LINK; ?>" target="_blank" class="social_icons social_facebook" style="background-image: url(themes/education/fw/images/socials/facebook.png);">
-                                <span class="sc_socials_hover" style="background-image: url(themes/education/fw/images/socials/facebook.png);"></span>
+                            <a href="<?php echo FACEBOOK_LINK; ?>" target="_blank" class="social_icons social_facebook" style="background-image: url(<?php echo SITE_URL; ?>themes/education/fw/images/socials/facebook.png);">
+                                <span class="sc_socials_hover" style="background-image: url(<?php echo SITE_URL; ?>themes/education/fw/images/socials/facebook.png);"></span>
                             </a>
                         </div>
                         <div class="sc_socials_item">
-                            <a href="<?php echo @PINTEREST_LINK; ?>" target="_blank" class="social_icons social_pinterest" style="background-image: url(themes/education/fw/images/socials/pinterest.png);"><span class="sc_socials_hover" style="background-image: url(themes/education/fw/images/socials/pinterest.png);"></span></a>
+                            <a href="<?php echo PINTEREST_LINK; ?>" target="_blank" class="social_icons social_pinterest" style="background-image: url(<?php echo SITE_URL; ?>themes/education/fw/images/socials/pinterest.png);"><span class="sc_socials_hover" style="background-image: url(<?php echo SITE_URL; ?>themes/education/fw/images/socials/pinterest.png);"></span></a>
                         </div>
                         <div class="sc_socials_item">
-                            <a href="<?php echo @TWITTER_LINK; ?>" target="_blank" class="social_icons social_twitter" style="background-image: url(themes/education/fw/images/socials/twitter.png);">
-                                <span class="sc_socials_hover" style="background-image: url(themes/education/fw/images/socials/twitter.png);"></span>
+                            <a href="<?php echo TWITTER_LINK; ?>" target="_blank" class="social_icons social_twitter" style="background-image: url(<?php echo SITE_URL; ?>themes/education/fw/images/socials/twitter.png);">
+                                <span class="sc_socials_hover" style="background-image: url(<?php echo SITE_URL; ?>themes/education/fw/images/socials/twitter.png);"></span>
                             </a>
                         </div>
                         <div class="sc_socials_item">
-                            <a href="<?php echo @GOOGLEPLUS_LINK; ?>" target="_blank" class="social_icons social_gplus" style="background-image: url(themes/education/fw/images/socials/gplus.png);"><span class="sc_socials_hover" style="background-image: url(themes/education/fw/images/socials/gplus.png);"></span></a></div><div class="sc_socials_item"><a href="#" target="_blank" class="social_icons social_rss" style="background-image: url(themes/education/fw/images/socials/rss.png);">
-                                    <span class="sc_socials_hover" style="background-image: url(themes/education/fw/images/socials/rss.png);"></span>
+                            <a href="<?php echo GOOGLEPLUS_LINK; ?>" target="_blank" class="social_icons social_gplus" style="background-image: url(<?php echo SITE_URL; ?>themes/education/fw/images/socials/gplus.png);"><span class="sc_socials_hover" style="background-image: url(<?php echo SITE_URL; ?>themes/education/fw/images/socials/gplus.png);"></span></a></div><div class="sc_socials_item"><a href="#" target="_blank" class="social_icons social_rss" style="background-image: url(<?php echo SITE_URL; ?>themes/education/fw/images/socials/rss.png);">
+                                    <span class="sc_socials_hover" style="background-image: url(<?php echo SITE_URL; ?>themes/education/fw/images/socials/rss.png);"></span>
                                 </a>
                             </div>
                         <div class="sc_socials_item">
-                            <a href="<?php echo @DRIBBLE_LINK; ?>" target="_blank" class="social_icons social_dribbble" style="background-image: url(themes/education/fw/images/socials/dribbble.png);"><span class="sc_socials_hover" style="background-image: url(themes/education/fw/images/socials/dribbble.png);"></span>
+                            <a href="<?php echo DRIBBBLE_LINK; ?>" target="_blank" class="social_icons social_dribbble" style="background-image: url(<?php echo SITE_URL; ?>themes/education/fw/images/socials/dribbble.png);"><span class="sc_socials_hover" style="background-image: url(<?php echo SITE_URL; ?>themes/education/fw/images/socials/dribbble.png);"></span>
                             </a>
                         </div>
                     </div>						

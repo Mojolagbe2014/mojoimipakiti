@@ -118,4 +118,10 @@ div#calendar ul.dates li{
  
 div.clear{
     clear:both;
-}    
+} 
+@media screen and (max-width: 480px){
+    div#calendar{
+      display:none
+    }
+    aside.widget_calendar h5{display:none}
+}

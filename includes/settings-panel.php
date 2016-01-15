@@ -29,10 +29,10 @@
     <div class="co_section">
     <div class="co_label">Color scheme</div>
     <div id="co_scheme_list" class="co_image_check" data-options="color_scheme">
-    <a href="#" id="scheme_original" class="co_scheme_wrapper" style="background-image: url(themes/education/skins/education/images/schemes/original.jpg)" data-value="original"><span>Original</span></a>
-    <a href="#" id="scheme_contrast" class="co_scheme_wrapper active" style="background-image: url(themes/education/skins/education/images/schemes/contrast.jpg)" data-value="contrast"><span>Contrast</span></a>
-    <a href="#" id="scheme_modern" class="co_scheme_wrapper" style="background-image: url(themes/education/skins/education/images/schemes/modern.jpg)" data-value="modern"><span>Modern</span></a>
-    <a href="#" id="scheme_pastel" class="co_scheme_wrapper" style="background-image: url(themes/education/skins/education/images/schemes/pastel.jpg)" data-value="pastel"><span>Pastel</span></a>
+    <a href="#" id="scheme_original" class="co_scheme_wrapper" style="background-image: url(<?php echo SITE_URL; ?>themes/education/skins/education/images/schemes/original.jpg)" data-value="original"><span>Original</span></a>
+    <a href="#" id="scheme_contrast" class="co_scheme_wrapper active" style="background-image: url(<?php echo SITE_URL; ?>themes/education/skins/education/images/schemes/contrast.jpg)" data-value="contrast"><span>Contrast</span></a>
+    <a href="#" id="scheme_modern" class="co_scheme_wrapper" style="background-image: url(<?php echo SITE_URL; ?>themes/education/skins/education/images/schemes/modern.jpg)" data-value="modern"><span>Modern</span></a>
+    <a href="#" id="scheme_pastel" class="co_scheme_wrapper" style="background-image: url(<?php echo SITE_URL; ?>themes/education/skins/education/images/schemes/pastel.jpg)" data-value="pastel"><span>Pastel</span></a>
     </div>
     </div>
 
@@ -48,20 +48,20 @@
     <div class="co_section">
     <div class="co_label">Background pattern</div>
     <div id="co_bg_pattern_list" class="co_image_check" data-options="bg_pattern">
-    <a href="#" id="pattern_1" class="co_pattern_wrapper" style="background-image: url(themes/education/images/bg/pattern_1_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(themes/education/images/bg/pattern_1.jpg)"></span></a>
-    <a href="#" id="pattern_2" class="co_pattern_wrapper" style="background-image: url(themes/education/images/bg/pattern_2_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(themes/education/images/bg/pattern_2.jpg)"></span></a>
-    <a href="#" id="pattern_3" class="co_pattern_wrapper" style="background-image: url(themes/education/images/bg/pattern_3_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(themes/education/images/bg/pattern_3.jpg)"></span></a>
-    <a href="#" id="pattern_4" class="co_pattern_wrapper" style="background-image: url(themes/education/images/bg/pattern_4_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(themes/education/images/bg/pattern_4.jpg)"></span></a>
-    <a href="#" id="pattern_5" class="co_pattern_wrapper" style="background-image: url(themes/education/images/bg/pattern_5_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(themes/education/images/bg/pattern_5.jpg)"></span></a>
+    <a href="#" id="pattern_1" class="co_pattern_wrapper" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/pattern_1_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/pattern_1.jpg)"></span></a>
+    <a href="#" id="pattern_2" class="co_pattern_wrapper" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/pattern_2_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/pattern_2.jpg)"></span></a>
+    <a href="#" id="pattern_3" class="co_pattern_wrapper" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/pattern_3_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/pattern_3.jpg)"></span></a>
+    <a href="#" id="pattern_4" class="co_pattern_wrapper" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/pattern_4_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/pattern_4.jpg)"></span></a>
+    <a href="#" id="pattern_5" class="co_pattern_wrapper" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/pattern_5_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/pattern_5.jpg)"></span></a>
     </div>
     </div>
 
     <div class="co_section">
     <div class="co_label">Background image</div>
     <div id="co_bg_images_list" class="co_image_check" data-options="bg_image">
-    <a href="#" id="pattern_1" class="co_image_wrapper" style="background-image: url(themes/education/images/bg/image_1_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(themes/education/images/bg/image_1.jpg)"></span></a>
-    <a href="#" id="pattern_2" class="co_image_wrapper" style="background-image: url(themes/education/images/bg/image_2_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(themes/education/images/bg/image_2.jpg)"></span></a>
-    <a href="#" id="pattern_3" class="co_image_wrapper" style="background-image: url(themes/education/images/bg/image_3_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(themes/education/images/bg/image_3.jpg)"></span></a>
+    <a href="#" id="pattern_1" class="co_image_wrapper" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/image_1_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/image_1.jpg)"></span></a>
+    <a href="#" id="pattern_2" class="co_image_wrapper" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/image_2_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/image_2.jpg)"></span></a>
+    <a href="#" id="pattern_3" class="co_image_wrapper" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/image_3_thumb.jpg)"><span class="co_bg_preview" style="background-image: url(<?php echo SITE_URL; ?>themes/education/images/bg/image_3.jpg)"></span></a>
     </div>
     </div>
 
