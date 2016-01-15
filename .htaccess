@@ -22,6 +22,10 @@ RewriteRule ^course/([0-9]+)/([^/]+)/?$ course.php?id=$1 [NC,L]
 
 RewriteRule ^courses/([^/]+)/?$ courses.php?class=$1 [NC,L]
 
+RewriteRule ^courses/([^/]+)/([0-9]+)/?$ courses.php?page=$2 [NC,L]
+
+RewriteRule ^courses/([^/]+)/([^/]+)/([0-9]+)/?$ courses.php?class=$1&page=$3 [NC,L]
+
 RewriteRule ^category/([0-9]+)/([^/]+)/?$ category.php?id=$1 [NC,L]
 
 RewriteRule ^event/([0-9]+)/([^/]+)/?$ event.php?id=$1 [NC,L]

@@ -121,7 +121,7 @@ class Course implements ContentManipulator{
         $result =array(); 
         if(count($data)>0){
             foreach($data as $r){
-                $result[] = array("id" => $r['id'], "name" =>  utf8_encode($r['name']), "image" =>  utf8_encode($r['image']), 'shortName' =>  utf8_encode($r['short_name']), 'category' => utf8_encode($r['category']), 'startDate' =>  utf8_encode($r['start_date']), 'endDate' =>  utf8_encode($r['end_date']), 'code' =>  utf8_encode($r['code']), 'description' => utf8_encode(StringManipulator::trimStringToFullWord(200, stripcslashes(strip_tags($r['description'])))), 'media' =>  utf8_encode($r['media']), 'currency' =>  utf8_encode($r['currency']), 'amount' =>  utf8_encode($r['amount']), 'status' =>  utf8_encode($r['status']), 'dateRegistered' => utf8_encode($r['date_registered']));
+                $result[] = array("id" => $r['id'], "name" =>  utf8_encode($r['name']), "image" =>  utf8_encode($r['image']), 'shortName' =>  utf8_encode($r['short_name']), 'category' => utf8_encode($r['category']), 'startDate' =>  utf8_encode($r['start_date']), 'endDate' =>  utf8_encode($r['end_date']), 'code' =>  utf8_encode($r['code']), 'description' => utf8_encode(StringManipulator::trimStringToFullWord(200, stripcslashes(strip_tags($r['description'])))), 'media' =>  utf8_encode($r['media']), 'currency' =>  utf8_encode($r['currency']), 'amount' =>  utf8_encode($r['amount']), 'cost' =>  utf8_encode($r['currency'].number_format($r['amount'], 2)), 'status' =>  utf8_encode($r['status']), 'dateRegistered' => utf8_encode($r['date_registered']), 'categoryName' => utf8_encode(CourseCategory::getName($this->dbObj, $r['category'])));
             }
             $json = array("status" => 1, "info" => $result);
         } 
@@ -219,10 +219,11 @@ class Course implements ContentManipulator{
     /**
      * Method that returns count/total number of a particular course
      * @param Object $dbObj Datatbase connectivity object
+     * @param Object $condition Additional optional condition
      * @return int Number of courses
      */
-    public static function getRawCount($dbObj){
-        $sql = "SELECT * FROM course ";
+    public static function getRawCount($dbObj, $condition=" 1=1 "){
+        $sql = "SELECT * FROM course WHERE $condition ";
         $count = "";
         $result = $dbObj->query($sql);
         $totalData = mysqli_num_rows($result);

@@ -15,6 +15,25 @@ $calendar = new Calendar($dbObj);
 
 include('includes/other-settings.php');
 require('includes/page-properties.php');
+
+$recordPerPage = Setting::getValue($dbObj, 'TOTAL_DISPLAYABLE_COURSES') ? trim(strip_tags(Setting::getValue($dbObj, 'TOTAL_DISPLAYABLE_COURSES'))) : 100;
+$pageNum = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT) ? filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT) : 1;
+$classParam = filter_input(INPUT_GET, 'class') ? filter_input(INPUT_GET, 'class') : '';
+
+$classVal = ''; $classLink = '';
+switch($classParam){
+    case 'private-sector': $classVal = ' AND featured = 1 '; $classLink = 'private-sector/';
+                            $thisPage->title = "Private Sector Courses".' - '.WEBSITE_AUTHOR;
+                            break;
+    case 'public-sector': $classVal = ' AND featured = 0 '; $classLink = 'public-sector/';
+                            $thisPage->title = "Public Sector Courses".' - '.WEBSITE_AUTHOR;
+                            break;
+}
+
+$offset = ($pageNum - 1) * $recordPerPage; 
+$transactTotal = Course::getRawCount($dbObj, " 1=1 $classVal");//NUM_ROWS($transactQuery)
+$totalPages = intval($transactTotal/$recordPerPage);
+if(($transactTotal%$recordPerPage)>0){$totalPages +=1;}
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -102,7 +121,7 @@ require('includes/page-properties.php');
     </script>
     <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
     <noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
-    <style>.menu_user_contact_area a{color:#1EAACE}.menu_user_contact_area a:hover{color:#F55C6D;}</style>
+    <style>.menu_user_contact_area a{color:#1EAACE}.menu_user_contact_area a:hover{color:#F55C6D;}.inactive{background:#ccc;cursor: not-allowed}</style>
 </head>
 
 <body class="page page-id-639 page-template page-template-courses page-template-courses-php themerex_body body_style_wide body_filled theme_skin_education article_style_boxed layout_courses_3 template_portfolio top_panel_style_light top_panel_opacity_solid top_panel_show top_panel_above menu_right user_menu_show sidebar_hide wpb-js-composer js-comp-ver-4.7.2 vc_responsive">
@@ -115,12 +134,13 @@ require('includes/page-properties.php');
 			
             <div class="page_content_wrap">
                 <div class="content_wrap">
-                    <div class="content">		
+                    <div class="content">
+                        <div id="testBox"></div>
                         <div class="isotope_filters"></div>
                         <div class="isotope_wrap " data-columns="3">
                             <?php 
                             $courseNos = 0;
-                            foreach ($courseObj->fetchRaw("*", " status = 1 ", " RAND() LIMIT 1") as $course) {
+                            foreach ($courseObj->fetchRaw("*", " status = 1 $classVal ", " id LIMIT $recordPerPage OFFSET $offset") as $course) {
                                 $courseData = array('id' => 'id', 'name' => 'name', 'code' => 'code', 'image' => 'image', 'media' => 'media', 'amount' => 'amount', 'shortName' => 'short_name', 'category' => 'category', 'startDate' => 'start_date', 'endDate' => 'end_date', 'description' => 'description', 'status' => 'status', 'currency' => 'currency');
                                 foreach ($courseData as $key => $value){
                                     switch ($key) { 
@@ -195,8 +215,11 @@ require('includes/page-properties.php');
                         </script>
                     </div> <!-- /div class="content" -->
                     <div class="pagination_wrap pagination_viewmore">
-                        <a href="javascript:;" id="more-courses" data-current-total="<?php echo $courseNos; ?>" class="theme_button viewmore_button">
-                            <span class="viewmore_text_1">LOAD MORE</span>
+                        <a href="<?php echo ($pageNum>1) ? SITE_URL.'courses/'.$classLink.'page/'.($pageNum-1).'/' : 'javascript:;'; ?>" class="theme_button viewmore_button <?php echo ($pageNum>1) ? '' : 'inactive'; ?>">
+                            <span class="viewmore_text_1">Prev</span>
+                        </a>
+                        <a href="<?php echo ($pageNum < $totalPages) ? SITE_URL.'courses/'.$classLink.'page/'.($pageNum+1).'/' : 'javascript:;'; ?>" class="theme_button viewmore_button  <?php echo ($pageNum < $totalPages) ? '' : 'inactive'; ?>">
+                            <span class="viewmore_text_1">Next</span>
                         </a>
                     </div>
                 </div> <!-- /div class="content_wrap" -->			
@@ -237,29 +260,5 @@ require('includes/page-properties.php');
     <script type='text/javascript' src='<?php echo SITE_URL; ?>themes/education/fw/js/swiper/idangerous.swiper-2.7.min.js'></script>
     <script type='text/javascript' src='<?php echo SITE_URL; ?>themes/education/fw/js/swiper/idangerous.swiper.scrollbar-2.4.min.js'></script>
     <script type="text/javascript">/* <![CDATA[ */(function(){try{var s,a,i,j,r,c,l=document.getElementsByTagName("a"),t=document.createElement("textarea");for(i=0;l.length-i;i++){try{a=l[i].getAttribute("href");if(a&&a.indexOf("/cdn-cgi/l/email-protection") > -1  && (a.length > 28)){s='';j=27+ 1 + a.indexOf("/cdn-cgi/l/email-protection");if (a.length > j) {r=parseInt(a.substr(j,2),16);for(j+=2;a.length>j&&a.substr(j,1)!='X';j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}j+=1;s+=a.substr(j,a.length-j);}t.innerHTML=s.replace(/</g,"&lt;").replace(/>/g,"&gt;");l[i].setAttribute("href","mailto:"+t.value);}}catch(e){}}}catch(e){}})();/* ]]> */ </script>
-    <script>
-    jQuery(document).ready(function(){
-        jQuery('a#more-courses').click(function(){
-            //alert(jQuery(this).attr('data-current-total'));
-            jQuery.ajax({
-                url: "<?php echo SITE_URL; ?>REST/fetch-courses.php",
-                type: 'POST',
-                cache: false,
-                success : function(data, status) {
-                    alert(data.status);
-                    if(data.status != 'undefined' && data.status != 1 ){ 
-                        jQuery("#messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Category loading error. '+data.msg ? data.msg : data+'</div>');
-                    }
-                    else if(data.status ==1){
-                        jQuery.each(data.info, function(i, item) {
-                            jQuery('div.isotope_wrap').append('<option value="'+item.id+'">'+item.name+'</option>');
-                        });
-                    } 
-
-                }
-            });
-        });
-    });
-    </script>
 </body>
 </html>
