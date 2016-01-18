@@ -18,9 +18,11 @@ require('includes/page-properties.php');
 
 $recordPerPage = Setting::getValue($dbObj, 'TOTAL_DISPLAYABLE_COURSES') ? trim(strip_tags(Setting::getValue($dbObj, 'TOTAL_DISPLAYABLE_COURSES'))) : 100;
 $pageNum = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT) ? filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT) : 1;
+$categoryParam = filter_input(INPUT_GET, 'category', FILTER_VALIDATE_INT) ? filter_input(INPUT_GET, 'category', FILTER_VALIDATE_INT) : 0;
 $classParam = filter_input(INPUT_GET, 'class') ? filter_input(INPUT_GET, 'class') : '';
 
 $classVal = ''; $classLink = '';
+//Handler for sector based search
 switch($classParam){
     case 'private-sector': $classVal = ' AND featured = 1 '; $classLink = 'private-sector/';
                             $thisPage->title = "Private Sector Courses".' - '.WEBSITE_AUTHOR;
@@ -28,6 +30,15 @@ switch($classParam){
     case 'public-sector': $classVal = ' AND featured = 0 '; $classLink = 'public-sector/';
                             $thisPage->title = "Public Sector Courses".' - '.WEBSITE_AUTHOR;
                             break;
+}
+
+//Handler for category based search
+switch($categoryParam){
+    default     :   if($categoryParam>0){
+                        $classVal = " AND category = $categoryParam "; $classLink = filter_input(INPUT_GET, 'catSlugName') ? "category/$categoryParam/".filter_input(INPUT_GET, 'catSlugName')."/" : '';
+                        $thisPage->title = CourseCategory::getName($dbObj, $categoryParam).' Courses - '.WEBSITE_AUTHOR;
+                    }
+                    break;
 }
 
 $offset = ($pageNum - 1) * $recordPerPage; 
@@ -141,7 +152,7 @@ if(($transactTotal%$recordPerPage)>0){$totalPages +=1;}
                             <?php 
                             $courseNos = 0;
                             foreach ($courseObj->fetchRaw("*", " status = 1 $classVal ", " id LIMIT $recordPerPage OFFSET $offset") as $course) {
-                                $courseData = array('id' => 'id', 'name' => 'name', 'code' => 'code', 'image' => 'image', 'media' => 'media', 'amount' => 'amount', 'shortName' => 'short_name', 'category' => 'category', 'startDate' => 'start_date', 'endDate' => 'end_date', 'description' => 'description', 'status' => 'status', 'currency' => 'currency');
+                                $courseData = array('id' => 'id', 'name' => 'name', 'code' => 'code', 'image' => 'image', 'media' => 'media', 'amount' => 'amount', 'shortName' => 'short_name', 'category' => 'category', 'startDate' => 'start_date', 'endDate' => 'end_date', 'description' => 'description', 'status' => 'status', 'featured' => 'featured', 'currency' => 'currency');
                                 foreach ($courseData as $key => $value){
                                     switch ($key) { 
                                         case 'image': $courseObj->$key = MEDIA_FILES_PATH1.'course-image/'.$course[$value];break;
@@ -158,7 +169,7 @@ if(($transactTotal%$recordPerPage)>0){$totalPages +=1;}
                                     }
                                 }
                             ?>
-                            <div class="isotope_item isotope_item_courses isotope_item_courses_3 isotope_column_3 flt_<?php echo $courseObj->category; ?>">
+                            <div class="isotope_item isotope_item_courses isotope_item_courses_3 isotope_column_3 flt_<?php echo ($categoryParam>0) ? $courseObj->featured : $courseObj->category; ?>">
                                 <article class="post_item post_item_courses post_item_courses_3	post_format_standard odd">
                                     <div class="post_content isotope_item_content ih-item colored square effect_dir left_to_right">
                                         <div class="post_featured img">
@@ -190,7 +201,7 @@ if(($transactTotal%$recordPerPage)>0){$totalPages +=1;}
                                                             <a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">MORE</a>
                                                         </div>
                                                         <div class="post_button">
-                                                            <a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">BUY NOW</a>
+                                                            <a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">BOOK NOW</a>
                                                         </div>
                                                     </div>							
                                                 </div>
@@ -206,8 +217,13 @@ if(($transactTotal%$recordPerPage)>0){$totalPages +=1;}
                                     THEMEREX_GLOBALS['ppp'] = 6;
                                     <?php 
                                     $categoryList = '';
-                                    foreach ($categoryObj->fetchRaw("*", " 1=1 ", " name ASC") as $category) {
-                                        $categoryList .= '<a href="#" data-filter=".flt_'.$category['id'].'" class="isotope_filters_button">'.$category['name'].'</a>';
+                                    if(($categoryParam>0)) {
+                                        $categoryList .= '<a href="#" data-filter=".flt_0" class="isotope_filters_button">Public Sector</a> <a href="#" data-filter=".flt_1" class="isotope_filters_button">Private Sector</a>';
+                                    }
+                                    else{
+                                        foreach ($categoryObj->fetchRaw("*", " 1=1 ", " name ASC") as $category) {
+                                            $categoryList .= '<a href="#" data-filter=".flt_'.$category['id'].'" class="isotope_filters_button">'.$category['name'].'</a>';
+                                        }
                                     }
                                     ?>
                                     jQuery(".isotope_filters").append('<a href="#" data-filter="*" class="isotope_filters_button active">All</a><?php echo $categoryList; ?>');

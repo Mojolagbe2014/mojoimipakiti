@@ -57,7 +57,7 @@
                                                 $menuCatObj = new CourseCategory($dbObj);
                                                 foreach($menuCatObj->fetchRaw("*", " 1=1 ", " name ASC ")as $menuCategory) { 
                                                 ?>
-                                                <li id="menu-item-1399" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1399"><a href="<?php echo SITE_URL.'category/'.$menuCategory['id'].'/'.StringManipulator::slugify($menuCategory['name']).'/'; ?>"><?php echo $menuCategory['name']; ?></a></li>
+                                                <li id="menu-item-1399" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1399"><a href="<?php echo SITE_URL.'courses/category/'.$menuCategory['id'].'/'.StringManipulator::slugify($menuCategory['name']).'/'; ?>"><?php echo $menuCategory['name']; ?></a></li>
                                                 <?php } ?>
                                             </ul>
                                         </li>
