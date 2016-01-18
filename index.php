@@ -345,7 +345,7 @@ require('includes/page-properties.php');
                                                                 <div class="sc_price_block_title"><?php echo $categoryObj->name; ?></div>
                                                                 <div class="sc_price_block_money">
                                                                     <div class="sc_price"><span class="sc_price_money"><?php echo Course::getSingleCategoryCount($dbObj, $categoryObj->id); ?></span></div> COURSE(S)
-                                                                </div><div class="sc_price_block_description"><?php echo StringManipulator::trimStringToFullWord(160, strip_tags($categoryObj->description)); ?>..</div><div class="sc_price_block_link"><a href="<?php echo SITE_URL.'category/'.$categoryObj->id.'/'.StringManipulator::slugify($categoryObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">VIEW DETAILS</a></div></div></div>
+                                                                </div><div class="sc_price_block_description"><?php echo StringManipulator::trimStringToFullWord(160, strip_tags($categoryObj->description)); ?>..</div><div class="sc_price_block_link"><a href="<?php echo SITE_URL.'courses/category/'.$categoryObj->id.'/'.StringManipulator::slugify($categoryObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">VIEW COURSES</a></div></div></div>
                                                         <?php $num++; } ?>
                                                     </div>
                                                 </div>

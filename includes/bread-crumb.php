@@ -9,8 +9,8 @@ $refName = strpos($refName,'index') ? 'home' : $refName;
                     <div class="breadcrumbs">
                         <a class="breadcrumbs_item home" href="<?php echo SITE_URL; ?>">Home</a><span class="breadcrumbs_delimiter"></span>
                         <?php if($refName!='home'){ ?><a class="breadcrumbs_item home" href="<?php echo $referer; ?>"><?php echo strip_tags(WebPage::getSingleByName($dbObj, 'title', $refName)); ?></a><span class="breadcrumbs_delimiter"></span><?php } ?>
-                        <span class="breadcrumbs_item current"><?php echo StringManipulator::trimStringToFullWord(20, str_replace(' - '.WEBSITE_AUTHOR, '', $thisPage->title)); ?></span>							
+                        <span class="breadcrumbs_item current"><?php echo StringManipulator::trimStringToFullWord(20, explode(" - ", $thisPage->title)[0]); ?></span>							
                     </div>
-                    <h2 class="page_title"><?php echo str_replace(' - '.WEBSITE_AUTHOR, '', $thisPage->title); ?></h2>
+                    <h2 class="page_title"><?php echo explode(" - ", $thisPage->title)[0]; ?></h2>
                 </div>
             </div>              <!-- /.page_top_breadcrumbs -->
