@@ -8,7 +8,7 @@
     border:10px solid #666;
  
     /* for modern browsers use semi-transparent color on the border. nice! */
-    border:10px solid rgba(82, 82, 82, 0.698);
+    border:10px solid rgba(38, 195, 214, 0.698);
  
     /* hot CSS3 features for mozilla and webkit-based browsers (rounded borders) */
     -moz-border-radius:8px;
@@ -17,7 +17,7 @@
  
   #facebox div {
     padding:10px;
-    border:1px solid #3B5998;
+    border:1px solid #26C3D6;
     background-color:#fff;
     font-family:"lucida grande",tahoma,verdana,arial,sans-serif
   }
@@ -28,6 +28,6 @@
     color:#fff;
     background-color:#6D84B4;
     padding:5px 10px;
-    border:1px solid #3B5998;
+    border:1px solid #26C3D6;
     font-size:20px;
   }

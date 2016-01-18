@@ -12,9 +12,54 @@
                             $widgetCourArr = array('Public', 'Private');
                             $widgetCourse = rand(0, 1);
                             ?>
-                            <h5 class="widget_title"><?php echo $widgetCourArr[$widgetCourse]; ?> Sector Courses</h5>
+                            <h5 class="widget_title">Private Sector Courses</h5>
                             <?php 
-                            foreach ($courseObj->fetchRaw("*", " status = 1 AND featured = $widgetCourse ", " RAND() LIMIT 5") as $course) {
+                            foreach ($courseObj->fetchRaw("*", " status = 1 AND featured = 1 ", " RAND() LIMIT 2 ") as $course) {
+                                $courseData = array('id' => 'id', 'name' => 'name', 'code' => 'code', 'image' => 'image', 'media' => 'media', 'amount' => 'amount', 'shortName' => 'short_name', 'category' => 'category', 'startDate' => 'start_date', 'endDate' => 'end_date', 'description' => 'description', 'status' => 'status', 'currency' => 'currency');
+                                foreach ($courseData as $key => $value){
+                                    switch ($key) { 
+                                        case 'image': $courseObj->$key = MEDIA_FILES_PATH1.'course-image/'.$course[$value];break;
+                                        case 'media': $courseObj->$key = MEDIA_FILES_PATH1.'course/'.$course[$value];break;
+                                        case 'startDate': $dateParam = explode('-', $course[$value]);
+                                                          $dateObj   = DateTime::createFromFormat('!m', $dateParam[1]);
+                                                          $courseObj->$key = $dateParam[2].' '.$dateObj->format('F').', '.$dateParam[0].'.';;
+                                                          break;
+                                        case 'endDate': $dateParam = explode('-', $course[$value]);
+                                                          $dateObj   = DateTime::createFromFormat('!m', $dateParam[1]);
+                                                          $courseObj->$key = $dateParam[2].' '.$dateObj->format('F').', '.$dateParam[0].'.';;
+                                                          break;
+                                        default     :   $courseObj->$key = $course[$value]; break; 
+                                    }
+                                }
+                            ?>
+                            <article class="post_item with_thumb first">
+                                <div class="post_thumb">
+                                    <img class="wp-post-image" width="75" height="75" alt="<?php echo $courseObj->name; ?>" src="<?php echo $courseObj->image; ?>">
+                                </div>
+                                <div class="post_content">
+                                    <h6 class="post_title">
+                                        <a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>"><?php echo $courseObj->name; ?></a>
+                                    </h6>
+                                    <div class="post_info">
+                                        <span class="post_info_item post_info_posted">
+                                            <a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="post_info_date"><?php echo $courseObj->startDate; ?></a>
+                                        </span>
+                                        <span class="post_info_item post_info_posted_by"> |  
+                                            <a href="<?php echo SITE_URL.'category/'.$courseObj->category.'/'.StringManipulator::slugify(CourseCategory::getName($dbObj, $courseObj->category)).'/'; ?>" class="post_info_author"><?php echo CourseCategory::getName($dbObj, $courseObj->category); ?></a>
+                                        </span>
+                                        <span class="post_info_item post_info_counters">
+                                            <a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="post_counters_item post_counters_rating icon-star-1">
+                                                <span class="post_counters_number"><?php echo $courseObj->currency.' '.  number_format($courseObj->amount, 2); ?></span>
+                                            </a>
+                                                
+                                        </span>
+                                    </div>
+                                </div>
+                            </article>
+                            <?php } ?>
+                            <h5 class="widget_title" style="margin-top:10px;">Public Sector Courses</h5>
+                            <?php 
+                            foreach ($courseObj->fetchRaw("*", " status = 1 AND featured = 0 ", " RAND() LIMIT 2 ") as $course) {
                                 $courseData = array('id' => 'id', 'name' => 'name', 'code' => 'code', 'image' => 'image', 'media' => 'media', 'amount' => 'amount', 'shortName' => 'short_name', 'category' => 'category', 'startDate' => 'start_date', 'endDate' => 'end_date', 'description' => 'description', 'status' => 'status', 'currency' => 'currency');
                                 foreach ($courseData as $key => $value){
                                     switch ($key) { 
