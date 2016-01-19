@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
     $subject = filter_input(INPUT_POST, 'course') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'course')) :  ''; 
 
     if(count($errorArr) < 1)   {
-        $emailAddress = COMPANY_EMAIL;//iadet910@iadet.net
+        $emailAddress = COMPANY_EMAIL;
         $subject = "Booking for ".$subject." By $name";	
         $body = "<div><p><u><strong>Course Booking Information</strong></u></p>
                 <p><strong>COURSE</strong>: $subject</p>
@@ -42,12 +42,12 @@ if(isset($_POST['submit'])){
                 <p><strong>ADDRESS</strong>: $address</p>
                 <p><strong>MESSAGE</strong>: $body</p>
                 <p>&nbsp;</p>
-                <p>Message sent from <a href='http://tsigroups.com/'>TSI Groups Limited Website</a></p>
+                <p>Message sent from <a href='".SITE_URL."'>".WEBSITE_AUTHOR." Website</a></p>
                 </div>";
         
         $transport = Swift_MailTransport::newInstance();
         $message = Swift_Message::newInstance();
-        $message->setTo(array($emailAddress => "TSI Limited Admin"));
+        $message->setTo(array($emailAddress => WEBSITE_AUTHOR));
         $message->setSubject($subject);
         $message->setBody($body);
         $message->setFrom($email, $name);
@@ -69,12 +69,31 @@ foreach ($courseObj->fetchRaw("*", " status = 1 AND id = $thisCourseId ") as $co
             case 'media': $courseObj->$key = $course[$value];break;
             case 'startDate': $dateParam = explode('-', $course[$value]);
                               $dateObj   = DateTime::createFromFormat('!m', $dateParam[1]);
-                              $courseObj->$key = $dateParam[2].' '.$dateObj->format('F').', '.$dateParam[0].'.';;
+                              $courseObj->$key = $dateParam[2].' '.$dateObj->format('F').', '.$dateParam[0].'.';
                               break;
-            case 'endDate': $dateParam = explode('-', $course[$value]);
-                              $dateObj   = DateTime::createFromFormat('!m', $dateParam[1]);
-                              $courseObj->$key = $dateParam[2].' '.$dateObj->format('F').', '.$dateParam[0].'.';;
-                              break;
+            case 'endDate': $dateParam2 = explode('-', $course[$value]);
+                            $dateParam1 = explode('-', $course['start_date']);
+                            $dateObj1   = DateTime::createFromFormat('!m', $dateParam1[1]);
+                            $dateObj2   = DateTime::createFromFormat('!m', $dateParam2[1]);
+                            
+                            $yearVal='';$monthVal='';$dayVal='';
+                            if($dateParam2[0] == $dateParam1[0]){ //Same Year
+                                $yearVal = $dateParam1[0];
+                                if($dateParam2[1] == $dateParam1[1]){ //Same month
+                                    $dateObj   = DateTime::createFromFormat('!m', $dateParam1[1]);
+                                    $monthVal = $dateObj->format('F');
+                                    $dayVal = $dateParam1[2] ." - ".$dateParam2[2];
+                                    $courseObj->$key = $dayVal.' '.$monthVal.', '.$dateParam1[0].'.';
+                                }
+                                else{//diff months
+                                    
+                                    $monthVal = $dateParam1[2] .' '.$dateObj1->format('F') .' - '.$dateParam2[2] .' '.$dateObj2->format('F');
+                                    $courseObj->$key = $monthVal.', '.$dateParam1[0];
+                                }
+                            }else{
+                                $courseObj->$key = $dateParam1[2].' '.$dateObj1->format('F').', '.$dateParam1[0].' - '.$dateParam2[2].' '.$dateObj2->format('F').', '.$dateParam2[0];
+                            }
+                            break;
             default     :   $courseObj->$key = $course[$value]; break; 
         }
     }
@@ -179,7 +198,8 @@ $thisPage->description = StringManipulator::trimStringToFullWord(150, trim(strip
     <link href="<?php echo SITE_URL; ?>css/facebox.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo SITE_URL; ?>sweet-alert/sweetalert.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo SITE_URL; ?>sweet-alert/twitter.css" rel="stylesheet" type="text/css"/>
-    <script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>
+<!--    <script src="http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js"></script>-->
+    <script src="<?php echo SITE_URL; ?>js/jquery.tools.min.js" type="text/javascript"></script>
 </head>
 
 <body class="single single-product postid-647 themerex_body body_style_wide body_filled theme_skin_education article_style_boxed layout_single-standard template_single-standard top_panel_style_light top_panel_opacity_solid top_panel_show top_panel_above menu_right user_menu_show sidebar_show sidebar_right woocommerce woocommerce-page wpb-js-composer js-comp-ver-4.7.2 vc_responsive">
@@ -200,20 +220,21 @@ $thisPage->description = StringManipulator::trimStringToFullWord(150, trim(strip
                                 </div>
 
                                 <div class="summary entry-summary">
-                                    <h1 itemprop="name" class="product_title entry-title"><?php echo $courseObj->name; ?></h1>
-                                    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                    
+                                    <div itemprop="offers">
                                         <p class="price"><span class="amount"><?php echo $courseObj->currency.' '.number_format($courseObj->amount, 2); ?></span></p>
                                     </div>
+                                    <div class="product_meta">
+                                        <span class="posted_in">Category: <a href="<?php echo SITE_URL.'courses/category/'.$courseObj->category.'/'.StringManipulator::slugify(CourseCategory::getName($dbObj, $courseObj->category)).'/'; ?>" rel="tag"><?php echo CourseCategory::getName($dbObj, $courseObj->category); ?></a></span>
+                                        <span class="product_id">Date: <span><a href="javascript:;"><?php echo $courseObj->endDate; ?></a></span></span>
+                                        <span class="product_id">Class: <span><a href="<?php echo SITE_URL.'courses/'; ?><?php echo ($courseObj->featured==1) ? 'private-sector/': 'public-sector/'; ?>"><?php echo ($courseObj->featured==1) ? 'Private Sector': 'Public Sector'; ?> Course</a></span></span>
+                                    </div>
                                     <form class="cart" method="post" enctype='multipart/form-data'>
+                                        <br/><br/>
                                         <button id="book-now" type="button" class="single_add_to_cart_button button alt">Book Now</button>
                                     </form>
 
-                                    <div class="product_meta">
-                                        <span class="posted_in">Category: <a href="<?php echo SITE_URL.'courses/category/'.$courseObj->category.'/'.StringManipulator::slugify(CourseCategory::getName($dbObj, $courseObj->category)).'/'; ?>" rel="tag"><?php echo CourseCategory::getName($dbObj, $courseObj->category); ?></a></span>
-                                        <span class="tagged_as">Start Date: <a href="javascript:;"><?php echo $courseObj->startDate; ?></a></span>
-                                        <span class="product_id">End Date: <span><a href="javascript:;"><?php echo $courseObj->endDate; ?></a></span></span>
-                                        <span class="product_id">Class: <span><a href="<?php echo SITE_URL.'courses/'; ?><?php echo ($courseObj->featured==1) ? 'private-sector/': 'public-sector/'; ?>"><?php echo ($courseObj->featured==1) ? 'Private Sector': 'Public Sector'; ?> Course</a></span></span>
-                                    </div>
+                                    
                                 </div><!-- .summary -->
 
                                 <div class="woocommerce-tabs wc-tabs-wrapper">
@@ -246,32 +267,44 @@ $thisPage->description = StringManipulator::trimStringToFullWord(150, trim(strip
                                 <div class="related products">
                                     <h2>Related Courses</h2>
                                     <ul class="products">
-                                        <li class="first post-702 product type-product status-publish has-post-thumbnail product_cat-marketing-and-seo product_tag-marketing product_tag-seo sale shipping-taxable purchasable product-type-simple product-cat-marketing-and-seo product-tag-marketing product-tag-seo instock">
-
-
-                                <a href="../entrepreneurship-101-who-is-your-customer/index.html">
-
-                                                    <div class="post_item_wrap">
-                                            <div class="post_featured">
+                                        <?php 
+                                        $relCourseObj = new Course($dbObj);
+                                        foreach ($relCourseObj->fetchRaw("*", " status = 1 AND category = $courseObj->category AND id != $courseObj->id  ", " RAND() LIMIT 2") as $course) {
+                                            $courseData = array('id' => 'id', 'name' => 'name', 'code' => 'code', 'image' => 'image', 'media' => 'media', 'amount' => 'amount', 'shortName' => 'short_name', 'category' => 'category', 'startDate' => 'start_date', 'endDate' => 'end_date', 'description' => 'description', 'status' => 'status', 'currency' => 'currency', 'featured' => 'featured');
+                                            foreach ($courseData as $key => $value){
+                                                switch ($key) { 
+                                                    case 'image': $relCourseObj->$key = MEDIA_FILES_PATH1.'course-image/'.$course[$value];break;
+                                                    case 'media': $relCourseObj->$key = MEDIA_FILES_PATH1.'course/'.$course[$value];break;
+                                                    case 'startDate': $dateParam = explode('-', $course[$value]);
+                                                                      $dateObj   = DateTime::createFromFormat('!m', $dateParam[1]);
+                                                                      $relCourseObj->$key = $dateParam[2].' '.$dateObj->format('F').', '.$dateParam[0].'.';
+                                                                      break;
+                                                    case 'endDate': $dateParam = explode('-', $course[$value]);
+                                                                      $dateObj   = DateTime::createFromFormat('!m', $dateParam[1]);
+                                                                      $relCourseObj->$key = $dateParam[2].' '.$dateObj->format('F').', '.$dateParam[0].'.';
+                                                                      break;
+                                                    default     :   $relCourseObj->$key = $course[$value]; break; 
+                                                }
+                                            }
+                                        ?><li class="last post-702 product type-product status-publish has-post-thumbnail product_cat-marketing-and-seo product_tag-marketing product_tag-seo sale shipping-taxable purchasable product-type-simple product-cat-marketing-and-seo product-tag-marketing product-tag-seo instock">
+                                            <div class="post_item_wrap">
+                                                <div class="post_featured">
                                                     <div class="post_thumb">
-                                                            <a class="hover_icon hover_icon_link" href="../entrepreneurship-101-who-is-your-customer/index.html">
-
-                                <span class="onsale">Sale!</span>
-                                <img width="350" height="400" src="<?php echo SITE_URL; ?>uploads/2014/10/masonry_06-350x400.jpg" class="attachment-shop_catalog wp-post-image" alt="masonry_06" />				</a>
+                                                        <a class="hover_icon hover_icon_link" href="<?php echo SITE_URL.'course/'.$relCourseObj->id.'/'.StringManipulator::slugify($relCourseObj->name).'/'; ?>">
+                                                            <span class="onsale"><?php echo ($relCourseObj->featured==1) ? 'Private Sector' : 'Public Sector'; ?></span>
+                                                            <img width="350" height="400" src="<?php echo $relCourseObj->image; ?>" class="attachment-shop_catalog wp-post-image" alt="<?php echo $relCourseObj->name; ?>" />				
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post_content">
+                                                    <h3>
+                                                        <a href="<?php echo SITE_URL.'course/'.$relCourseObj->id.'/'.StringManipulator::slugify($relCourseObj->name).'/'; ?>"><?php echo $relCourseObj->name; ?></a>
+                                                    </h3>
+                                                    <span class="price"><ins><span class="amount"><?php echo $relCourseObj->currency.  number_format($relCourseObj->amount, 2); ?></span></ins></span>
+                                                    <a href="<?php echo SITE_URL.'course/'.$relCourseObj->id.'/'.StringManipulator::slugify($relCourseObj->name).'/'; ?>" rel="nofollow" data-product_id="702" data-product_sku="" class="button add_to_cart_button product_type_simple">View Details</a>			
+                                                </div>
                                             </div>
-                                    </div>
-                                    <div class="post_content">
-                                    <h3><a href="../entrepreneurship-101-who-is-your-customer/index.html">Entrepreneurship 101: Who is your customer?</a></h3>
-
-
-                                <span class="price"><del><span class="amount">&#36;195.00</span></del> <ins><span class="amount">&#36;180.00</span></ins></span>
-
-                                </a>
-
-                                <a href="index63f7.html?add-to-cart=702" rel="nofollow" data-product_id="702" data-product_sku="" data-quantity="1" class="button add_to_cart_button product_type_simple">Add to cart</a>			</div>
-                                    </div>
-
-                                </li>
+                                        </li><?php } ?>
                                     </ul>
                                 </div>
                             </div><!-- #product-647 -->
@@ -288,9 +321,8 @@ $thisPage->description = StringManipulator::trimStringToFullWord(150, trim(strip
     <?php include('includes/settings-panel.php'); ?>
     <a href="#" class="scroll_to_top icon-up-2" title="Scroll to top"></a>
     <div id="facebox" class="et_pb_module et_pb_contact_form_container clearfix  et_pb_contact_form_0">
-        <div><h4 class="et_pb_contact_main_title">Book for <?php echo $courseObj->name; ?></h4>
-        </div>
         <div class="et_pb_contact">
+            <h4 class="et_pb_contact_main_title text-center">Book for <?php echo $courseObj->name; ?></h4>
             <form action="" method="POST">
                 <div class="et_pb_contact_left">
                     <input type="hidden" name="course" value="<?php echo $courseObj->name; ?>"/>
