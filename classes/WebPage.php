@@ -56,7 +56,7 @@ class WebPage {
             case 'warning': $class = 'alert-warning'; break;
         }
         //$html = file_get_contents(TEMPLATE_PATH.'HTML/forms-error-box.html');
-        $html = '<div class="alert '.$class.'"><button type="button" class="close" data-dismiss="alert">&times;</button>'.$message.'</div>';
+        $html = '<div class="alert '.$class.'"><button type="button" class="close" data-dismiss="alert">&times;</button> '.$message.'</div>';
         return $html;
     }
     
