@@ -121,24 +121,44 @@ require('includes/page-properties.php');
             <?php include('includes/bread-crumb.php'); ?>
 			
             <div class="page_content_wrap">
-                <div class="content_wrap">
-                    <div class="content">
-                        <article class="itemscope post_item post_item_single_team post_featured_right post_format_standard post-680 team type-team status-publish has-post-thumbnail hentry team_group-languages" itemscope itemtype="http://schema.org/Article">			
-                            <section class="">
-                                <?php
-                                $handle = opendir('media/gallery/');
-                                while($file = readdir($handle)){
-                                    if($file !== '.' && $file !== '..'){
-                                        //$filenameArray[] =  array(utf8_encode('<img style="width:40%; height:20%;" src="../media/gallery/'.$file.'">')));
-                                ?>
-                                <div class="" data-image="<?php echo MEDIA_FILES_PATH1.'gallery/'.$file; ?>" data-title="<?php echo MEDIA_FILES_PATH1.'gallery/'.$file; ?>">
-                                    <a class="hover_icon hover_icon_view" href="<?php echo MEDIA_FILES_PATH1.'gallery/'.$file; ?>" title="<?php echo MEDIA_FILES_PATH1.'gallery/'.$file; ?>"><img class="wp-post-image" width="550" height="222" alt="<?php echo MEDIA_FILES_PATH1.'gallery/'.$file; ?>" src="<?php echo MEDIA_FILES_PATH1.'gallery/'.$file; ?>" itemprop="image"></a>
+
+				
+                <div class="content">
+                    <article class="itemscope post_item post_item_single post_featured_default post_format_standard post-809 page type-page status-publish hentry" itemscope itemtype="http://schema.org/Article">
+                        <section class="post_content" itemprop="articleBody">
+                            <div class="sc_reviews alignright"><!-- #TRX_REVIEWS_PLACEHOLDER# --></div>
+                            <div class="vc_row wpb_row vc_row-fluid">
+                                <div class="wpb_column vc_column_container vc_col-sm-12">
+                                    <div class="wpb_wrapper">
+                                        <div class="sc_section" data-animation="animated fadeInUp normal">
+                                            <div class="sc_content content_wrap" style="margin-top:3em !important;margin-bottom:3em !important;">
+                                                <div class="sc_team sc_team_style_2" data-animation="animated fadeInUp normal">
+                                                    <div class="sc_columns columns_wrap">
+                                                        <?php
+                                                        $handle = opendir('media/gallery/');
+                                                        while($file = readdir($handle)){
+                                                            if($file !== '.' && $file !== '..'){
+                                                                //$filenameArray[] =  array(utf8_encode('<img style="width:40%; height:20%;" src="../media/gallery/'.$file.'">')));
+                                                        ?><div class="column-1_3">
+                                                            <div class="sc_team_item sc_team_item_1 odd">
+                                                                <div class="sc_team_item_avatar">
+                                                                    <a class="hover_icon hover_icon_view" href="<?php echo MEDIA_FILES_PATH1.'gallery/'.$file; ?>" title="<?php echo $file; ?>"><img class="wp-post-image" width="550" height="222" alt="<?php echo $file; ?>" src="<?php echo MEDIA_FILES_PATH1.'gallery/'.$file; ?>" itemprop="image"></a>
+                                                                </div>
+                                                            </div>
+                                                        </div><?php }} ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sc_line sc_line_style_solid" style="margin-top:0px;margin-bottom:0px;border-top-style:solid;"></div>
+                                    </div>
                                 </div>
-                                <?php }} ?>
-                            </section>
-                        </article>
-                    </div>
-                </div>
+                            </div>
+                        </section> <!-- /section class="post_content" itemprop="articleBody" -->
+                    </article> <!-- /article class="itemscope post_item post_item_single post_featured_default post_format_standard post-809 page type-page status-publish hentry" itemscope itemtype="http://schema.org/Article" -->	
+                    <section class="related_wrap related_wrap_empty"></section>
+
+                </div> <!-- /div class="content" -->			
             </div>		<!-- /.page_content_wrap -->
 			
             <?php include('includes/footer.php'); ?>
