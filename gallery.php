@@ -112,7 +112,7 @@ require('includes/page-properties.php');
     <link href="<?php echo SITE_URL; ?>sweet-alert/twitter.css" rel="stylesheet" type="text/css"/>
 </head>
 
-<body class="single single-team postid-680 themerex_body body_style_wide body_filled theme_skin_education article_style_stretch layout_single-team template_single-team top_panel_style_light top_panel_opacity_solid top_panel_show top_panel_above menu_right user_menu_show sidebar_hide wpb-js-composer js-comp-ver-4.7.2 vc_responsive">
+<body class="page page-id-52 page-template-default themerex_body body_style_fullscreen body_filled theme_skin_education article_style_stretch layout_single-standard template_single-standard top_panel_style_light top_panel_opacity_solid top_panel_show top_panel_above menu_right user_menu_show sidebar_hide wpb-js-composer js-comp-ver-4.7.2 vc_responsive">
     <div class="body_wrap">
         <div class="page_wrap">
             <div class="top_panel_fixed_wrap"></div>
