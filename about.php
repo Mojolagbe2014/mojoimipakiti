@@ -1,7 +1,7 @@
 <?php 
 session_start();
 define("CONST_FILE_PATH", "includes/constants.php");
-define("CURRENT_PAGE", "members");
+define("CURRENT_PAGE", "about");
 require('classes/WebPage.php'); //Set up page as a web page
 $thisPage = new WebPage(); //Create new instance of webPage class
 
@@ -10,7 +10,6 @@ $thisPage->dbObj = $dbObj;
 $courseObj = new Course($dbObj);
 $categoryObj = new CourseCategory($dbObj);
 $quoteObj = new Quote($dbObj);
-$memberObj = new Tutor($dbObj);
 
 include('includes/other-settings.php');
 require('includes/page-properties.php');
@@ -122,48 +121,21 @@ require('includes/page-properties.php');
                             <div class="vc_row wpb_row vc_row-fluid">
                                 <div class="wpb_column vc_column_container vc_col-sm-12">
                                     <div class="wpb_wrapper">
-                                        <div class="sc_section" data-animation="animated fadeInUp normal">
-                                            <div class="sc_content content_wrap" style="margin-top:3em !important;margin-bottom:3em !important;">
-                                                <div class="sc_team sc_team_style_2" data-animation="animated fadeInUp normal">
-                                                    <div class="sc_columns columns_wrap">
-                                                        <?php 
-                                                        foreach ($memberObj->fetchRaw("*", " visible = 1 ", " RAND() ") as $member) {
-                                                            $memberData = array('id' => 'id', 'name' => 'name', 'picture' => 'picture', 'bio' => 'bio', 'website' => 'website', 'qualification' => 'qualification', 'field' => 'field', 'email' => 'email');
-                                                            foreach ($memberData as $key => $value){
-                                                                switch ($key) { 
-                                                                    case 'picture': $memberObj->$key = MEDIA_FILES_PATH1.'tutor/'.$member[$value];break;
-                                                                    default     :   $memberObj->$key = $member[$value]; break; 
-                                                                }
-                                                            }
-                                                        ?>
-                                                        <div class="column-1_3">
-                                                            <div class="sc_team_item sc_team_item_1 odd first">
-                                                                <div class="sc_team_item_avatar">
-                                                                    <img class="wp-post-image" width="350" height="290" alt="<?php echo $memberObj->name; ?>" src="<?php echo $memberObj->picture; ?>">
-                                                                    <div class="sc_team_item_hover">
-                                                                        <div class="sc_team_item_socials">
-                                                                            <div class="sc_socials sc_socials_size_small">
-                                                                                <div class="sc_socials_item">
-                                                                                    <a href="mailto:<?php echo $memberObj->email; ?>" class="hover_icon hover_icon_link" style="background-image: url(<?php echo SITE_URL;  ?>themes/education/fw/images/socials/gplus.png);">
-                                                                                        <span class="sc_socials_hover" style="background-image: url(<?php echo SITE_URL;  ?>themes/education/fw/images/socials/gplus.png);"></span>
-                                                                                    </a>
-                                                                                </div>
-                                                                            </div>
+                                        <div class="sc_section accent_top bg_tint_light" data-animation="animated fadeInUp normal" style="background-color:#f4f7f9;">
+                                            <div class="sc_section_overlay" style="">
+                                                <div class="sc_section_content">
+                                                    <div class="sc_content content_wrap" style="margin-top:2.5em !important;margin-bottom:2.5em !important;">
+                                                        <div class="columns_wrap sc_columns columns_nofluid sc_columns_count_2">
+                                                            <div class="column-2_2 sc_column_item sc_column_item_1 odd first">
+                                                                <div class="sc_section" style="font-size:1.25em; line-height: 1.3em;">
+                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                        <div class="wpb_wrapper">
+                                                                           <?php echo Setting::getValue($dbObj, 'ABOUT_US') ? Setting::getValue($dbObj, 'ABOUT_US') : ''; ?>
                                                                         </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="sc_team_item_info">
-                                                                    <h6 class="sc_team_item_title">
-                                                                        <a href="<?php echo SITE_URL.'member/'.$memberObj->id.'/'.StringManipulator::slugify($memberObj->name).'/'; ?>"><?php echo $memberObj->name; ?></a>
-                                                                    </h6>
-                                                                    <div class="sc_team_item_position"><?php echo $memberObj->qualification; ?></div>       
-                                                                    <div class="sc_team_item_position">
-                                                                        <a href="<?php echo SITE_URL.'member/'.$memberObj->id.'/'.StringManipulator::slugify($memberObj->name).'/'; ?>" data-animation="animated fadeInUp normal" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_menu sc_button_size_small aligncenter animated fadeInUp normal" style="margin-top:10px;margin-bottom:4px;">VIEW INFO</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <?php } ?>
                                                     </div>
                                                 </div>
                                             </div>
