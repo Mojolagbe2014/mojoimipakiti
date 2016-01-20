@@ -12,6 +12,7 @@ $categoryObj = new CourseCategory($dbObj);
 $clientObj = new Sponsor($dbObj);
 $quoteObj = new Quote($dbObj);
 $calendar = new Calendar($dbObj);
+$videoObj = new Video($dbObj);
 
 include('includes/other-settings.php');
 require('includes/page-properties.php');
@@ -273,43 +274,31 @@ require('includes/page-properties.php');
                                         
                                         <div class="sc_content content_wrap" style="margin-top:2.5em !important;margin-bottom:2.5em !important;">
                                             <?php 
-                                            foreach ($courseObj->fetchRaw("*", " status = 1 ", " RAND() LIMIT 1") as $course) {
-                                                $courseData = array('id' => 'id', 'name' => 'name', 'code' => 'code', 'image' => 'image', 'media' => 'media', 'amount' => 'amount', 'shortName' => 'short_name', 'category' => 'category', 'startDate' => 'start_date', 'endDate' => 'end_date', 'description' => 'description', 'status' => 'status', 'currency' => 'currency');
-                                                foreach ($courseData as $key => $value){
+                                            foreach ($videoObj->fetchRaw("*", " 1=1 ", " RAND() LIMIT 1") as $video) {
+                                                $videoData = array('id' => 'id', 'name' => 'name', 'video' => 'video', 'description' => 'description');
+                                                foreach ($videoData as $key => $value){
                                                     switch ($key) { 
-                                                        case 'image': $courseObj->$key = MEDIA_FILES_PATH1.'course-image/'.$course[$value];break;
-                                                        case 'media': $courseObj->$key = $course[$value];break;
-                                                        case 'startDate': $dateParam = explode('-', $course[$value]);
-                                                                          $dateObj   = DateTime::createFromFormat('!m', $dateParam[1]);
-                                                                          $courseObj->$key = $dateParam[2].' '.$dateObj->format('F').', '.$dateParam[0].'.';
-                                                                          break;
-                                                        case 'endDate': $dateParam = explode('-', $course[$value]);
-                                                                          $dateObj   = DateTime::createFromFormat('!m', $dateParam[1]);
-                                                                          $courseObj->$key = $dateParam[2].' '.$dateObj->format('F').', '.$dateParam[0].'.';
-                                                                          break;
-                                                        default     :   $courseObj->$key = $course[$value]; break; 
+                                                        case 'video': $videoObj->$key = MEDIA_FILES_PATH1.'video/'.$video[$value];break;
+                                                        default     :   $videoObj->$key = $video[$value]; break; 
                                                     }
                                                 }
                                             ?>
                                             <div class="columns_wrap sc_columns columns_nofluid sc_columns_count_2">
                                                 <div class="column-1_2 sc_column_item sc_column_item_1 odd first">
                                                     <h3 class="sc_title sc_title_iconed sc_align_left" style="text-align:left;">
-                                                        <span class="sc_title_icon sc_title_icon_top  sc_title_icon_medium icon-doc"></span><?php echo $courseObj->name; ?>
+                                                        <span class="sc_title_icon sc_title_icon_top  sc_title_icon_medium icon-video-2"></span><?php echo $videoObj->name; ?>
                                                     </h3>
                                                     <div class="wpb_text_column wpb_content_element ">
-                                                        <div class="wpb_wrapper">
-                                                            <p><?php echo StringManipulator::trimStringToFullWord(160, strip_tags($courseObj->description)); ?>..</p>
-
+                                                        <div class="wpb_wrapper" style="margin-top:10px;">
+                                                            <p><?php echo StringManipulator::trimStringToFullWord(160, strip_tags($videoObj->description)); ?>..</p>
                                                         </div>
                                                     </div>
-                                                    <a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_mini  sc_button_iconed inherit" style="margin-top:1em;margin-bottom:4px;margin-left:4px;">BROWSE COURSE</a>
+                                                    <a href="<?php echo SITE_URL.'videos/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_mini  sc_button_iconed inherit" style="margin-top:1em;margin-bottom:4px;margin-left:4px;">BROWSE ALL</a>
                                                 </div><div class="column-1_2 sc_column_item sc_column_item_2 even">
                                                     <div class="sc_video_player sc_video_bordered" style="padding-top:4%;padding-right:3%;padding-bottom:23%;padding-left:13%;background-image: url(<?php echo SITE_URL; ?>uploads/2015/01/post_video_border.png);">
                                                         <div class="sc_video_frame" data-width="100%" data-height="647" style="width:100%;">
-                                                            <?php if($courseObj->media!='' && pathinfo(basename(MEDIA_FILES_PATH1.'course/'.$courseObj->media),PATHINFO_EXTENSION)=='mp4'){ ?> <video width="370" height="270" poster="<?php echo $courseObj->image; ?>" preload="metadata" controls><source src="<?php echo MEDIA_FILES_PATH1.'course/'.$courseObj->media; ?>" type="video/mp4"></video> <?php } ?>
-                                                            <img alt="" src="<?php echo $courseObj->image; ?>">
+                                                            <video width="370" height="270" preload="metadata" controls><source src="<?php echo $videoObj->video; ?>" type="video/mp4"></video>
                                                         </div>
-                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -331,16 +320,16 @@ require('includes/page-properties.php');
                                                         <?php 
                                                         $num = 1; $numOrd = ''; $numClass = ''; $addStyle = '';
                                                         foreach ($categoryObj->fetchRaw("*", " 1=1 ", " RAND() LIMIT 3") as $category) {
-                                                        $categoryData = array('id' => 'id', 'name' => 'name', 'image' => 'image', 'description' => 'description');
-                                                        foreach ($categoryData as $key => $value){
-                                                            switch ($key) { 
-                                                                case 'image': $categoryObj->$key = MEDIA_FILES_PATH1.'category/'.$category[$value];break;
-                                                                default     :   $categoryObj->$key = $category[$value]; break; 
+                                                            $categoryData = array('id' => 'id', 'name' => 'name', 'image' => 'image', 'description' => 'description');
+                                                            foreach ($categoryData as $key => $value){
+                                                                switch ($key) { 
+                                                                    case 'image': $categoryObj->$key = MEDIA_FILES_PATH1.'category/'.$category[$value];break;
+                                                                    default     :   $categoryObj->$key = $category[$value]; break; 
+                                                                }
                                                             }
-                                                        }
-                                                        if($num==1){$numOrd = 'first';}else{$numOrd = '';}
-                                                        if($num%2>0){$numClass = 'odd';}else{$numClass = 'even';}
-                                                        if($num==2){ $addStyle = 'text-align:center;';}else{$addStyle = '';}
+                                                            if($num==1){$numOrd = 'first';}else{$numOrd = '';}
+                                                            if($num%2>0){$numClass = 'odd';}else{$numClass = 'even';}
+                                                            if($num==2){ $addStyle = 'text-align:center;';}else{$addStyle = '';}
                                                         ?><div class="column-1_3 sc_column_item sc_column_item_<?php echo $num.' '.$numClass.' '. $numOrd; ?>" style="width: 32.3333%;<?php echo $addStyle; ?>">
                                                             <div class="sc_price_block sc_price_block_style_<?php echo $num; ?>" style="width:100%;">
                                                                 <div class="sc_price_block_title"><?php echo $categoryObj->name; ?></div>
