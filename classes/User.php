@@ -110,9 +110,9 @@ class User implements ContentManipulator{
         $result =array(); 
         if(count($data)>0){
             foreach($data as $r){ 
-                $actionButtons = '<div style="white-space:nowrap"> <button data-id="'.$r['id'].'" data-email="'.$r['email'].'" class="btn btn-danger btn-sm delete-user" title="Delete"><i class="btn-icon-only icon-trash"> </i></button> </div>';//'<button data-email="'.$r['email'].'" data-id="'.$r['id'].'" class="btn btn-success btn-sm message-user"  title="Send Message"><i class="btn-icon-only icon-envelope"> </i></button> ';
-                $multiActionBox = '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'" />';
-                $result[] = array(utf8_encode($multiActionBox), utf8_encode($actionButtons), $r['id'], utf8_encode($r['name']), utf8_encode($r['email']),  utf8_encode($r['time_entered']));
+                $actionButtons = '<div style="white-space:nowrap"> <button data-id="'.$r['id'].'" data-email="'.$r['email'].'" data-name="'.$r['name'].'" class="btn btn-danger btn-sm delete-user" title="Delete"><i class="btn-icon-only icon-trash"> </i></button>  </div>';//'<button data-email="'.$r['email'].'" data-id="'.$r['id'].'" data-name="'.$r['name'].'" class="btn btn-primary btn-sm message-user"  title="Send Message"><i class="btn-icon-only icon-envelope"> </i></button> ';
+                $multiActionBox = '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'"  data-name="'.$r['name'].'" data-email="'.$r['email'].'" />';
+                $result[] = array(utf8_encode($multiActionBox), $r['id'], utf8_encode($r['name']), utf8_encode($r['email']), utf8_encode($actionButtons));
             }
             $json = array("status" => 1,"draw" => intval($draw), "recordsTotal"    => intval($totalData), "recordsFiltered" => intval($totalFiltered), "data" => $result);
         } 

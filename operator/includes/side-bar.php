@@ -28,6 +28,11 @@
                             <li> <a href="manage-brochures">Manage Brochures</a> </li>
                         </ul>
                     </li>
+                    <li> <a href="#"><i class="fa fa-user fa-2x"></i> Subscribers<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li> <a href="manage-subscribers">Manage Subscribers</a> </li>
+                        </ul>
+                    </li>
                     <li> <a href="#"><i class="fa fa-users fa-2x"></i> Team Members<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="add-tutor">Add Member</a> </li>

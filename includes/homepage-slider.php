@@ -58,7 +58,7 @@
     data-end="8450" 
     data-endspeed="300" 
 
-    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'courses/'; ?>" class="slide_button_white">Start Learning Now</a> 
+    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'courses/'; ?>" class="slide_button_white">Browse Courses Now</a> 
     </div>
     </li>
     <!-- SLIDE  -->
@@ -81,8 +81,8 @@
     data-end="8050" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;">Education Center<br> 
-    and distance education 
+    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;">Professional Courses<br> 
+    by professional educators 
     </div>
 
     <!-- LAYER NR. 2 -->
@@ -99,7 +99,7 @@
     data-end="8300" 
     data-endspeed="300" 
 
-    style="z-index: 6; max-width: 559px; max-height: 49px; white-space: normal;"><span style="font-weight:400;">Online Education leads the world in distance education with high quality online degrees and online courses.</span> 
+    style="z-index: 6; max-width: 559px; max-height: 49px; white-space: normal;"><span style="font-weight:400;">Professional educators lead the world with high quality of training techniques.</span> 
     </div>
 
     <!-- LAYER NR. 3 -->
@@ -117,7 +117,7 @@
     data-end="8600" 
     data-endspeed="300" 
 
-    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'courses/'; ?>" class="slide_button_white">Start Learning Now</a> 
+    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'members/'; ?>" class="slide_button_white">View Trainers</a> 
     </div>
     </li>
     <!-- SLIDE  -->
@@ -178,7 +178,7 @@
     data-end="8600" 
     data-endspeed="300" 
 
-    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'courses/'; ?>" class="slide_button_white">Start Learning Now</a> 
+    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'contact/'; ?>" class="slide_button_white">Contact us today</a> 
     </div>
     </li>
     </ul>
