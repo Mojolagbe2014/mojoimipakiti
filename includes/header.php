@@ -28,7 +28,7 @@
                         <div class="search_wrap search_style_regular search_ajax" title="Open/close search form">
                             <a href="#" class="search_icon icon-search-2"></a>
                             <div class="search_form_wrap">
-                                <form role="search" method="get" class="search_form" action="">
+                                <form role="search" method="get" class="search_form" action="<?php echo SITE_URL.'search'; ?>">
                                     <button type="submit" class="search_submit icon-zoom-1" title="Start search"></button>
                                     <input type="text" class="search_field" placeholder="" value="" name="s" title="" />
                                 </form>
@@ -41,7 +41,7 @@
 
                         <nav role="navigation" class="menu_main_nav_area">
                             <ul id="menu_main" class="menu_main_nav">
-                                <li id="menu-item-860" class="menu-item menu-item-type-post_type menu-item-object-page <?php echo $thisPage->active($_SERVER['SCRIPT_NAME'], 'index', 'current-menu-item  current_page_item'); ?> menu-item-has-children menu-item-860"><a href="<?php echo SITE_URL; ?>">Homepage</a></li>
+                                <li id="menu-item-860" class="menu-item menu-item-type-post_type menu-item-object-page <?php echo $thisPage->active($_SERVER['SCRIPT_NAME'], 'index', 'current-menu-item  current_page_item'); ?> menu-item-has-children menu-item-860"><a href="<?php echo SITE_URL; ?>">Home</a></li>
                                 <li id="menu-item-641" class="menu-item menu-item-type-post_type menu-item-object-page <?php echo $thisPage->active($_SERVER['REQUEST_URI'], 'course', 'current-menu-item  current_page_item'); ?> menu-item-has-children menu-item-641"><a href="<?php echo SITE_URL.'courses/'; ?>">Courses</a>
                                     <ul class="sub-menu">
                                         <li id="menu-item-1397" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1397"><a href="<?php echo SITE_URL.'courses/'; ?>">Courses</a>
@@ -65,10 +65,16 @@
                                 </li>
                                 <li id="menu-item-829" class="menu-item menu-item-type-post_type menu-item-object-page <?php echo $thisPage->active($_SERVER['REQUEST_URI'], 'member', 'current-menu-item  current_page_item'); ?> menu-item-has-children menu-item-829"><a href="<?php echo SITE_URL.'members/'; ?>">Members</a></li>
                                 <li id="menu-item-179" class="menu-item menu-item-type-custom menu-item-object-custom <?php echo $thisPage->active($_SERVER['REQUEST_URI'], 'about', 'current-menu-item  current_page_item'); ?> menu-item-has-children menu-item-179"><a href="<?php echo SITE_URL.'about/'; ?>">About</a></li>
+                                <?php if(!strpos($_SERVER['SCRIPT_NAME'], 'index.php')){ ?>
                                 <li id="menu-item-755" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat <?php echo $thisPage->active($_SERVER['REQUEST_URI'], 'gallery', 'current-menu-item  current_page_item'); ?> menu-item-755"><a href="<?php echo SITE_URL.'gallery/'; ?>">Gallery</a></li>
                                 <li id="menu-item-755" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat <?php echo $thisPage->active($_SERVER['REQUEST_URI'], 'contact', 'current-menu-item  current_page_item'); ?> menu-item-755"><a href="<?php echo SITE_URL.'contact/'; ?>">Contact</a></li>
+                                <?php } ?>
                                 <li id="menu-item-13" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-13 <?php echo $thisPage->active($_SERVER['REQUEST_URI'], 'faq', 'current-menu-item  current_page_item').$thisPage->active($_SERVER['REQUEST_URI'], 'client', 'current-menu-item  current_page_item').$thisPage->active($_SERVER['REQUEST_URI'], 'client', 'current-menu-item  current_page_item').$thisPage->active($_SERVER['REQUEST_URI'], 'video', 'current-menu-item  current_page_item'); ?>"><a href="javascript:;">More</a>
                                     <ul class="sub-menu">
+                                        <?php if(strpos($_SERVER['SCRIPT_NAME'], 'index.php')!=false){ ?>
+                                        <li id="menu-item-755" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat <?php echo $thisPage->active($_SERVER['REQUEST_URI'], 'gallery', 'current-menu-item  current_page_item'); ?> menu-item-755"><a href="<?php echo SITE_URL.'gallery/'; ?>">Gallery</a></li>
+                                        <li id="menu-item-755" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat <?php echo $thisPage->active($_SERVER['REQUEST_URI'], 'contact', 'current-menu-item  current_page_item'); ?> menu-item-755"><a href="<?php echo SITE_URL.'contact/'; ?>">Contact</a></li>
+                                        <?php } ?>
                                         <li id="menu-item-167" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-167"><a href="<?php echo SITE_URL.'clients/'; ?>">Clients/Partners</a></li>
                                         <li id="menu-item-167" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-167"><a href="<?php echo SITE_URL.'faqs/'; ?>">FAQs</a></li>
                                         <li id="menu-item-167" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-167"><a href="<?php echo SITE_URL.'events/'; ?>">Upcoming Events</a></li>
