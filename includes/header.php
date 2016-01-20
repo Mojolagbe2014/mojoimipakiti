@@ -1,3 +1,18 @@
+                    <div>
+                    <?php if(isset($_SESSION['msg'])) {  ?>
+                    <script src="<?php echo SITE_URL; ?>sweet-alert/sweetalert.min.js" type="text/javascript"></script>
+                    <script>
+                        swal({
+                            title: "Message Box!",
+                            text: '<?php echo $_SESSION['msg']; ?>',
+                            confirmButtonText: "Okay",
+                            customClass: 'twitter',
+                            html: true,
+                            type: '<?php echo $_SESSION['msgStatus']; ?>'
+                        });
+                    </script>
+                    <?php  unset($_SESSION['msg']); unset($_SESSION['msgStatus']);  } ?>
+                    </div>
 <header class="top_panel_wrap bg_tint_dark" >
                 <div class="menu_user_wrap">
                     <div class="content_wrap clearfix">
@@ -8,7 +23,7 @@
                                     <li><a href="#" class="bookmarks_add icon-star-empty" title="Add the current page into bookmarks">Add bookmark</a></li>
                                 </ul>
                                 </li>
-                                <?php //include('login-section.php'); ?>
+                                <?php include('login-section.php'); ?>
                             </ul>
                         </div>
                         <div class="menu_user_area menu_user_left menu_user_contact_area" <?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? '' : 'style="color:#000"'; ?>>

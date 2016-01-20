@@ -104,6 +104,8 @@ require('includes/page-properties.php');
     <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
     <noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
     <link href="css/php-calendar.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo SITE_URL; ?>sweet-alert/sweetalert.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo SITE_URL; ?>sweet-alert/twitter.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body class="page page-id-1109 page-template-default themerex_body body_style_fullscreen body_filled theme_skin_education article_style_stretch layout_single-standard template_single-standard top_panel_style_dark top_panel_opacity_transparent top_panel_show top_panel_over menu_right user_menu_show sidebar_hide wpb-js-composer js-comp-ver-4.7.2 vc_responsive">

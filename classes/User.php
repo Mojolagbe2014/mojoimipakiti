@@ -5,35 +5,17 @@
  * @author Kaiste
  */
 class User implements ContentManipulator{
-    protected $id;
-    private $auth = 'manual';
-    protected $firstName;
-    protected $lastName;
-    protected $email;
-    protected $city;
-    protected $country;
-    protected $description;
-    protected $picture;
-    protected $website;
-    protected $skypeId;
-    protected $yahooId;
-    protected $phone;
-    protected $address;
-    protected $userName;
-    protected $passWord;
-    protected $dateRegistered;
-    protected $confirmed = 1;
-    protected $mNetHostId = 1;
-    protected $facebookId;
-    protected $twitterId;
-    private $tableName; 
-    protected $dbObj;
-    
-    
+    private $id;
+    private $email;
+    private $name;
+    private $timeEntered;
+    private static $dbObj;
+    public static $tableName = 'user';
+
     //Class constructor
-    public function User($dbObj, $tablePrefix='') {
-        $this->tableName = $tablePrefix.'user';
-        $this->dbObj = $dbObj;        $this->dateRegistered = time();
+    public function User($dbObj=null, $tableName='user') {
+        self::$dbObj = $dbObj;        
+        self::$tableName = $tableName;
     }
     
     //Using Magic__set and __get
@@ -53,19 +35,47 @@ class User implements ContentManipulator{
      * @return JSON JSON encoded string/result
      */
     function add(){
-        $sql = "INSERT INTO $this->tableName (auth, confirmed, mnethostid, username, password, firstname, lastname, email, phone1, address, timecreated) "
-                ."VALUES ('{$this->auth}','{$this->confirmed}','{$this->mNetHostId}','".strtolower($this->userName)."','".password_hash($this->passWord, 1, array('cost' => 10))."','{$this->firstName}','{$this->lastName}','{$this->email}','{$this->phone}','{$this->address}','{$this->dateRegistered}')";
-        
-        if(!$this->emailExists()){
-            $result = $this->dbObj->query($sql);
+        $sql = "INSERT INTO ".self::$tableName." (email, name, time_entered) "
+                ."VALUES ('{$this->email}','{$this->name}','". time()."')";
+        if($this->notEmpty($this->name,$this->email)){
+            $result = self::$dbObj->query($sql);
             if($result !== false){ $json = array("status" => 1, "msg" => "Done, user successfully added!"); }
-            else{ $json = array("status" => 2, "msg" => "Error adding user! ".  mysqli_error($this->dbObj->connection)); }
+            else{ $json = array("status" => 2, "msg" => "Error adding user! ".  mysqli_error(self::$dbObj->connection)); }
         }
-        else{ $json = array("status" => 3, "msg" => "Email already exist in our database. Please change the email or retrieve old account if you are the owner of the email."); }
+        else{ $json = array("status" => 3, "msg" => "Request method not accepted. All fields must be filled."); }
         
-        $this->dbObj->close();//Close Database Connection
+        self::$dbObj->close();//Close Database Connection
         header('Content-type: application/json');
         return json_encode($json);
+    }
+    
+    /**  
+     * Method that adds a user into the database
+     * @return string Sucess|Error
+     */
+    function addRaw(){
+        $sql = "INSERT INTO ".self::$tableName." (email, name, time_entered) "
+                ."VALUES ('{$this->email}','{$this->name}','". time()."')";
+        if($this->notEmpty($this->name,$this->email)){
+            $result = self::$dbObj->query($sql);
+            if($result !== false){ return 'success'; }
+            else{ return 'error';    }
+        }
+        else{return 'error'; }
+    }
+
+    /** 
+     * Method for deleting a user
+     * @return string Sucess|Error
+     */
+    public function deleteRaw(){
+        $sql = "DELETE FROM ".self::$tableName." WHERE id = $this->id ";
+        if($this->notEmpty($this->id)){
+            $result = self::$dbObj->query($sql);
+            if($result !== false){ return 'success'; }
+            else{ return 'error';    }
+        }
+        else{ return 'error'; }
     }
 
     /** 
@@ -73,85 +83,81 @@ class User implements ContentManipulator{
      * @return JSON JSON encoded result
      */
     public function delete(){
-        $sql = "DELETE FROM $this->tableName WHERE id = $this->id ";
+        $sql = "DELETE FROM ".self::$tableName." WHERE id = $this->id ";
         if($this->notEmpty($this->id)){
-            $result = $this->dbObj->query($sql);
+            $result = self::$dbObj->query($sql);
             if($result !== false){ $json = array("status" => 1, "msg" => "Done, user successfully deleted!"); }
-            else{ $json = array("status" => 2, "msg" => "Error deleting user! ".  mysqli_error($this->dbObj->connection));  }
+            else{ $json = array("status" => 2, "msg" => "Error deleting user! ".  mysqli_error(self::$dbObj->connection));  }
         }
         else{ $json = array("status" => 3, "msg" => "Request method not accepted."); }
-        $this->dbObj->close();//Close Database Connection
+        self::$dbObj->close();//Close Database Connection
         header('Content-type: application/json');
         return json_encode($json);
     }
 
-    /** emailExists checks if an email truely exists in the database
-     * @return Boolean True for exists, while false for not
+    
+    /** Method that fetches users from database for JQuery Data Table
+     * @param string $column Column name of the data to be fetched
+     * @param string $condition Additional condition e.g category_id > 9
+     * @param string $sort column name to be used as sort parameter
+     * @return JSON JSON encoded user details
      */
-    public function emailExists(){//password_verify($password, $hash)
-        $sql =  "SELECT * FROM $this->tableName WHERE email = '$this->email' LIMIT 1 ";
-        $storedEmail = '';
-        $results = $this->dbObj->fetchAssoc($sql);
-        foreach ($results as $result) {
-            $storedEmail = $result['email'];
-        }
-        if($this->email == $storedEmail){ return true; }
-        else{ return false;    }
-    } 
+    public function fetchForJQDT($draw, $totalData, $totalFiltered, $customSql="", $column="*", $condition="", $sort="id"){
+        $sql = "SELECT $column FROM ".self::$tableName." ORDER BY $sort";
+        if(!empty($condition)){$sql = "SELECT $column FROM ".self::$tableName." WHERE $condition ORDER BY $sort";}
+        if($customSql !=""){ $sql = $customSql; }
+        $data = self::$dbObj->fetchAssoc($sql);
+        $result =array(); 
+        if(count($data)>0){
+            foreach($data as $r){ 
+                $actionButtons = '<div style="white-space:nowrap"> <button data-id="'.$r['id'].'" data-email="'.$r['email'].'" class="btn btn-danger btn-sm delete-user" title="Delete"><i class="btn-icon-only icon-trash"> </i></button> </div>';//'<button data-email="'.$r['email'].'" data-id="'.$r['id'].'" class="btn btn-success btn-sm message-user"  title="Send Message"><i class="btn-icon-only icon-envelope"> </i></button> ';
+                $multiActionBox = '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'" />';
+                $result[] = array(utf8_encode($multiActionBox), utf8_encode($actionButtons), $r['id'], utf8_encode($r['name']), utf8_encode($r['email']),  utf8_encode($r['time_entered']));
+            }
+            $json = array("status" => 1,"draw" => intval($draw), "recordsTotal"    => intval($totalData), "recordsFiltered" => intval($totalFiltered), "data" => $result);
+        } 
+        else{ $json = array("status" => 2, "msg" => "Necessary parameters not set. Or empty result. ".mysqli_error(self::$dbObj->connection), "draw" => intval($draw),  "recordsTotal"    => intval($totalData), "recordsFiltered" => intval($totalFiltered), "data" => false); }
+        self::$dbObj->close();
+        header('Content-type: application/json');
+        return json_encode($json);
+    }
     
     /** Method that fetches users from database
      * @param string $column Column name of the data to be fetched
      * @param string $condition Additional condition e.g category_id > 9
      * @param string $sort column name to be used as sort parameter
-     * @param Object $filesObj Instance of Files class
      * @return JSON JSON encoded user details
      */
-    public function fetch($column="*", $condition="", $sort="id", $filesObj=null){
-        $sql = "SELECT $column FROM $this->tableName ORDER BY $sort";
-        if(!empty($condition)){$sql = "SELECT $column FROM $this->tableName WHERE $condition ORDER BY $sort";}
-        $data = $this->dbObj->fetchAssoc($sql);
-        $result =array(); $userPicture = '';
+    public function fetch($column="*", $condition="", $sort="id"){
+        $sql = "SELECT $column FROM ".self::$tableName." ORDER BY $sort";
+        if(!empty($condition)){$sql = "SELECT $column FROM ".self::$tableName." WHERE $condition ORDER BY $sort";}
+        $data = self::$dbObj->fetchAssoc($sql);
+        $result =array(); 
         if(count($data)>0){
             foreach($data as $r){
-                $userPicture = $r['picture'];
-                if($filesObj !=null){ $userPicture = User::getPicture($filesObj, $r['picture'], $r['id']); }
-                $result[] = array("id" => $r['id'], "firstName" =>  utf8_encode($r['firstname']), "lastName" =>  utf8_encode($r['lastname']), 'email' =>  utf8_encode($r['email']), 'description' =>  utf8_encode($r['description']), 'picture' =>  utf8_encode($userPicture), 'phone' =>  utf8_encode($r['phone1']), 'address' =>  utf8_encode($r['address']), 'userName' =>  utf8_encode($r['username']), 'passWord' =>  $r['password'], 'dateRegistered' =>  utf8_encode($r['timecreated']), 'status' => $r['confirmed']);
+                $result[] = array("id" => $r['id'], "email" =>  utf8_encode($r['email']), 'name' =>  utf8_encode($r['name']), 'timeEntered' =>  utf8_encode($r['time_entered']));
             }
             $json = array("status" => 1, "info" => $result);
         } 
-        else{ $json = array("status" => 2, "msg" => "Empty result. ".mysqli_error($this->dbObj->connection)); }
-        $this->dbObj->close();
+        else{ $json = array("status" => 2, "msg" => "Necessary parameters not set. Or empty result. ".mysqli_error(self::$dbObj->connection)); }
+        self::$dbObj->close();
         header('Content-type: application/json');
         return json_encode($json);
     }
-    
-    /** getPicture() fetches a user's picture
-     * @param Object $filesObj Instance of Files Class
-     * @param int $pictureId Picture id located at picture column of user table
-     * @param int $userId User id
-     * @return string Link to user's picture
-     */
-    public static function getPicture($filesObj, $pictureId, $userId){
-        $userPicture = '';
-        foreach ($filesObj->fetchRaw("*", " id = $pictureId ", "id LIMIT 1 ") as $picture) {
-            $userPicture = MOODLE_URL.'pluginfile.php/'.$picture['contextid'].'/user/icon/'.$picture['filearea'].'/clean/'.$picture['filename'].'?rev='.$userId;  
-        } 
-        return $userPicture;
-    }
-    
-    /** Method that fetches users from database
+
+    /** Method that fetches user from database
      * @param string $column Column name of the data to be fetched
      * @param string $condition Additional condition e.g category_id > 9
      * @param string $sort column name to be used as sort parameter
      * @return Array User list
      */
     public function fetchRaw($column="*", $condition="", $sort="id"){
-        $sql = "SELECT $column FROM $this->tableName ORDER BY $sort";
-        if(!empty($condition)){$sql = "SELECT $column FROM $this->tableName WHERE $condition ORDER BY $sort";}
-        $result = $this->dbObj->fetchAssoc($sql);
+        $sql = "SELECT $column FROM ".self::$tableName." ORDER BY $sort";
+        if(!empty($condition)){$sql = "SELECT $column FROM ".self::$tableName." WHERE $condition ORDER BY $sort";}
+        $result = self::$dbObj->fetchAssoc($sql);
         return $result;
     }
-
+    
     /** Empty string checker  
      * @return Booloean True|False
      */
@@ -166,14 +172,15 @@ class User implements ContentManipulator{
     /** Method that update single field detail of a user
      * @param string $field Column to be updated 
      * @param string $value New value of $field (Column to be updated)
-     * @param int $id Id of the post to be updated
+     * @param int $id Id or email of the user to be updated
      * @return JSON JSON encoded success or failure message
      */
     public static function updateSingle($dbObj, $field, $value, $id){
-        $sql = "UPDATE $this->tableName SET $field = '{$value}' WHERE id = $id ";
+        $det = intval($id) ? "id" : "email";
+        $sql = "UPDATE ".self::$tableName." SET $field = '{$value}' WHERE $det = '$id' ";
         if(!empty($id)){
             $result = $dbObj->query($sql);
-            if($result !== false){ $json = array("status" => 1, "msg" => "Done, user successfully update!"); }
+            if($result !== false){ $json = array("status" => 1, "msg" => "Done, user successfully updated!"); }
             else{ $json = array("status" => 2, "msg" => "Error updating user! ".  mysqli_error($dbObj->connection));   }
         }
         else{ $json = array("status" => 3, "msg" => "Request method not accepted."); }
@@ -181,151 +188,79 @@ class User implements ContentManipulator{
         header('Content-type: application/json');
         return json_encode($json);
     }
+    
+    /** Method that update single field detail of a user
+     * @param string $field Column to be updated 
+     * @param string $value New value of $field (Column to be updated)
+     * @param int $id Id or email of the user to be updated
+     * @return string success|error
+     */
+    public static function updateSingleRaw($dbObj, $field, $value, $id){
+        $det = intval($id) ? "id" : "email";
+        $sql = "UPDATE ".self::$tableName." SET $field = '{$value}' WHERE $det = '$id' ";
+        if(!empty($id)){
+            $result = $dbObj->query($sql);
+            if($result !== false){ return 'success'; }
+            else{ return 'error';    }
+        }
+        else{return 'error'; }
+    }
 
     /** Method that update details of a user
      * @return JSON JSON encoded success or failure message
      */
     public function update() {
-        $sql = "UPDATE $this->tableName SET firstname = '{$this->firstName}', lastname = '{$this->lastName}', phone1 = '{$this->phone}', address = '{$this->address}' WHERE id = $this->id ";
+        $sql = "UPDATE ".self::$tableName." SET name = '{$this->name}', email = '{$this->email}' WHERE id = $this->id ";
         if(!empty($this->id)){
-            $result = $this->dbObj->query($sql);
+            $result = self::$dbObj->query($sql);
             if($result !== false){ $json = array("status" => 1, "msg" => "Done, user successfully update!"); }
-            else{ $json = array("status" => 2, "msg" => "Error updating user! ".  mysqli_error($this->dbObj->connection));   }
+            else{ $json = array("status" => 2, "msg" => "Error updating user! ".  mysqli_error(self::$dbObj->connection));   }
         }
         else{ $json = array("status" => 3, "msg" => "Request method not accepted."); }
-        $this->dbObj->close();
+        self::$dbObj->close();
         header('Content-type: application/json');
         return json_encode($json); 
     }
+    
+    /** Method that update details of a user
+     * @return string Sucess|Error
+     */
+    public function updateRaw() {
+        $sql = "UPDATE ".self::$tableName." SET name = '{$this->name}', email = '{$this->email}' WHERE email = '{$this->id}' ";
+        if(!empty($this->email)){
+            $result = self::$dbObj->query($sql);
+            if($result !== false){ return 'success'; }
+            else{ return 'error';    }
+        }
+        else{return 'error'; }
+    }
 
-    /** Change Password
-     * @param string $newPassword New password
-     * @return JSON JSON Object success or failure
-     */
-    public function changePassword($newPassword){
-        $sql = "UPDATE $this->tableName SET password = '".password_hash($newPassword, 1, array('cost' => 10))."' WHERE id = $this->id ";
-        $pwdExists = $this->pwdExists();//Check if old password is corect
-        if($pwdExists==TRUE){
-            $result = $this->dbObj->query($sql);
-            if($result !== false){ $json = array("status" => 1, "msg" => "Done, user password successfully updated!"); }
-            else{ $json = array("status" => 2, "msg" => "Error updating user password! ".  mysqli_error($this->dbObj->connection));   }
-        }
-        else{ $json = array("status" => 3, "msg" => "Old password you typed is incorrect. Please retype old password."); }
-        $this->dbObj->close();
-        header('Content-type: application/json');
-        return json_encode($json);
-    }
     
-     /** Reset Password
-     * @return JSON JSON Object success or failure
-     */
-    public function resetPassword(){
-        $sql = "UPDATE $this->tableName SET password = '".password_hash($this->passWord, 1, array('cost' => 10))."' WHERE email = '$this->email' ";
-        if($this->notEmpty($this->passWord, $this->email)){
-            $result = $this->dbObj->query($sql);
-            if($result != false){ $json = array("status" => 1, "msg" => "Done, user password successfully reset!"); }
-            else{ $json = array("status" => 2, "msg" => "Error reseting user password! ".  mysqli_error($this->dbObj->connection));   }
-        }
-        else{ $json = array("status" => 3, "msg" => "Supply your email."); }
-        $this->dbObj->close();
-        header('Content-type: application/json');
-        return json_encode($json);
-    }
-    
-    /** pwdExists checks if a password truely exists in the database
+    /** emailExists checks if an email truely exists in the database
      * @return Boolean True for exists, while false for not
      */
-    public function pwdExists(){//password_verify($password, $hash)
-        $sql =  "SELECT * FROM $this->tableName WHERE id = $this->id LIMIT 1 ";
-        $hashedPassword = '';
-        $results = $this->dbObj->fetchAssoc($sql);
+    public function emailExists(){//password_verify($password, $hash)
+        $sql =  "SELECT * FROM ".self::$tableName." WHERE email = '$this->email' LIMIT 1 ";
+        $storedEmail = '';
+        $results = self::$dbObj->fetchAssoc($sql);
         foreach ($results as $result) {
-            $hashedPassword = $result['password'];
+            $storedEmail = $result['email'];
         }
-        if(password_verify($this->passWord, $hashedPassword)){ return true; }
+        if($this->email == $storedEmail){ return true; }
         else{ return false;    }
     } 
     
-    /**
-     * Method that returns count/total number of a particular user
-     * @param Object $dbObj Datatbase connectivity object
-     * @param string $dbPrefix Database table prefix
-     * @return int Number of users
-     */
-    public static function getRawCount($dbObj, $dbPrefix){
-        $tableName = $dbPrefix.'user';
-        $sql = "SELECT * FROM $tableName ";
-        $count = "";
-        $result = $dbObj->query($sql);
-        $totalData = mysqli_num_rows($result);
-        if($result !== false){ $count = $totalData; }
-        return $count;
-    }
-    
-    /** getSingle() fetches the column using $id
+    /** getSingle() fetches a single column of an user using $email or $id
      * @param object $dbObj Database connectivity and manipulation object
      * @param string $column Table's required column in the datatbase
-     * @param int $id User id of the User
-     * @return string Column value
+     * @param string $email User email or ID of the user whose name is to be fetched
+     * @return string Name of the user
      */
-    public static function getSingle($dbObj, $dbPrefix, $column, $id){
-        $tableName = $dbPrefix.'user';
-        $thisUserReqVal = '';
-        $thisUserReqVals = $dbObj->fetchNum("SELECT $column FROM $tableName WHERE id = '{$id}' ");
-        foreach ($thisUserReqVals as $thisUserReqVals) { $thisUserReqVal = $thisUserReqVals[0]; }
-        return $thisUserReqVal;
-    }
-    
-    /**  
-     * Method that enrols for a course
-     * @param Object $dbMoObj Database connectivity and manipulation object
-     * @param string $dbPrefix Database prefix
-     * @param int $user User Id
-     * @param datetime $timeStart Start time
-     */
-    public static function enrol($dbMoObj, $dbPrefix, $user, $timeStart, $modifierId, $timeCreated, $timeModified, $course){
-        $tableName = $dbPrefix.'user_enrolments'; $enrolTable = $dbPrefix.'enrol';
-        
-        $enrolResult = $dbMoObj->fetchAssoc("SELECT * FROM $enrolTable WHERE courseid = $course AND enrol='manual' LIMIT 1");
-        foreach ($enrolResult as $enrolResult){
-            $sql = "INSERT INTO $tableName (enrolid, userid, timestart, modifierid, timecreated, timemodified) "
-                ."VALUES ('{$enrolResult['id']}','{$user}','{$timeStart}','".$modifierId."','".$timeCreated."','{$timeModified}')";
-            if(count($dbMoObj->fetchAssoc("SELECT * FROM $tableName WHERE userid = $user AND enrolid = '{$enrolResult['id']}' ")) < 1){
-                $result = $dbMoObj->query($sql);
-            }
-        }
-    }
-    
-    /**  
-     * Method that enrols for a course category
-     * @param Object $dbMoObj Database connectivity and manipulation object
-     * @param string $dbPrefix Database prefix
-     * @param int $user User Id
-     * @param datetime $timeStart Start time
-     * @param int $modifierId Modifier Id
-     * @param datetime $timeCreated Time created
-     * @param datetime $timeModified Time Modified
-     * @param int $category Catgory Id
-     */
-    public static function enrolCategory($dbMoObj, $dbPrefix, $user, $timeStart, $modifierId, $timeCreated, $timeModified, $category){
-        $tableName = $dbPrefix.'user_enrolments'; $enrolTable = $dbPrefix.'enrol'; $courseTable = $dbPrefix.'course'; $categoryTable = $dbPrefix.'course_categories';
-        
-        if($category !=0){
-            $enrolCatResult = $dbMoObj->fetchAssoc("SELECT * FROM $courseTable WHERE category = $category AND format !='site' ");
-            foreach ($enrolCatResult as $courseDet){
-                $enrolResult = $dbMoObj->fetchAssoc("SELECT * FROM $enrolTable WHERE courseid = ".$courseDet['id']." AND enrol='manual' LIMIT 1");
-                foreach ($enrolResult as $enrolResult){
-                    $sql = "INSERT INTO $tableName (enrolid, userid, timestart, modifierid, timecreated, timemodified) "
-                        ."VALUES ('{$enrolResult['id']}','{$user}','{$timeStart}','".$modifierId."','".$timeCreated."','{$timeModified}')";
-                    if(count($dbMoObj->fetchAssoc("SELECT * FROM $tableName WHERE userid = $user AND enrolid = '{$enrolResult['id']}' ")) < 1){
-                        $result = $dbMoObj->query($sql);
-                    }
-                }
-            }
-            $catDetails = $dbMoObj->fetchAssoc("SELECT * FROM $categoryTable WHERE parent = $category ");
-            foreach ($catDetails as $catDetail){
-                User::enrolCategory($dbMoObj, $dbPrefix, $user, $timeStart, $modifierId, $timeCreated, $timeModified, $catDetail['id']);
-            }
-        }
+    public static function getSingle($dbObj, $column, $email) {
+        $field = intval($email) ? "id" : "email";
+        $thisReqVal = '';
+        $thisReqVals = $dbObj->fetchNum("SELECT $column FROM ".self::$tableName." WHERE $field = '{$email}' ");
+        foreach ($thisReqVals as $thisReqVals) { $thisReqVal = $thisReqVals[0]; }
+        return $thisReqVal;
     }
 }

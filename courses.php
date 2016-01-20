@@ -132,6 +132,8 @@ if(($transactTotal%$recordPerPage)>0){$totalPages +=1;}
     </script>
     <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
     <noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
+    <link href="<?php echo SITE_URL; ?>sweet-alert/sweetalert.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo SITE_URL; ?>sweet-alert/twitter.css" rel="stylesheet" type="text/css"/>
     <style>.menu_user_contact_area a{color:#1EAACE}.menu_user_contact_area a:hover{color:#F55C6D;}.inactive{background:#ccc;cursor: not-allowed}</style>
 </head>
 
