@@ -250,7 +250,7 @@ require('includes/page-properties.php');
                                                                 @$clientObj->logo = new ThumbNail($clientObj->logo, 80, 80);
                                                             ?>
                                                             <figure class="sc_image  alignleft sc_image_shape_square" style="margin-right:0px !important; <?php echo $addStyle; ?>" title="<?php echo $clientObj->name; ?>">
-                                                                <a href="<?php echo SITE_URL.'client/'.$clientObj->id.'/'.StringManipulator::slugify($clientObj->name).'/'; ?>"><img src="<?php echo $clientObj->logo; ?>" alt="<?php echo $clientObj->name; ?>" /></a>
+                                                                <a href="<?php echo $clientObj->website; ?>" target="_blank"><img src="<?php echo $clientObj->logo; ?>" alt="<?php echo $clientObj->name; ?>" /></a>
                                                             </figure>
                                                             <?php $num++; } ?>
                                                         </div>

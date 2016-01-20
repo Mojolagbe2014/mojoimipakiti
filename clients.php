@@ -1,7 +1,7 @@
 <?php 
 session_start();
 define("CONST_FILE_PATH", "includes/constants.php");
-define("CURRENT_PAGE", "faqs");
+define("CURRENT_PAGE", "clients");
 require('classes/WebPage.php'); //Set up page as a web page
 $thisPage = new WebPage(); //Create new instance of webPage class
 
@@ -10,7 +10,7 @@ $thisPage->dbObj = $dbObj;
 $courseObj = new Course($dbObj);
 $categoryObj = new CourseCategory($dbObj);
 $quoteObj = new Quote($dbObj);
-$faqObj = new Faq($dbObj);
+$clientObj = new Sponsor($dbObj);
 
 include('includes/other-settings.php');
 require('includes/page-properties.php');
@@ -131,27 +131,84 @@ require('includes/page-properties.php');
                                         <div class="wpb_wrapper">
                                             <div class="sc_section" data-animation="animated fadeInUp normal">
                                                 <div class="sc_accordion sc_accordion_style_1" data-active="0">
-                                                    <?php $sn = 1;
-                                                    foreach ($faqObj->fetchRaw() as $faq) {
-                                                        $faqData = array('id' => 'id', 'question' => 'question', 'answer' => 'answer');
-                                                        foreach ($faqData as $key => $value){
+                                                    <?php 
+                                                    foreach ($clientObj->fetchRaw("*", " status = 1 ", " name ASC ") as $partner) {
+                                                        $partnerData = array('id' => 'id', 'name' => 'name', 'logo' => 'logo', 'product' => 'product', 'website' => 'website', 'image' => 'image', 'dateAdded' => 'date_added', 'description' => 'description');
+                                                        foreach ($partnerData as $key => $value){
                                                             switch ($key) { 
-                                                                default     :   $faqObj->$key = $faq[$value]; break; 
+                                                                case 'logo': $clientObj->$key = MEDIA_FILES_PATH1.'sponsor/'.$partner[$value];break;
+                                                                case 'image': $clientObj->$key = MEDIA_FILES_PATH1.'sponsor-image/'.$partner[$value];break;
+                                                                default     :   $clientObj->$key = $partner[$value]; break; 
                                                             }
                                                         }
                                                     ?>
                                                     <div class="sc_accordion_item odd first">
                                                         <h5 class="sc_accordion_title">
-                                                            <span class="sc_accordion_icon sc_accordion_icon_closed icon-plus-2"></span><span class="sc_accordion_icon sc_accordion_icon_opened icon-minus-2"></span><?php echo $faqObj->question ?></h5>
-                                                            <div class="sc_accordion_content">
-                                                                <div class="wpb_text_column wpb_content_element ">
-                                                                    <div class="wpb_wrapper">
-                                                                        <p><?php echo $faqObj->answer ?></p>
+                                                            <span class="sc_accordion_icon sc_accordion_icon_closed icon-plus-2"></span><span class="sc_accordion_icon sc_accordion_icon_opened icon-minus-2"></span><img style="width:40px;height:40px" src="<?php echo $clientObj->logo; ?>" alt=""/> <?php echo $clientObj->name ?>
+                                                        </h5>
+                                                        <div class="sc_accordion_content">
+                                                            <div class="wpb_text_column wpb_content_element ">
+                                                                
+                                                                <div id="sc_tabs_890687350" class="sc_tabs sc_tabs_style_2" style="margin-top:3em;" data-active="2">
+                                                                    <ul class="sc_tabs_titles">
+                                                                        <li class="sc_tabs_title first">
+                                                                            <a href="#sc_tab_1425369861162-10<?php echo $clientObj->id; ?>" class="theme_button" id="sc_tab_1425369861162-10<?php echo $clientObj->id; ?>_tab">Description</a>
+                                                                        </li>
+                                                                        <li class="sc_tabs_title">
+                                                                            <a href="#sc_tab_1425369861559-7<?php echo $clientObj->id; ?>" class="theme_button" id="sc_tab_1425369861559-7<?php echo $clientObj->id; ?>_tab">Product</a>
+                                                                        </li>
+                                                                        <li class="sc_tabs_title last">
+                                                                            <a href="#sc_tab_1425369861948-3<?php echo $clientObj->id; ?>" class="theme_button" id="sc_tab_1425369861948-3<?php echo $clientObj->id; ?>_tab">Others</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div id="sc_tab_1425369861162-10<?php echo $clientObj->id; ?>" class="sc_tabs_content odd first">
+                                                                        <div id="sc_tab_1425369861162-10<?php echo $clientObj->id; ?>_scroll" class="sc_scroll sc_scroll_vertical" style="height:200px;">
+                                                                            <div class="sc_scroll_wrapper swiper-wrapper">
+                                                                                <div class="sc_scroll_slide swiper-slide">
+                                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                                        <div class="wpb_wrapper">
+                                                                                            <p><?php echo $clientObj->description; ?></p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div id="sc_tab_1425369861162-10<?php echo $clientObj->id."_scroll_bar"; ?>" class="sc_scroll_bar sc_scroll_bar_vertical sc_tab_1425369861162-10<?php echo $clientObj->id."_scroll_bar"; ?>"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="sc_tab_1425369861559-7<?php echo $clientObj->id; ?>" class="sc_tabs_content even">
+                                                                        <div id="sc_tab_1425369861559-7<?php echo $clientObj->id; ?>_scroll" class="sc_scroll sc_scroll_vertical" style="height:200px;">
+                                                                            <div class="sc_scroll_wrapper swiper-wrapper">
+                                                                                <div class="sc_scroll_slide swiper-slide">
+                                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                                        <div class="wpb_wrapper">
+                                                                                            <p><?php echo $clientObj->product; ?></p>
+                                                                                            <p><img style="width:auto;height: auto" src="<?php echo $clientObj->image; ?>" alt=""/></p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div id="sc_tab_1425369861559-7<?php echo $clientObj->id."_scroll_bar"; ?>" class="sc_scroll_bar sc_scroll_bar_vertical sc_tab_1425369861559-7<?php echo $clientObj->id."_scroll_bar"; ?>"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="sc_tab_1425369861948-3<?php echo $clientObj->id; ?>" class="sc_tabs_content odd">
+                                                                        <div id="sc_tab_1425369861948-3<?php echo $clientObj->id; ?>_scroll" class="sc_scroll sc_scroll_vertical" style="height:200px;">
+                                                                            <div class="sc_scroll_wrapper swiper-wrapper">
+                                                                                <div class="sc_scroll_slide swiper-slide">
+                                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                                        <div class="wpb_wrapper">
+                                                                                            <p>Website: <a href="<?php echo $clientObj->website; ?>" target="_blank"><?php echo $clientObj->website; ?></a></p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div id="sc_tab_1425369861948-3<?php echo $clientObj->id."_scroll_bar"; ?>" class="sc_scroll_bar sc_scroll_bar_vertical sc_tab_1425369861948-3<?php echo $clientObj->id."_scroll_bar"; ?>"></div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
                                                     </div>
-                                                    <?php $sn++; } ?>
+                                                    <?php } ?>
                                                 </div>
                                             </div>
                                         </div>

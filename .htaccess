@@ -36,3 +36,5 @@ RewriteRule ^event/([0-9]+)/([^/]+)/?$ event.php?id=$1 [NC,L]
 
 RewriteRule ^member/([0-9]+)/([^/]+)/?$ member.php?id=$1 [NC,L]
 
+RewriteRule ^client/([0-9]+)/([^/]+)/?$ client.php?id=$1 [NC,L]
+
