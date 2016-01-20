@@ -1,3 +1,4 @@
+<?php if(SETTINGS_PANEL == 'TRUE'){ ?>
 <div class="custom_options_shadow"></div>
 
     <div id="custom_options" class="custom_options co_light">
@@ -23,16 +24,6 @@
     <a href="#" data-value="boxed">Boxed</a>
     <a href="#" data-value="wide">Wide</a>
     <a href="#" data-value="fullscreen">Fullscreen</a>
-    </div>
-    </div>
-
-    <div class="co_section">
-    <div class="co_label">Color scheme</div>
-    <div id="co_scheme_list" class="co_image_check" data-options="color_scheme">
-    <a href="#" id="scheme_original" class="co_scheme_wrapper" style="background-image: url(<?php echo SITE_URL; ?>themes/education/skins/education/images/schemes/original.jpg)" data-value="original"><span>Original</span></a>
-    <a href="#" id="scheme_contrast" class="co_scheme_wrapper active" style="background-image: url(<?php echo SITE_URL; ?>themes/education/skins/education/images/schemes/contrast.jpg)" data-value="contrast"><span>Contrast</span></a>
-    <a href="#" id="scheme_modern" class="co_scheme_wrapper" style="background-image: url(<?php echo SITE_URL; ?>themes/education/skins/education/images/schemes/modern.jpg)" data-value="modern"><span>Modern</span></a>
-    <a href="#" id="scheme_pastel" class="co_scheme_wrapper" style="background-image: url(<?php echo SITE_URL; ?>themes/education/skins/education/images/schemes/pastel.jpg)" data-value="pastel"><span>Pastel</span></a>
     </div>
     </div>
 
@@ -70,3 +61,4 @@
     <div id="sc_custom_scroll_bar" class="sc_scroll_bar sc_scroll_bar_vertical sc_custom_scroll_bar"></div>
     </div><!-- .sc_scroll -->
     </div><!-- .custom_options -->
+<?php } ?>

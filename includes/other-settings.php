@@ -18,3 +18,4 @@ define("COMPANY_ADDRESS_GMAP", Setting::getValue($dbObj, 'COMPANY_ADDRESS_GMAP')
 define("COMPANY_NUMBERS", Setting::getValue($dbObj, 'COMPANY_NUMBERS') ? trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'COMPANY_NUMBERS')))) : '');
 define("COMPANY_ACC_DETAILS", Setting::getValue($dbObj, 'COMPANY_ACC_DETAILS') ? Setting::getValue($dbObj, 'COMPANY_ACC_DETAILS') : '');
 define("COMPANY_OTHER_EMAILS", Setting::getValue($dbObj, 'COMPANY_OTHER_EMAILS') ? trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'COMPANY_OTHER_EMAILS')))) : '');
+define("SETTINGS_PANEL", Setting::getValue($dbObj, 'SETTINGS_PANEL') ? trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'SETTINGS_PANEL')))) : '');
