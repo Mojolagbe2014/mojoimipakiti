@@ -23,7 +23,7 @@
     data-end="8150" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 820px; max-height: 116px; white-space: normal;">Take great courses <br>from the Nigeria's best trainers 
+    style="z-index: 5; max-width: 820px; max-height: 116px; white-space: normal;color:red">Take great courses <br>from the Nigeria's best trainers 
     </div>
 
     <!-- LAYER NR. 2 -->
@@ -81,7 +81,7 @@
     data-end="8050" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;">Professional courses<br> 
+    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;color:red">Professional courses<br> 
     by professional educators 
     </div>
 
@@ -99,7 +99,7 @@
     data-end="8300" 
     data-endspeed="300" 
 
-    style="z-index: 6; max-width: 559px; max-height: 49px; white-space: normal;"><span style="font-weight:400;">Professional educators lead the world with high quality of training techniques.</span> 
+    style="z-index: 6; max-width: 559px; max-height: 49px; white-space: normal;color:#000"><span style="font-weight:400;">Professional educators lead the world with high quality of training techniques.</span> 
     </div>
 
     <!-- LAYER NR. 3 -->
@@ -141,7 +141,7 @@
     data-end="8200" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;">Receive personalized<br>
+    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;color:red">Receive personalized<br>
     coaching 
     </div>
 
@@ -160,7 +160,7 @@
     data-end="8400" 
     data-endspeed="300" 
 
-    style="z-index: 6; max-width: 559px; max-height: 49px; white-space: normal;"><span style="font-weight:400;">Learning is a collaborative process, and we're here to provide you with guidance every step of the way.</span> 
+    style="z-index: 6; max-width: 559px; max-height: 49px; white-space: normal;color:#000"><span style="font-weight:400;">Learning is a collaborative process, and we're here to provide you with guidance every step of the way.</span> 
     </div>
 
     <!-- LAYER NR. 3 -->
