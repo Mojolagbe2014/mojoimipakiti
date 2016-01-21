@@ -275,6 +275,9 @@ require('includes/page-properties.php');
                                     <div class="sc_section" data-animation="animated flipInY normal">
                                         
                                         <div class="sc_content content_wrap" style="margin-top:2.5em !important;margin-bottom:2.5em !important;">
+                                            <h3 class="sc_title sc_title_iconed sc_align_center" style="text-align:center;">
+                                                <span class="sc_title_icon  sc_title_icon_medium icon-video-2"></span> Videos
+                                            </h3>
                                             <?php 
                                             foreach ($videoObj->fetchRaw("*", " 1=1 ", " RAND() LIMIT 1") as $video) {
                                                 $videoData = array('id' => 'id', 'name' => 'name', 'video' => 'video', 'description' => 'description');
@@ -288,14 +291,14 @@ require('includes/page-properties.php');
                                             <div class="columns_wrap sc_columns columns_nofluid sc_columns_count_2">
                                                 <div class="column-1_2 sc_column_item sc_column_item_1 odd first">
                                                     <h3 class="sc_title sc_title_iconed sc_align_left" style="text-align:left;">
-                                                        <span class="sc_title_icon sc_title_icon_top  sc_title_icon_medium icon-video-2"></span><?php echo $videoObj->name; ?>
+                                                        <?php echo $videoObj->name; ?>
                                                     </h3>
                                                     <div class="wpb_text_column wpb_content_element ">
                                                         <div class="wpb_wrapper" style="margin-top:10px;">
                                                             <p><?php echo StringManipulator::trimStringToFullWord(160, strip_tags($videoObj->description)); ?>..</p>
                                                         </div>
                                                     </div>
-                                                    <a href="<?php echo SITE_URL.'videos/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_mini  sc_button_iconed inherit" style="margin-top:1em;margin-bottom:4px;margin-left:4px;">BROWSE ALL</a>
+                                                    <a href="<?php echo SITE_URL.'videos/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_mini  sc_button_iconed inherit" style="margin-top:1em;margin-bottom:4px;margin-left:4px;">BROWSE ALL VIDEOS</a>
                                                 </div><div class="column-1_2 sc_column_item sc_column_item_2 even">
                                                     <div class="sc_video_player sc_video_bordered" style="padding-top:4%;padding-right:3%;padding-bottom:23%;padding-left:13%;background-image: url(<?php echo SITE_URL; ?>uploads/2015/01/post_video_border.png);">
                                                         <div class="sc_video_frame" data-width="100%" data-height="647" style="width:100%;">
