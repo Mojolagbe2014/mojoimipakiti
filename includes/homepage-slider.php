@@ -6,7 +6,7 @@
     <ul>	<!-- SLIDE  -->
     <li data-transition="random" data-slotamount="7" data-masterspeed="500"  data-saveperformance="off"  class="texture_bg_slider_full">
     <!-- MAIN IMAGE -->
-    <img src="uploads/2015/03/slider-3-slide-1.jpg"  alt="slider-3-slide-1"  data-bgposition="center top" data-bgfit="normal" data-bgrepeat="repeat">
+    <img src="uploads/2015/03/slider-3-slide-1.png"  alt="slider-3-slide-1"  data-bgposition="center top" data-bgfit="normal" data-bgrepeat="repeat">
     <!-- LAYERS -->
 
     <!-- LAYER NR. 1 -->
@@ -64,7 +64,7 @@
     <!-- SLIDE  -->
     <li data-transition="random" data-slotamount="7" data-masterspeed="500"  data-saveperformance="off"  class="texture_bg_slider">
     <!-- MAIN IMAGE -->
-    <img src="uploads/2015/03/slider-3-slide-2.jpg"  alt="slider-3-slide-2"  data-bgposition="center top" data-bgfit="normal" data-bgrepeat="repeat">
+    <img src="uploads/2015/03/slider-3-slide-22.jpg"  alt="slider-3-slide-2"  data-bgposition="center top" data-bgfit="normal" data-bgrepeat="repeat">
     <!-- LAYERS -->
 
     <!-- LAYER NR. 1 -->
@@ -81,7 +81,7 @@
     data-end="8050" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;">Professional Courses<br> 
+    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;">Professional courses<br> 
     by professional educators 
     </div>
 
@@ -123,13 +123,13 @@
     <!-- SLIDE  -->
     <li data-transition="random" data-slotamount="7" data-masterspeed="500"  data-saveperformance="off"  class="texture_bg_slider">
     <!-- MAIN IMAGE -->
-    <img src="uploads/2015/03/slider-3-slide-3.jpg"  alt="slider-3-slide-3"  data-bgposition="center top" data-bgfit="normal" data-bgrepeat="repeat">
+    <img src="uploads/2015/03/slider-3-slide-33.jpg"  alt="slider-3-slide-3"  data-bgposition="center top" data-bgfit="normal" data-bgrepeat="repeat">
     <!-- LAYERS -->
 
     <!-- LAYER NR. 1 -->
-    <div class="tp-caption title customin stb tp-resizeme" 
-    data-x="520" 
-    data-y="200"  
+    <div class="tp-caption titlecentered lfr stb tp-resizeme" 
+    data-x="center" data-hoffset="0" 
+    data-y="center" data-voffset="-40"  
     data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:20;transformOrigin:50% 100%;" 
     data-speed="500" 
     data-start="650" 
@@ -146,9 +146,9 @@
     </div>
 
     <!-- LAYER NR. 2 -->
-    <div class="tp-caption slide_text customin stb tp-resizeme" 
-    data-x="530" 
-    data-y="355"  
+    <div class="tp-caption slidetextcentered lfl stb tp-resizeme" 
+    data-x="center" data-hoffset="0" 
+    data-y="center" data-voffset="85" 
     data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:20;transformOrigin:50% 100%;" 
     data-speed="500" 
     data-start="1050" 
@@ -165,8 +165,8 @@
 
     <!-- LAYER NR. 3 -->
     <div class="tp-caption slide_button customin stb tp-resizeme" 
-    data-x="530" 
-    data-y="460"  
+    data-x="center" data-hoffset="0" 
+    data-y="center" data-voffset="200" 
     data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:20;transformOrigin:50% 100%;" 
     data-speed="500" 
     data-start="1450" 

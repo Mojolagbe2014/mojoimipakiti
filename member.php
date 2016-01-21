@@ -158,7 +158,8 @@ $thisPage->description = StringManipulator::trimStringToFullWord(150, trim(strip
                                                 <div class="wpb_text_column wpb_content_element ">
                                                     <div class="wpb_wrapper">
                                                         <p><?php echo $memberObj->qualification; ?></p>
-                                                        <p>Email Pamela: <a href="mailto:<?php echo $memberObj->email; ?>"><span class="__cf_email__"><?php echo $memberObj->email; ?></span></a><br />
+                                                        <p><?php echo $memberObj->field; ?></p>
+                                                        <p>Email : <a href="mailto:<?php echo $memberObj->email; ?>"><span class="__cf_email__"><?php echo $memberObj->email; ?></span></a><br />
                                                             Website: <a target="_blank" href="<?php echo $memberObj->website; ?>"><?php echo $memberObj->website; ?></a></p>
                                                     </div>
                                                 </div>

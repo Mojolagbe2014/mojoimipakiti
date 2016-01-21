@@ -78,7 +78,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li id="menu-item-829" class="menu-item menu-item-type-post_type menu-item-object-page <?php echo $thisPage->active($_SERVER['REQUEST_URI'], 'member', 'current-menu-item  current_page_item'); ?> menu-item-has-children menu-item-829"><a href="<?php echo SITE_URL.'members/'; ?>">Members</a></li>
+                                <li id="menu-item-829" class="menu-item menu-item-type-post_type menu-item-object-page <?php echo $thisPage->active($_SERVER['REQUEST_URI'], 'member', 'current-menu-item  current_page_item'); ?> menu-item-has-children menu-item-829"><a href="<?php echo SITE_URL.'members/'; ?>">Our Team</a></li>
                                 <li id="menu-item-179" class="menu-item menu-item-type-custom menu-item-object-custom <?php echo $thisPage->active($_SERVER['REQUEST_URI'], 'about', 'current-menu-item  current_page_item'); ?> menu-item-has-children menu-item-179"><a href="<?php echo SITE_URL.'about/'; ?>">About</a></li>
                                 <?php if(!strpos($_SERVER['SCRIPT_NAME'], 'index.php')){ ?>
                                 <li id="menu-item-755" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat <?php echo $thisPage->active($_SERVER['REQUEST_URI'], 'gallery', 'current-menu-item  current_page_item'); ?> menu-item-755"><a href="<?php echo SITE_URL.'gallery/'; ?>">Gallery</a></li>
