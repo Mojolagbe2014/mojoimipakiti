@@ -178,5 +178,5 @@
                     <p>&copy; <?php $currYear   = new DateTime(); echo $currYear->format('Y'); ?> All Rights Reserved.</p> 
                 </div>
             </div>
-            <!-- Go to www.addthis.com/dashboard to customize your tools -->
-            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56a5fbdb49cbb5db" async="async"></script>
+            <?php echo Setting::getValue($dbObj, 'ADDTHIS_SHARE_BUTTON') ? Setting::getValue($dbObj, 'ADDTHIS_SHARE_BUTTON') : ''; ?>
+            

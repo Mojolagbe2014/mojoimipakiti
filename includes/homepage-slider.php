@@ -3,7 +3,7 @@
     <div id="rev_slider_3_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" style="margin:0px auto;background-color:#1eaace;padding:0px;margin-top:0px;margin-bottom:0px;max-height:630px;">
     <!-- START REVOLUTION SLIDER 4.6.5 fullwidth mode -->
     <div id="rev_slider_3_1" class="rev_slider fullwidthabanner" style="display:none;max-height:630px;height:630px;">
-    <ul>	<!-- SLIDE  -->
+    <ul>	<!-- SLIDE 1 -->
     <li data-transition="random" data-slotamount="7" data-masterspeed="500"  data-saveperformance="off"  class="texture_bg_slider_full">
     <!-- MAIN IMAGE -->
     <img src="uploads/2015/03/slider-3-slide-1.png"  alt="slider-3-slide-1"  data-bgposition="center top" data-bgfit="normal" data-bgrepeat="repeat">
@@ -12,7 +12,7 @@
     <!-- LAYER NR. 1 -->
     <div class="tp-caption titlecentered lfr stb tp-resizeme" 
     data-x="center" data-hoffset="0" 
-    data-y="center" data-voffset="-40" 
+    data-y="center" data-voffset="160" 
     data-speed="500" 
     data-start="650" 
     data-easing="Power3.easeInOut" 
@@ -23,45 +23,10 @@
     data-end="8150" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 820px; max-height: 116px; white-space: normal;color:maroon">Take great courses <br>from the Nigeria's best trainers 
-    </div>
-
-    <!-- LAYER NR. 2 -->
-    <div class="tp-caption slidetextcentered lfl stb tp-resizeme" 
-    data-x="center" data-hoffset="0" 
-    data-y="center" data-voffset="85" 
-    data-speed="500" 
-    data-start="1000" 
-    data-easing="Power3.easeInOut" 
-    data-splitin="lines" 
-    data-splitout="none" 
-    data-elementdelay="0.1" 
-    data-endelementdelay="0.1" 
-    data-end="8300" 
-    data-endspeed="300" 
-
-    style="z-index: 6; max-width: 559px; max-height: 49px; white-space: normal;"><span style="font-weight:400;">Our courses are built in partnership with technology leaders and are relevant to industry needs.</span> 
-    </div>
-
-    <!-- LAYER NR. 3 -->
-    <div class="tp-caption slide_button customin stb tp-resizeme" 
-    data-x="center" data-hoffset="0" 
-    data-y="center" data-voffset="200" 
-    data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:20;transformOrigin:50% 100%;" 
-    data-speed="500" 
-    data-start="1350" 
-    data-easing="Power3.easeInOut" 
-    data-splitin="none" 
-    data-splitout="none" 
-    data-elementdelay="0.1" 
-    data-endelementdelay="0.1" 
-    data-end="8450" 
-    data-endspeed="300" 
-
-    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'courses/'; ?>" class="slide_button_white" style="color:maroon">Browse Courses Now</a> 
+    style="z-index: 5; max-width: 820px; max-height: 116px; white-space: normal;color:#FFF;background:rgba(255,0,0,0.5);opacity: 0.1;margin:10px">Welcome to <br>Impact Training and Management Consulting Ltd
     </div>
     </li>
-    <!-- SLIDE  -->
+    <!-- SLIDE 2  -->
     <li data-transition="random" data-slotamount="7" data-masterspeed="500"  data-saveperformance="off"  class="texture_bg_slider">
     <!-- MAIN IMAGE -->
     <img src="uploads/2015/03/slider-3-slide-22.jpg"  alt="slider-3-slide-2"  data-bgposition="center top" data-bgfit="normal" data-bgrepeat="repeat">
@@ -69,8 +34,8 @@
 
     <!-- LAYER NR. 1 -->
     <div class="tp-caption title sfr stl tp-resizeme" 
-    data-x="0" 
-    data-y="200"  
+    data-x="center" data-hoffset="0" 
+    data-y="center" data-voffset="87" 
     data-speed="500" 
     data-start="600" 
     data-easing="Power3.easeInOut" 
@@ -81,31 +46,13 @@
     data-end="8050" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;color:maroon">Professional courses<br> 
-    by professional educators 
-    </div>
-
-    <!-- LAYER NR. 2 -->
-    <div class="tp-caption slide_text sfr stl tp-resizeme" 
-    data-x="0" 
-    data-y="355"  
-    data-speed="500" 
-    data-start="1000" 
-    data-easing="Power3.easeInOut" 
-    data-splitin="lines" 
-    data-splitout="none" 
-    data-elementdelay="0.1" 
-    data-endelementdelay="0.1" 
-    data-end="8300" 
-    data-endspeed="300" 
-
-    style="z-index: 6; max-width: 559px; max-height: 49px; white-space: normal;color:#000"><span style="font-weight:400;">Professional educators lead the world with high quality of training techniques.</span> 
+    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;color:#FFF;background:rgba(255,0,0,0.5);text-align:center">Receive personalized <br/>coaching
     </div>
 
     <!-- LAYER NR. 3 -->
     <div class="tp-caption slide_button customin stl tp-resizeme" 
-    data-x="0" 
-    data-y="460"  
+    data-x="center" data-hoffset="0" 
+    data-y="center" data-voffset="170" 
     data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:20;transformOrigin:50% 100%;" 
     data-speed="500" 
     data-start="1450" 
@@ -120,7 +67,7 @@
     style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'members/'; ?>" class="slide_button_white" style="color:maroon">View Trainers</a> 
     </div>
     </li>
-    <!-- SLIDE  -->
+    <!-- SLIDE 3 -->
     <li data-transition="random" data-slotamount="7" data-masterspeed="500"  data-saveperformance="off"  class="texture_bg_slider">
     <!-- MAIN IMAGE -->
     <img src="uploads/2015/03/slider-3-slide-33.jpg"  alt="slider-3-slide-3"  data-bgposition="center top" data-bgfit="normal" data-bgrepeat="repeat">
@@ -129,7 +76,7 @@
     <!-- LAYER NR. 1 -->
     <div class="tp-caption titlecentered lfr stb tp-resizeme" 
     data-x="center" data-hoffset="0" 
-    data-y="center" data-voffset="-40"  
+    data-y="center" data-voffset="80"  
     data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:20;transformOrigin:50% 100%;" 
     data-speed="500" 
     data-start="650" 
@@ -141,27 +88,10 @@
     data-end="8200" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;color:maroon">Receive personalized<br>
-    coaching 
+    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;color:#FFF;background:rgba(255,0,0,0.5);">Fun-filled Learning<br>
     </div>
 
-    <!-- LAYER NR. 2 -->
-    <div class="tp-caption slidetextcentered lfl stb tp-resizeme" 
-    data-x="center" data-hoffset="0" 
-    data-y="center" data-voffset="85" 
-    data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:20;transformOrigin:50% 100%;" 
-    data-speed="500" 
-    data-start="1050" 
-    data-easing="Power3.easeInOut" 
-    data-splitin="none" 
-    data-splitout="none" 
-    data-elementdelay="0.1" 
-    data-endelementdelay="0.1" 
-    data-end="8400" 
-    data-endspeed="300" 
-
-    style="z-index: 6; max-width: 559px; max-height: 49px; white-space: normal;color:#000"><span style="font-weight:400;">Learning is a collaborative process, and we're here to provide you with guidance every step of the way.</span> 
-    </div>
+    
 
     <!-- LAYER NR. 3 -->
     <div class="tp-caption slide_button customin stb tp-resizeme" 
