@@ -47,6 +47,7 @@ $errorArr = array(); //Array of errors
                                                 <th>ID</th>
                                                 <th>Subscriber Name</th>
                                                 <th>Email Address</th>
+                                                <th>Company Name</th>
                                                 <th>Actions &nbsp; 
                                                     <button class="btn btn-danger btn-sm multi-delete-user multi-select" title="Delete Selected"><i class="btn-icon-only icon-trash"> </i></button>
 <!--                                                    <button class="btn btn-primary btn-sm multi-message-user multi-select" title="Message Selected Users"><i class="btn-icon-only icon-envelope"> </i></button>-->

@@ -8,6 +8,7 @@ class User implements ContentManipulator{
     private $id;
     private $email;
     private $name;
+    private $company;
     private $timeEntered;
     private static $dbObj;
     public static $tableName = 'user';
@@ -35,9 +36,9 @@ class User implements ContentManipulator{
      * @return JSON JSON encoded string/result
      */
     function add(){
-        $sql = "INSERT INTO ".self::$tableName." (email, name, time_entered) "
-                ."VALUES ('{$this->email}','{$this->name}','". time()."')";
-        if($this->notEmpty($this->name,$this->email)){
+        $sql = "INSERT INTO ".self::$tableName." (email, name, company, time_entered) "
+                ."VALUES ('{$this->email}','{$this->name}','{$this->company}','". time()."')";
+        if($this->notEmpty($this->name,$this->email,$this->company)){
             $result = self::$dbObj->query($sql);
             if($result !== false){ $json = array("status" => 1, "msg" => "Done, user successfully added!"); }
             else{ $json = array("status" => 2, "msg" => "Error adding user! ".  mysqli_error(self::$dbObj->connection)); }
@@ -54,8 +55,8 @@ class User implements ContentManipulator{
      * @return string Sucess|Error
      */
     function addRaw(){
-        $sql = "INSERT INTO ".self::$tableName." (email, name, time_entered) "
-                ."VALUES ('{$this->email}','{$this->name}','". time()."')";
+        $sql = "INSERT INTO ".self::$tableName." (email, name, company, time_entered) "
+                ."VALUES ('{$this->email}','{$this->name}','{$this->company}','". time()."')";
         if($this->notEmpty($this->name,$this->email)){
             $result = self::$dbObj->query($sql);
             if($result !== false){ return 'success'; }
@@ -112,7 +113,7 @@ class User implements ContentManipulator{
             foreach($data as $r){ 
                 $actionButtons = '<div style="white-space:nowrap"> <button data-id="'.$r['id'].'" data-email="'.$r['email'].'" data-name="'.$r['name'].'" class="btn btn-danger btn-sm delete-user" title="Delete"><i class="btn-icon-only icon-trash"> </i></button>  </div>';//'<button data-email="'.$r['email'].'" data-id="'.$r['id'].'" data-name="'.$r['name'].'" class="btn btn-primary btn-sm message-user"  title="Send Message"><i class="btn-icon-only icon-envelope"> </i></button> ';
                 $multiActionBox = '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'"  data-name="'.$r['name'].'" data-email="'.$r['email'].'" />';
-                $result[] = array(utf8_encode($multiActionBox), $r['id'], utf8_encode($r['name']), utf8_encode($r['email']), utf8_encode($actionButtons));
+                $result[] = array(utf8_encode($multiActionBox), $r['id'], utf8_encode($r['name']), utf8_encode($r['email']), utf8_encode($r['company']), utf8_encode($actionButtons));
             }
             $json = array("status" => 1,"draw" => intval($draw), "recordsTotal"    => intval($totalData), "recordsFiltered" => intval($totalFiltered), "data" => $result);
         } 
@@ -135,7 +136,7 @@ class User implements ContentManipulator{
         $result =array(); 
         if(count($data)>0){
             foreach($data as $r){
-                $result[] = array("id" => $r['id'], "email" =>  utf8_encode($r['email']), 'name' =>  utf8_encode($r['name']), 'timeEntered' =>  utf8_encode($r['time_entered']));
+                $result[] = array("id" => $r['id'], "email" =>  utf8_encode($r['email']), 'name' =>  utf8_encode($r['name']), 'company' =>  utf8_encode($r['company']), 'timeEntered' =>  utf8_encode($r['time_entered']));
             }
             $json = array("status" => 1, "info" => $result);
         } 
@@ -210,7 +211,7 @@ class User implements ContentManipulator{
      * @return JSON JSON encoded success or failure message
      */
     public function update() {
-        $sql = "UPDATE ".self::$tableName." SET name = '{$this->name}', email = '{$this->email}' WHERE id = $this->id ";
+        $sql = "UPDATE ".self::$tableName." SET name = '{$this->name}', email = '{$this->email}', company = '{$this->company}' WHERE id = $this->id ";
         if(!empty($this->id)){
             $result = self::$dbObj->query($sql);
             if($result !== false){ $json = array("status" => 1, "msg" => "Done, user successfully update!"); }
@@ -226,7 +227,7 @@ class User implements ContentManipulator{
      * @return string Sucess|Error
      */
     public function updateRaw() {
-        $sql = "UPDATE ".self::$tableName." SET name = '{$this->name}', email = '{$this->email}' WHERE email = '{$this->id}' ";
+        $sql = "UPDATE ".self::$tableName." SET name = '{$this->name}', email = '{$this->email}', company = '{$this->company}' WHERE email = '{$this->id}' ";
         if(!empty($this->email)){
             $result = self::$dbObj->query($sql);
             if($result !== false){ return 'success'; }

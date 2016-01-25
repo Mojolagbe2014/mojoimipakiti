@@ -14,6 +14,8 @@ if(isset($_POST['subscriberSubmit'])){
     if($userObj->email == "") {array_push ($errorArr, "valid email ");}
     $userObj->name = filter_input(INPUT_POST, 'subscriberName') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'subscriberName')) :  ''; 
     if($userObj->name == "") {array_push ($errorArr, " name ");}
+    $userObj->company = filter_input(INPUT_POST, 'subscriberCompany') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'subscriberCompany')) :  ''; 
+    if($userObj->company == "") {array_push ($errorArr, " company ");}
    
     if(count($errorArr) < 1)   {
         if($userObj->emailExists()){

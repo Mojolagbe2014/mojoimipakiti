@@ -7,7 +7,7 @@ $(document).ready(function(){
             columnDefs: [ {
                 orderable: false,
                 className: 'select-checkbox',
-                targets:   [0, 4]
+                targets:   [0, 5]
             } ],
             select: {
                 style:    'os',

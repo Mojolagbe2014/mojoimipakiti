@@ -19,7 +19,7 @@ if(!isset($_SESSION['ITCLoggedInAdmin']) || !isset($_SESSION["ITCadminEmail"])){
 else{
     if(filter_input(INPUT_POST, "fetchUsers") != NULL){
         $requestData= $_REQUEST;
-        $columns = array( 0 =>'id', 1 =>'id', 2 => 'name', 3 => 'email');
+        $columns = array( 0 =>'id', 1 =>'id', 2 => 'name', 3 => 'email', 4 => 'company');
 
         // getting total number records without any search
         $query = $dbObj->query("SELECT * FROM user ");
@@ -28,8 +28,9 @@ else{
 
         $sql = "SELECT * FROM user WHERE 1=1 ";
         if(!empty($requestData['search']['value'])) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
-                $sql.=" AND ( name LIKE '%".$requestData['search']['value']."%' ";    
-                $sql.=" OR email LIKE '".$requestData['search']['value']."%' ) ";
+                $sql.=" AND ( name LIKE '%".$requestData['search']['value']."%' ";  
+                $sql.=" OR email LIKE '".$requestData['search']['value']."%' ";
+                $sql.=" OR company LIKE '".$requestData['search']['value']."%' ) ";
         }
         $query = $dbObj->query($sql);
         $totalFiltered = mysqli_num_rows($query); // when there is a search parameter then we have to modify total number filtered rows as per search result. 
