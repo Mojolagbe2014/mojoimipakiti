@@ -137,7 +137,7 @@
             <footer class="contacts_wrap bg_tint_dark contacts_style_dark">
                 <div class="content_wrap">
                     <div class="logo">
-                        <a href="<?php echo SITE_URL; ?>"><img src="<?php echo SITE_URL; ?>images/logo-white.png" alt="" style="width:402px;width:180px "></a>
+                        <a href="<?php echo SITE_URL; ?>"><img src="<?php echo SITE_URL; ?>images/logo-dark.png" alt="" style="width:402px;width:180px "></a>
                     </div>
                     <div class="contacts_address">
                         <address class="address_right">
@@ -178,3 +178,5 @@
                     <p>&copy; <?php $currYear   = new DateTime(); echo $currYear->format('Y'); ?> All Rights Reserved.</p> 
                 </div>
             </div>
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56a5fbdb49cbb5db" async="async"></script>

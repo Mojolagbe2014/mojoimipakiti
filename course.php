@@ -232,6 +232,7 @@ $thisPage->description = StringManipulator::trimStringToFullWord(150, trim(strip
                                     <form class="cart" method="post" enctype='multipart/form-data'>
                                         <br/><br/>
                                         <button id="book-now" type="button" class="single_add_to_cart_button button alt">Book Now</button>
+                                        <?php if($courseObj->media!=''){ ?> <a href="<?php echo MEDIA_FILES_PATH1.'course/'.$courseObj->media; ?>" title="Course Brochure" class="single_add_to_cart_button button alt  sc_button_iconed icon-doc"> Brochure</a> <?php } ?>
                                     </form>
 
                                     

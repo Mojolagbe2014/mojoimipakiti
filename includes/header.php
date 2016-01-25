@@ -37,7 +37,7 @@
                 <div class="menu_main_wrap logo_left">
                     <div class="content_wrap clearfix">
                         <div class="logo">
-                            <a href="<?php echo SITE_URL; ?>"><img src="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? SITE_URL.'images/logo-white.png' : SITE_URL.'images/logo-dark.jpg'; ?>" class="logo_main" alt=""><img src="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? SITE_URL.'images/logo-white.png' : SITE_URL.'images/logo-dark.jpg'; ?>" class="logo_fixed" alt=""></a>
+                            <a href="<?php echo SITE_URL; ?>"><img src="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? SITE_URL.'images/logo-white.png' : SITE_URL.'images/logo-dark.jpg'; ?>" class="logo_main" alt=""><img src="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? SITE_URL.'images/logo-dark.png' : SITE_URL.'images/logo-dark.jpg'; ?>" class="logo_fixed" alt=""></a>
                         </div>
 
                         <div class="search_wrap search_style_regular search_ajax" title="Open/close search form">

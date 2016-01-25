@@ -23,7 +23,7 @@
     data-end="8150" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 820px; max-height: 116px; white-space: normal;color:red">Take great courses <br>from the Nigeria's best trainers 
+    style="z-index: 5; max-width: 820px; max-height: 116px; white-space: normal;color:maroon">Take great courses <br>from the Nigeria's best trainers 
     </div>
 
     <!-- LAYER NR. 2 -->
@@ -58,7 +58,7 @@
     data-end="8450" 
     data-endspeed="300" 
 
-    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'courses/'; ?>" class="slide_button_white">Browse Courses Now</a> 
+    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'courses/'; ?>" class="slide_button_white" style="color:maroon">Browse Courses Now</a> 
     </div>
     </li>
     <!-- SLIDE  -->
@@ -81,7 +81,7 @@
     data-end="8050" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;color:red">Professional courses<br> 
+    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;color:maroon">Professional courses<br> 
     by professional educators 
     </div>
 
@@ -117,7 +117,7 @@
     data-end="8600" 
     data-endspeed="300" 
 
-    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'members/'; ?>" class="slide_button_white">View Trainers</a> 
+    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'members/'; ?>" class="slide_button_white" style="color:maroon">View Trainers</a> 
     </div>
     </li>
     <!-- SLIDE  -->
@@ -141,7 +141,7 @@
     data-end="8200" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;color:red">Receive personalized<br>
+    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;color:maroon">Receive personalized<br>
     coaching 
     </div>
 
@@ -178,7 +178,7 @@
     data-end="8600" 
     data-endspeed="300" 
 
-    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'contact/'; ?>" class="slide_button_white">Contact us today</a> 
+    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'contact/'; ?>" class="slide_button_white" style="color:maroon">Contact us today</a> 
     </div>
     </li>
     </ul>

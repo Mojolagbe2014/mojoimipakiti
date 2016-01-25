@@ -202,9 +202,7 @@ if(($transactTotal%$recordPerPage)>0){$totalPages +=1;}
                                                         <div class="post_button">
                                                             <a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">MORE</a>
                                                         </div>
-                                                        <div class="post_button">
-                                                            <a href="<?php echo SITE_URL.'course/'.$courseObj->id.'/'.StringManipulator::slugify($courseObj->name).'/'; ?>" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small">BOOK NOW</a>
-                                                        </div>
+                                                        <div class="post_button"></div>
                                                     </div>							
                                                 </div>
                                             </div>
