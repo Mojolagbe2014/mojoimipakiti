@@ -25,6 +25,8 @@ if(isset($_POST['submit'])){
     if($name == "") {array_push ($errorArr, " name ");}
     $phone = filter_input(INPUT_POST, 'phone') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'phone')) :  ''; 
     if($phone == "") {array_push ($errorArr, " phone number ");}
+    $company = filter_input(INPUT_POST, 'company') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'company')) :  ''; 
+    if($company == "") {array_push ($errorArr, " company name ");}
     $address = filter_input(INPUT_POST, 'address') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'address')) :  ''; 
     if($address == "") {array_push ($errorArr, " address ");}
     $body = filter_input(INPUT_POST, 'message') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'message')) :  ''; 
@@ -39,6 +41,7 @@ if(isset($_POST['submit'])){
                 <p><strong>USER NAME</strong>: $name</p>
                 <p><strong>EMAIL: </strong> <a href='mailto:$email'>$email</a></p>
                 <p><strong>PHONE NO: </strong> $phone</p>
+                <p><strong>COMPANY NAME: </strong> $company</p>
                 <p><strong>ADDRESS</strong>: $address</p>
                 <p><strong>MESSAGE</strong>: $body</p>
                 <p>&nbsp;</p>
@@ -323,14 +326,15 @@ $thisPage->description = StringManipulator::trimStringToFullWord(150, trim(strip
     <a href="#" class="scroll_to_top icon-up-2" title="Scroll to top"></a>
     <div id="facebox" class="et_pb_module et_pb_contact_form_container clearfix  et_pb_contact_form_0">
         <div class="et_pb_contact">
-            <h4 class="et_pb_contact_main_title text-center">Book for <?php echo $courseObj->name; ?></h4>
+            <h4 class="et_pb_contact_main_title text-center" style="margin-top:0px">Book for <?php echo $courseObj->name; ?></h4>
             <form action="" method="POST">
                 <div class="et_pb_contact_left">
                     <input type="hidden" name="course" value="<?php echo $courseObj->name; ?>"/>
-                    <p class="clearfix"><input name="name" type="text" value="" placeholder="Full Name" size="44" required /></p>
-                    <p class="clearfix"><input name="email" type="email" placeholder="Enter your email" size="44" required /></p>
-                    <p class="clearfix"><input name="phone" type="text" placeholder="Enter your phone number" size="44" required /></p>
-                    <p class="clearfix"><input name="address" type="text" placeholder="Enter your address" size="44" required /></p>
+                    <p class="clearfix"><input name="name" type="text" value="" placeholder="Full Name" size="40" required /></p>
+                    <p class="clearfix"><input name="email" type="email" placeholder="Enter your email" size="40" required /></p>
+                    <p class="clearfix"><input name="phone" type="text" placeholder="Enter your phone number" size="40" required /></p>
+                    <p class="clearfix"><input name="company" type="text" placeholder="Enter your company name" size="40" required /></p>
+                    <p class="clearfix"><input name="address" type="text" placeholder="Enter your address" size="40" required /></p>
                     <p class="clearfix"><textarea name="message" placeholder="Enter your message" cols="42" required="required"></textarea></p>
                     <input type="submit" name="submit" value="Book Now"/> &nbsp; &nbsp; &nbsp; <input type="button" class="close btn btn-danger btn-sm" value="Close"/>
                 </div>
