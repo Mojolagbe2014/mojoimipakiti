@@ -101,7 +101,7 @@ require('includes/page-properties.php');
             },30);
         });
     </script>
-    <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+    <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}.menu_user_wrap .menu_user_nav li > a, .menu_main_wrap .menu_main_nav li > a { color: #FFF;background: rgba(255,0,0,0.5);}</style>
     <noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
     <link href="css/php-calendar.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo SITE_URL; ?>sweet-alert/sweetalert.css" rel="stylesheet" type="text/css"/>

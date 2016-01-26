@@ -18,17 +18,19 @@
                     <div class="content_wrap clearfix">
                         <div class="menu_user_area menu_user_right menu_user_nav_area">
                             <ul id="menu_user" class="menu_user_nav">
+                                <?php if(trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'BOOKMARK_BUTTON'))))=="TRUE"){ ?>
                                 <li class="menu_user_bookmarks"><a href="#" class="bookmarks_show icon-star-1" title="Show bookmarks"></a>
                                     <ul class="bookmarks_list">
                                     <li><a href="#" class="bookmarks_add icon-star-empty" title="Add the current page into bookmarks">Add bookmark</a></li>
                                 </ul>
                                 </li>
+                                <?php } ?>
                                 <?php include('login-section.php'); ?>
                             </ul>
                         </div>
-                        <div class="menu_user_area menu_user_left menu_user_contact_area" <?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? '' : 'style="color:#000"'; ?>>
-                            Contact us on <a href="tel:<?php echo COMPANY_HOTLINE; ?>"><?php echo COMPANY_HOTLINE; ?></a> or 
-                            <a href="mailto:<?php echo COMPANY_EMAIL; ?>"><span class="__cf_email__" data-cfemail=""><?php echo COMPANY_EMAIL; ?></span>
+                        <div class="menu_user_area menu_user_left menu_user_contact_area" <?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? 'style=" background: rgba(255,255,255,0.6);padding:7px 7px 7px 7px;"' : 'style="color:#000"'; ?>>
+                            <a href="tel:<?php echo COMPANY_HOTLINE; ?>" style="color:#000"><?php echo COMPANY_HOTLINE; ?></a> | 
+                            <a href="mailto:<?php echo COMPANY_EMAIL; ?>" style="color:#000"><span class="__cf_email__" data-cfemail=""><?php echo COMPANY_EMAIL; ?></span>
                             </a>
                         </div>
                     </div>
@@ -37,7 +39,9 @@
                 <div class="menu_main_wrap logo_left">
                     <div class="content_wrap clearfix">
                         <div class="logo">
-                            <a href="<?php echo SITE_URL; ?>"><img src="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? SITE_URL.'images/logo-white.png' : SITE_URL.'images/logo-dark.jpg'; ?>" class="logo_main" alt=""><img src="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? SITE_URL.'images/logo-dark.png' : SITE_URL.'images/logo-dark.jpg'; ?>" class="logo_fixed" alt=""></a>
+                            <a href="<?php echo SITE_URL; ?>">
+                                <img src="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? SITE_URL.'images/logo-white.png' : SITE_URL.'images/logo-dark.jpg'; ?>" class="logo_main" alt="" style="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? 'background:rgba(255,255,255, 0.7);padding:0px 5px 0px 5px;' : ''; ?>">
+                                <img src="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? SITE_URL.'images/logo-white.png' : SITE_URL.'images/logo-dark.jpg'; ?>" class="logo_fixed" alt=""  style="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? 'background:rgba(255,255,255, 0.7);padding:0px 5px 0px 5px;' : ''; ?>"></a>
                         </div>
 
                         <div class="search_wrap search_style_regular search_ajax" title="Open/close search form">

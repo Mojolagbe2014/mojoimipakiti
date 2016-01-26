@@ -23,7 +23,7 @@
     data-end="8150" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 820px; max-height: 116px; white-space: normal;color:#FFF;background:rgba(255,0,0,0.5);opacity: 0.1;margin:10px">Welcome to <br>Impact Training and Management Consulting Ltd
+    style="z-index: 5; max-width: 820px; max-height: 116px; white-space: normal;color:#FFF;background:rgba(30,170,206, 0.7);padding:0px 10px 0px 10px;opacity: 0.1;margin:10px">Welcome to <br>Impact Training and Management Consulting Ltd
     </div>
     </li>
     <!-- SLIDE 2  -->
@@ -46,7 +46,7 @@
     data-end="8050" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;color:#FFF;background:rgba(255,0,0,0.5);text-align:center">Receive personalized <br/>coaching
+    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;color:#FFF;background:rgba(30,170,206, 0.7);padding:0px 10px 0px 10px;text-align:center">Receive personalized <br/>coaching
     </div>
 
     <!-- LAYER NR. 3 -->
@@ -64,7 +64,7 @@
     data-end="8600" 
     data-endspeed="300" 
 
-    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'members/'; ?>" class="slide_button_white" style="color:maroon">View Trainers</a> 
+    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'members/'; ?>" class="slide_button_white" style="color:#1EAACE">View Trainers</a> 
     </div>
     </li>
     <!-- SLIDE 3 -->
@@ -88,7 +88,7 @@
     data-end="8200" 
     data-endspeed="300" 
 
-    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;color:#FFF;background:rgba(255,0,0,0.5);">Fun-filled Learning<br>
+    style="z-index: 5; max-width: 633px; max-height: 180px; white-space: normal;color:#FFF;background:rgba(30,170,206, 0.7);padding:0px 10px 0px 10px;">Fun-filled Learning<br>
     </div>
 
     
@@ -108,7 +108,7 @@
     data-end="8600" 
     data-endspeed="300" 
 
-    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'contact/'; ?>" class="slide_button_white" style="color:maroon">Contact us today</a> 
+    style="z-index: 7; max-width: 190px; max-height: 18px; white-space: normal;"><a href="<?php echo SITE_URL.'contact/'; ?>" class="slide_button_white" style="color:#1EAACE">Contact us today</a> 
     </div>
     </li>
     </ul>
