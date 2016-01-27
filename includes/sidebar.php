@@ -23,7 +23,7 @@
         <ul class="product_list_widget">
             <?php 
             $sideCourseObj = new Course($dbObj);
-            foreach ($sideCourseObj->fetchRaw("*", " status =1 ", " RAND() LIMIT 4 ") as $sideCourse) {
+            foreach ($sideCourseObj->fetchRaw("*", " status =1 AND CURRENT_DATE <= start_date ", " RAND() LIMIT 4 ") as $sideCourse) {
                 $courseData = array('id' => 'id', 'name' => 'name', 'code' => 'code', 'image' => 'image', 'media' => 'media', 'amount' => 'amount', 'shortName' => 'short_name', 'category' => 'category', 'startDate' => 'start_date', 'endDate' => 'end_date', 'description' => 'description', 'status' => 'status', 'featured' => 'featured', 'currency' => 'currency');
                 foreach ($courseData as $key => $value){
                     switch ($key) { 

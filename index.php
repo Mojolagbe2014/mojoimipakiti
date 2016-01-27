@@ -169,7 +169,7 @@ require('includes/page-properties.php');
                                                     <div id="sc_blogger_1219813813" class="sc_blogger layout_courses_3 template_portfolio  sc_blogger_horizontal no_description">
                                                         <div class="isotope_wrap" data-columns="3">	
                                                             <?php 
-                                                            foreach ($courseObj->fetchRaw("*", " status = 1 ", " RAND() LIMIT 6") as $course) {
+                                                            foreach ($courseObj->fetchRaw("*", " status = 1 AND CURRENT_DATE <= start_date ", " RAND() LIMIT 6") as $course) {
                                                                 $courseData = array('id' => 'id', 'name' => 'name', 'code' => 'code', 'image' => 'image', 'media' => 'media', 'amount' => 'amount', 'shortName' => 'short_name', 'category' => 'category', 'startDate' => 'start_date', 'endDate' => 'end_date', 'description' => 'description', 'status' => 'status', 'currency' => 'currency');
                                                                 foreach ($courseData as $key => $value){
                                                                     switch ($key) { 

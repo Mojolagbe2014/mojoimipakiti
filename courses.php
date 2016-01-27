@@ -153,7 +153,7 @@ if(($transactTotal%$recordPerPage)>0){$totalPages +=1;}
                         <div class="isotope_wrap " data-columns="3">
                             <?php 
                             $courseNos = 0;
-                            foreach ($courseObj->fetchRaw("*", " status = 1 $classVal ", " id LIMIT $recordPerPage OFFSET $offset") as $course) {
+                            foreach ($courseObj->fetchRaw("*", " status = 1 AND CURRENT_DATE <= start_date $classVal ", " start_date LIMIT $recordPerPage OFFSET $offset") as $course) {
                                 $courseData = array('id' => 'id', 'name' => 'name', 'code' => 'code', 'image' => 'image', 'media' => 'media', 'amount' => 'amount', 'shortName' => 'short_name', 'category' => 'category', 'startDate' => 'start_date', 'endDate' => 'end_date', 'description' => 'description', 'status' => 'status', 'featured' => 'featured', 'currency' => 'currency');
                                 foreach ($courseData as $key => $value){
                                     switch ($key) { 

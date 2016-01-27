@@ -14,7 +14,7 @@
                             ?>
                             <h5 class="widget_title">Private Sector Courses</h5>
                             <?php 
-                            foreach ($courseObj->fetchRaw("*", " status = 1 AND featured = 1 ", " RAND() LIMIT 2 ") as $course) {
+                            foreach ($courseObj->fetchRaw("*", " status = 1 AND featured = 1 AND CURRENT_DATE <= start_date ", " RAND() LIMIT 2 ") as $course) {
                                 $courseData = array('id' => 'id', 'name' => 'name', 'code' => 'code', 'image' => 'image', 'media' => 'media', 'amount' => 'amount', 'shortName' => 'short_name', 'category' => 'category', 'startDate' => 'start_date', 'endDate' => 'end_date', 'description' => 'description', 'status' => 'status', 'currency' => 'currency');
                                 foreach ($courseData as $key => $value){
                                     switch ($key) { 
@@ -59,7 +59,7 @@
                             <?php } ?>
                             <h5 class="widget_title" style="margin-top:10px;">Public Sector Courses</h5>
                             <?php 
-                            foreach ($courseObj->fetchRaw("*", " status = 1 AND featured = 0 ", " RAND() LIMIT 2 ") as $course) {
+                            foreach ($courseObj->fetchRaw("*", " status = 1 AND featured = 0 AND CURRENT_DATE <= start_date ", " RAND() LIMIT 2 ") as $course) {
                                 $courseData = array('id' => 'id', 'name' => 'name', 'code' => 'code', 'image' => 'image', 'media' => 'media', 'amount' => 'amount', 'shortName' => 'short_name', 'category' => 'category', 'startDate' => 'start_date', 'endDate' => 'end_date', 'description' => 'description', 'status' => 'status', 'currency' => 'currency');
                                 foreach ($courseData as $key => $value){
                                     switch ($key) { 
