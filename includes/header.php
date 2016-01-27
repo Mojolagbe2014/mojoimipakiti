@@ -28,11 +28,11 @@
                                 <?php include('login-section.php'); ?>
                             </ul>
                         </div>
-                        <div class="menu_user_area menu_user_left menu_user_contact_area" <?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? 'style=" background: rgba(255,255,255,0.6);padding:7px 7px 7px 7px;"' : 'style="color:#000"'; ?>>
-                            <a href="tel:<?php echo COMPANY_HOTLINE; ?>" style="color:#000"><?php echo COMPANY_HOTLINE; ?></a> | 
-                            <a href="mailto:<?php echo COMPANY_EMAIL; ?>" style="color:#000"><span class="__cf_email__" data-cfemail=""><?php echo COMPANY_EMAIL; ?></span>
+<!--                        <div class="menu_user_area menu_user_left menu_user_contact_area" <?php //echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? 'style=" background: rgba(255,255,255,0.6);padding:7px 7px 7px 7px;"' : 'style="color:#000"'; ?>>
+                            <a href="tel:<?php //echo COMPANY_HOTLINE; ?>" style="color:#000"><?php //echo COMPANY_HOTLINE; ?></a> | 
+                            <a href="mailto:<?php //echo COMPANY_EMAIL; ?>" style="color:#000"><span class="__cf_email__" data-cfemail=""><?php //echo COMPANY_EMAIL; ?></span>
                             </a>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
 

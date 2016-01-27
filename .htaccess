@@ -8,6 +8,12 @@ DefaultLanguage en
 #Disable directory listing 
 Options All -Indexes
 
+# Force download of files
+<FilesMatch "\.(doc|docx|xls|csv|txt|pdf)$">
+ ForceType application/octet-stream
+ Header set Content-Disposition attachment
+</FilesMatch>
+
 RewriteEngine on
 
 RewriteCond %{HTTPS} off

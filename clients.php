@@ -196,7 +196,7 @@ require('includes/page-properties.php');
                                                                                 <div class="sc_scroll_slide swiper-slide">
                                                                                     <div class="wpb_text_column wpb_content_element ">
                                                                                         <div class="wpb_wrapper">
-                                                                                            <p>Website: <a href="<?php echo $clientObj->website; ?>" target="_blank"><?php echo $clientObj->website; ?></a></p>
+                                                                                            <p>Website: <?php echo $clientObj->website; ?></p>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>

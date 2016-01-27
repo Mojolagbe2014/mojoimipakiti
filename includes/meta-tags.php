@@ -20,7 +20,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="<?php echo $thisPage->title; ?>" />
-    <meta property="og:url" content="<?php echo SITE_URL.$_SERVER['REQUEST_URI']; ?>" />
+    <meta property="og:url" content="<?php echo SITE_URL1.$_SERVER['REQUEST_URI']; ?>" />
     <meta property="og:site_name" content="<?php echo $thisPage->author; ?>" />
     <meta property="og:title" content="<?php echo $thisPage->title; ?>" />
     <meta property="og:description" content="<?php echo $thisPage->description; ?>" />

@@ -10,3 +10,16 @@
 .menu_dark, a.menu_color:hover, .top_panel_style_light .menu_main_wrap .logo a, .top_panel_style_light .menu_main_wrap .menu_main_nav > li > a, .bg_tint_light .menu_main_responsive_button:hover, .post_item_related:nth-child(3n+2) .post_title a:hover, .isotope_item_courses_1:nth-child(3n+2) .post_title a:hover, .isotope_item_courses_1:nth-child(3n+2) .post_category a:hover, .pagination_wrap .pager_next:hover, .pagination_wrap .pager_prev:hover, .pagination_wrap .pager_last:hover, .pagination_wrap .pager_first:hover, .widget_area a:hover, .widget_area ul li a, .widget_area button:hover::before, .sc_icon.sc_icon_bg_menu:hover, a:hover .sc_icon.sc_icon_bg_menu, .woocommerce ul.products li.product:nth-child(5n+2) h3 a:hover, .woocommerce-page ul.products li.product:nth-child(5n+2) h3 a:hover, .woocommerce ul.products li.product:nth-child(5n+4) h3 a:hover, .woocommerce-page ul.products li.product:nth-child(5n+4) h3 a:hover {
     color: #BA0006;
 }
+.top_panel_over.top_panel_opacity_transparent.top_panel_style_dark .menu_main_wrap .content_wrap::after {
+    background-color: transparent;
+}
+.top_panel_over.top_panel_opacity_transparent .menu_main_wrap .content_wrap::after {
+    content: ' ';
+    display: block;
+    width: 100%;
+    height: .0em;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 7.25em;
+}
