@@ -28,7 +28,7 @@ $errorArr = array(); //Array of errors
                 <br /><br />
                 <h2> Impact Training &amp; Management Consulting</h2>
                
-                <h5>( Login yourself to get access )</h5>
+                <h5>( Login to get access )</h5>
                  <br />
             </div>
         </div>
