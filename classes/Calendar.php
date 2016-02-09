@@ -148,9 +148,9 @@ class Calendar {
          
         return
             '<div class="header">'.
-                '<a class="prev" href="'.$this->naviHref.'?month='.sprintf('%02d',$preMonth).'&year='.$preYear.'#calendar">Prev</a>'.
-                    '<span class="title">'.date('Y M',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).'</span>'.
-                '<a class="next" href="'.$this->naviHref.'?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'#calendar">Next</a>'.
+                '<a class="prev" href="'.$this->naviHref.'?month='.sprintf('%02d',$preMonth).'&year='.$preYear.'#calendar"> << </a>'.
+                    '<span class="title">'.date('Y F',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).'</span>'.
+                '<a class="next" href="'.$this->naviHref.'?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'#calendar"> >> </a>'.
             '</div>';
     }
          
@@ -163,7 +163,7 @@ class Calendar {
          
         foreach($this->dayLabels as $index=>$label){
              
-            $content.='<li class="'.($label==6?'end title':'start title').' title">'.$label.'</li>';
+            $content.='<li class="'.($index==6?'end title':'start title').' title">'.$label.'</li>';
  
         }
          
