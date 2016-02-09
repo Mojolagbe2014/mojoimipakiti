@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2016 at 01:27 PM
+-- Generation Time: Feb 09, 2016 at 09:12 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `course` (
   `featured` tinyint(4) NOT NULL,
   `currency` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`,`category`)
+  UNIQUE KEY `evt_st_dat_end_dat` (`name`,`start_date`,`end_date`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
