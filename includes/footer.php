@@ -7,7 +7,7 @@
                             <?php
                             echo $calendar->show();
                             ?>
-                        </aside><aside id="themerex_widget_top10-4" class="widget_number_2 column-1_3 widget widget_top10 not-calendar">
+                        </aside><aside id="themerex_widget_top10-4" class="widget_number_1 column-1_3 widget widget_top10 not-calendar">
                             <?php 
                             $widgetCourArr = array('Public', 'Private');
                             $widgetCourse = rand(0, 1);
@@ -103,6 +103,7 @@
                             </article>
                             <?php } ?>
                         </aside>
+                        
                     </div>	<!-- /.columns_wrap -->
                 </div>	<!-- /.content_wrap -->
             </footer>	<!-- /.footer_wrap -->

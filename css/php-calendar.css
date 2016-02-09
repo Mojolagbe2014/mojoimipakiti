@@ -119,9 +119,32 @@ div#calendar ul.dates li{
 div.clear{
     clear:both;
 } 
-@media screen and (max-width: 480px){
-    div#calendar{
-      display:none
-    }
-    aside.widget_calendar h5{display:none}
+
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+    div#calendar{ width:290px; }
+    div#calendar ul.dates li{width:35px;height:30px;font-size:12px;line-height: 30px;}
+    div#calendar div.box{ height:30px;}
+    div#calendar div.header{line-height: 30px;width: 265px;height: 20px;font-size:10px;}
+    div#calendar div.header span.title {font-size: 13px;}
+    div#calendar ul.label li {width:35px;font-size:12px;}
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+    div#calendar{ width:290px; }
+    div#calendar ul.dates li{width:35px;height:30px;font-size:12px;line-height: 30px;}
+    div#calendar div.box{ height:30px;}
+    div#calendar div.header{line-height: 30px;width: 265px;height: 20px;font-size:10px;}
+    div#calendar div.header span.title {font-size: 13px;}
+    div#calendar ul.label li {width:35px;font-size:12px;}
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+    div#calendar{ width:400px; }
+    div#calendar ul.dates li{width:50px;height:30px;font-size:14px;line-height: 30px;}
+    div#calendar div.box{ height:30px;}
+    div#calendar div.header{line-height: 30px;width: 380px;height: 30px;font-size:12px;}
+    div#calendar div.header span.title {font-size: 15px;}
+    div#calendar ul.label li {width:50px;font-size:14px;}
 }
