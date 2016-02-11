@@ -138,7 +138,7 @@ require('includes/page-properties.php');
                                                     <div class="sc_section" style="margin-top:1em !important;font-weight:400;">
                                                         <div class="wpb_text_column wpb_content_element ">
                                                             <div class="wpb_wrapper">
-                                                            <p><a class="menu_color" href="<?php echo MEDIA_FILES_PATH1.'brochure/'.CourseBrochure::getCurrent($dbObj); ?>">Download Brochure</a><br /> Download our comprehensive brochure to view all our courses we offer at your convenience round the year and its free.</p>
+                                                                <p><a class="menu_color" href="<?php echo MEDIA_FILES_PATH1.'brochure/'.CourseBrochure::getCurrent($dbObj); ?>">Download Our <?php echo CourseBrochure::getName($dbObj); ?></a><br /> Download our comprehensive brochure to view all our courses we offer at your convenience round the year and its free.</p>
 
                                                             </div>
                                                         </div>
