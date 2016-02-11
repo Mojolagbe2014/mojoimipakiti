@@ -9,7 +9,7 @@ class CourseBrochure implements ContentManipulator{
     private $name;
     private $document;
     private  static $dbObj;
-    private static $tableName;
+    private static $tableName = 'course_brochure';
     
     
     //Class constructor
@@ -178,9 +178,10 @@ class CourseBrochure implements ContentManipulator{
      * @param int $id Brochure id of the brochure whose name is to be fetched
      * @return string Name of the brochure
      */
-    public static function getName($dbObj, $id) {
+    public static function getName($dbObj, $id=0) {
         $thisCatName = '';
-        $thisCatNames = $dbObj->fetchNum("SELECT name FROM ".self::$tableName." WHERE id = '{$id}' LIMIT 1");
+        $sql = $id == 0 ? "SELECT name, MAX(id) AS maxId FROM ".self::$tableName." GROUP BY id " : "SELECT name FROM ".self::$tableName." WHERE id = '{$id}' LIMIT 1";
+        $thisCatNames = $dbObj->fetchNum($sql);
         foreach ($thisCatNames as $thisCatNames) { $thisCatName = $thisCatNames[0]; }
         return $thisCatName;
     }
@@ -191,7 +192,7 @@ class CourseBrochure implements ContentManipulator{
      */
     public static function getCurrent($dbObj) {
         $thisBrochName = '';
-        $thisBrochNames = $dbObj->fetchNum("SELECT document, MAX(id) AS maxId FROM course_brochure GROUP BY id  ");
+        $thisBrochNames = $dbObj->fetchNum("SELECT document, MAX(id) AS maxId FROM ".self::$tableName." GROUP BY id  ");
         foreach ($thisBrochNames as $thisBrochNames) { $thisBrochName = $thisBrochNames[0]; }
         return $thisBrochName;
     }
