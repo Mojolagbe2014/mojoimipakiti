@@ -109,4 +109,40 @@ class Imaging {
     
     // Clear image cache 
     public function clearCache() {  @ImageDestroy($this->input);  @ImageDestroy($this->output);  } 
+    
+    /**
+     * @param string $file Path to the image file
+     * @param int $reqWidth Minimum image width required
+     * @param int $reqHeight Minimum image height required
+     * @param string $mode Mode of comparison between the supplied parameters and the main image dimesions.<br/> It has values: <b>min</b> | <b>max</b> | <b>equ</b> <br/>
+     * <i>'max' means maximum value for the dimesions, 'min' means minimum value, while 'equ' means it must equal to the specified dimensions</i>
+     * @param string $target Targeted comparison property <br/> It has values: <b>both</b> for both width and height | <b>width</b> for width only | <b>height</b> for height only
+     * @return mixed String error message for failed dimession test | String 'true' for success
+     */
+    public static function checkDimension($file, $reqWidth=400, $reqHeight=400, $mode="equ", $target="both"){
+        $msg = '';
+        if(getimagesize($file) !== false) {
+            list($width, $height, $type, $attr) = getimagesize($file);
+            $reqDimensions = array('width' => $reqWidth, 'height' => $reqHeight);
+            $messageBox = array('width' => '', 'height' => '');
+            switch($target){
+                case 'both':    foreach($reqDimensions as $reqDimension => $dimensionVal){
+                                    switch($mode){
+                                        case 'min': $messageBox["$reqDimension"] = ($$reqDimension >= $dimensionVal ) ? 'true'  : "Image dimensions are too small. Minimum $reqDimension is $dimensionVal px. Uploaded image $reqDimension is {$$reqDimension}px"; break;
+                                        case 'max': $messageBox["$reqDimension"] = ($$reqDimension <= $dimensionVal ) ? 'true'  : "Image dimensions are too large. Maximum $reqDimension is $dimensionVal px. Uploaded image $reqDimension is {$$reqDimension}px"; break;
+                                        case 'equ': $messageBox["$reqDimension"] = ($$reqDimension == $dimensionVal ) ? 'true'  : "Image dimensions are not equal to required dimensions. Required $reqDimension is $dimensionVal px. Uploaded image $reqDimension is {$$reqDimension}px"; break;
+                                    }
+                                }
+                                $msg = ($messageBox["width"]=='true' && $messageBox["height"]=='true') ? 'true' : (($messageBox["width"]=='true') ? '[However, the required width is correct.]' : $messageBox["width"]).'. '.(($messageBox["height"]=='true') ? '[However, the required height is correct.]' : $messageBox["height"]);
+                                break;
+                default :       switch($mode){
+                                    case 'min': $msg = ($$target >= $reqDimensions["$target"]) ? 'true'  : "Image dimensions are too small. Minimum $target is {$reqDimensions[$target]}px. Uploaded image $target is {$$target}px"; break;
+                                    case 'max': $msg = ($$target <= $reqDimensions["$target"]) ? 'true'  : "Image dimensions are too large. Maximum $target is {$reqDimensions[$target]}px. Uploaded image $target is {$$target}px"; break;
+                                    case 'equ': $msg = ($$target == $reqDimensions["$target"]) ? 'true'  : "Image dimensions are not equal to required dimensions. Required $target is {$reqDimensions[$target]}px. Uploaded image $target is {$$target}px"; break;
+                                }    
+                                break;
+            }
+        }else{ $msg = "File is not an image."; }
+        return $msg;
+    }
 } 

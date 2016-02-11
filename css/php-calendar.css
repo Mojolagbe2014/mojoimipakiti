@@ -111,6 +111,7 @@ div#calendar ul.dates li{
 /*    color:#000;*/
     text-align:center; 
 }
+a.popup_link .popup_login_link .inited{background:#000;} 
  
 :focus{
     outline:none;
@@ -149,4 +150,23 @@ li.end{color:red;}
     div#calendar div.header{line-height: 30px;width: 380px;height: 30px;font-size:12px;}
     div#calendar div.header span.title {font-size: 15px;}
     div#calendar ul.label li {width:50px;font-size:14px;}
+}
+
+@media only screen and (min-width : 768px) {
+    div#rev_slider_3_1{
+margin-top:100px
+}
+
+.menu_user_wrap .menu_user_right {
+    margin-right: -60px;
+}
+
+.menu_main_nav_area {
+    margin-top: 0.275em;
+    margin-bottom: 0.75em;
+}
+
+.menu_main_wrap .logo_main {
+    margin-top: -55px;
+}
 }

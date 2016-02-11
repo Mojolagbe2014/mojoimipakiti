@@ -36,26 +36,27 @@ else{
         }
         //If validated and not empty submit it to database
         if(count($errorArr) < 1)   {
-            $target_file = MEDIA_FILES_PATH."course/". $courseMedFil;
-            $target_Image = MEDIA_FILES_PATH."course-image/". $courseImgFil;
-            $uploadOk = 1; $msg = '';
-            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-            if (file_exists($target_Image)) { $msg .= " Course image already exists."; $uploadOk = 0; }
-            if ($_FILES["file"]["size"] > 800000000 || $_FILES["image"]["size"] > 8000000) { $msg .= " Course media is too large."; $uploadOk = 0; }
-            if($courseMedFil !=''){ move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);}
-            if($courseImgFil !=''){ move_uploaded_file($_FILES["image"]["tmp_name"], $target_Image);}
-            if ($uploadOk == 0) {
-                $msg = "Sorry, your course media was not uploaded. ERROR: ".$msg;
+            $targetFile = MEDIA_FILES_PATH."course/". $courseMedFil;
+            $targetImage = MEDIA_FILES_PATH."course-image/". $courseImgFil;
+            $uploadOk = 1; $msg = ''; //$normalSize = true; $isImage = true;
+            $imageFileType = pathinfo($targetFile,PATHINFO_EXTENSION);
+            
+            if (file_exists($targetImage)) { $msg .= " Course image already exists."; $uploadOk = 0; }
+            //if ($_FILES["file"]["size"] > 800000000 || $_FILES["image"]["size"] > 8000000) { $msg .= " Course media is too large."; $normalSize = false; }
+            if($uploadOk == 1 && Imaging::checkDimension($_FILES["image"]["tmp_name"], 400, 400, 'equ', 'both')== 'true'){ 
+                if($courseMedFil !=''){ move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile);}
+                if($courseImgFil !=''){ move_uploaded_file($_FILES["image"]["tmp_name"], $targetImage);}
+                echo $courseObj->add(); 
+            }
+            else {
+                $msg = "Sorry, your course was not uploaded. ERROR: ".$msg.Imaging::checkDimension($_FILES["image"]["tmp_name"], 400, 400, 'equ', 'both');
                 $json = array("status" => 0, "msg" => $msg); 
                 $dbObj->close();//Close Database Connection
                 header('Content-type: application/json');
                 echo json_encode($json);
             } 
-            else { echo $courseObj->add(); }
 
-        }
-        //Else show error messages
-        else{ 
+        }else{ 
             $json = array("status" => 0, "msg" => $errorArr); 
             $dbObj->close();//Close Database Connection
             header('Content-type: application/json');

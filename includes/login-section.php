@@ -1,4 +1,4 @@
-<li class="menu_user_login"><a href="#popup_login" class="popup_link popup_login_link">Subscribe</a>
+<li class="menu_user_login"><a href="#popup_login" class="popup_link popup_login_link" style="background:#000">Subscribe</a>
                                     <div id="popup_login" class="popup_wrap popup_login bg_tint_light" style="border:1px solid #000">
                                         <a href="#" class="popup_close"></a>
                                         <div class="form_wrap">

@@ -153,21 +153,20 @@ else{
             if($newMedia !=""){
                 if (move_uploaded_file($_FILES["file"]["tmp_name"], MEDIA_FILES_PATH."course/".$courseMedFil)) {
                     $msg .= "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
-                    $status = 'ok'; if($oldMedia!='' && file_exists(MEDIA_FILES_PATH."course/".$oldMedia)) unlink(MEDIA_FILES_PATH."course/".$oldMedia); $uploadOk = 1;
+                    $status = 'ok'; if($oldMedia!='' && file_exists(MEDIA_FILES_PATH."course/".$oldMedia)) unlink(MEDIA_FILES_PATH."course/".$oldMedia);
                 } else {
                     $uploadOk = 0;
                 }
             }
             if($newImage !=""){
-                if (move_uploaded_file($_FILES["image"]["tmp_name"], MEDIA_FILES_PATH."course-image/".$courseImageFil)) {
+                if(Imaging::checkDimension($_FILES["image"]["tmp_name"], 400, 400, 'equ', 'both') != 'true'){$uploadOk = 0; $msg = Imaging::checkDimension($_FILES["image"]["tmp_name"], 400, 400, 'equ', 'both');}
+                if ($uploadOk == 1 && move_uploaded_file($_FILES["image"]["tmp_name"], MEDIA_FILES_PATH."course-image/".$courseImageFil)) {
                     $msg .= "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
-                    $status = 'ok'; if($oldImage!='' && file_exists(MEDIA_FILES_PATH."course-image/".$oldImage))unlink(MEDIA_FILES_PATH."course-image/".$oldImage); $uploadOk = 1;
-                } else {
-                    $uploadOk = 0;
-                }
+                    $status = 'ok'; if($oldImage!='' && file_exists(MEDIA_FILES_PATH."course-image/".$oldImage))unlink(MEDIA_FILES_PATH."course-image/".$oldImage);
+                } else { $uploadOk = 0; }
             }
             
-            if($uploadOk == 1){ echo $courseObj->update(); }
+            if($uploadOk == 1){  echo $courseObj->update();  }
             else {
                 $msg = " Sorry, there was an error uploading your course media. ERROR: ".$msg;
                 $json = array("status" => 0, "msg" => $msg); 
