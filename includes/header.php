@@ -40,8 +40,8 @@
                     <div class="content_wrap clearfix">
                         <div class="logo">
                             <a href="<?php echo SITE_URL; ?>">
-                                <img src="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? SITE_URL.'images/logo-white.png' : SITE_URL.'images/logo-dark.jpg'; ?>" class="logo_main" alt="" style="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? 'background:rgba(255,255,255, 0.7);padding:0px 5px 0px 5px;' : ''; ?>">
-                                <img src="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? SITE_URL.'images/logo-white.png' : SITE_URL.'images/logo-dark.jpg'; ?>" class="logo_fixed" alt=""  style="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? 'background:rgba(255,255,255, 0.7);padding:0px 5px 0px 5px;' : ''; ?>"></a>
+                                <img src="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? SITE_URL.'images/logo-dark.jpg' : SITE_URL.'images/logo-dark.jpg'; ?>" class="logo_main" alt="" style="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? 'background:rgba(255,255,255, 1.0);padding:0px 5px 0px 5px;' : ''; ?>">
+                                <img src="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? SITE_URL.'images/logo-dark.jpg' : SITE_URL.'images/logo-dark.jpg'; ?>" class="logo_fixed" alt=""  style="<?php echo strpos($_SERVER['SCRIPT_NAME'],'index.php') ? 'background:rgba(255,255,255, 1);padding:0px 5px 0px 5px;' : ''; ?>"></a>
                         </div>
 
                         <div class="search_wrap search_style_regular search_ajax" title="Open/close search form">
