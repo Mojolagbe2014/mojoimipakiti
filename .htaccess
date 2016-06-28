@@ -1,4 +1,4 @@
-ErrorDocument 404 http://localhost/impact/404.php
+ErrorDocument 404 http://localhost/mojoimipakiti/404.php
 
 ServerSignature Off
 
@@ -9,10 +9,10 @@ DefaultLanguage en
 Options All -Indexes
 
 # Force download of files
-<FilesMatch "\.(doc|docx|xls|csv|txt|pdf)$">
- ForceType application/octet-stream
- Header set Content-Disposition attachment
-</FilesMatch>
+#<FilesMatch "\.(doc|docx|xls|csv|txt|pdf)$">
+# ForceType application/octet-stream
+# Header set Content-Disposition attachment
+#</FilesMatch>
 
 RewriteEngine on
 
